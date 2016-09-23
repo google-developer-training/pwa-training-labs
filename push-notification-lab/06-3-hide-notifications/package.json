@@ -1,0 +1,15 @@
+{
+  "name": "push-notification-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "sso://devrel/google-developer-training/pwa/ilt/push-notification-lab"
+  },
+  "author": "",
+  "license": "ISC"
+}

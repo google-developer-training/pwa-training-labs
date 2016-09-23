@@ -1,0 +1,22 @@
+{
+  "name": "fetch-api-tutorial",
+  "version": "1.0.0",
+  "description": "This is the starter code for the Fetch API tutorial. We have * A boilerplate index.html * An images directory * An example JSON file * An example html file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidScales/Fetch-API-tutorial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidScales/Fetch-API-tutorial/issues"
+  },
+  "homepage": "https://github.com/DavidScales/Fetch-API-tutorial#readme",
+  "dependencies": {
+    "whatwg-fetch": "^1.0.0"
+  }
+}

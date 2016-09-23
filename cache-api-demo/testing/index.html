@@ -1,0 +1,127 @@
+<!--
+Copyright 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta charset="utf-8">
+    <title>Cache API Demo</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+
+  <body id="body">
+
+    <!-- HTML skeleton -->
+
+    <h1>Cache API Demo</h1>
+
+    <div class="container">
+
+      <div class="controls-console">
+
+        <div id="controls">
+
+          <label>
+            Cache:
+            <input id="cache-input" type="text" value="Cache name">
+          </label>
+          <button id="add-cache">Add</button>
+          <button id="delete-cache">Delete</button>
+
+          <ul id="files-list"></ul>
+
+        </div>
+
+        <div id="console">
+          <pre><code id="code">
+
+          </code></pre>
+        </div>
+
+      </div>
+
+      <h3>Caches:</h3>
+      <div id="caches-list"></div>
+
+    </div>
+
+    <!-- Code snippet templates -->
+
+    <template id="template-add-cache">
+      &lt;script&gt;
+        window.caches.open(cacheName)
+        .then(function(cache) {
+          // Cache is open and accessible as 'cache'.
+          // If no 'cacheName' cache existed, it was created.
+        })
+        .catch(function(error) {
+          console.log('Cache creation failed', error);
+        });
+      &lt;/script&gt;
+    </template>
+
+    <template id="template-delete-cache">
+      &lt;script&gt;
+        window.caches.delete(cacheName)
+        .then(function() {
+          // 'cacheName' cache has been deleted
+          // If no 'cacheName' cache existed, nothing happens
+        })
+        .catch(function(error) {
+          console.log('Cache deletion failed', error);
+        });
+      &lt;/script&gt;
+    </template>
+
+    <template id="template-add-request">
+      &lt;script&gt;
+        window.caches.open(cacheName)
+        .then(function(cache) {
+          // Cache is open and accessible as 'cache'.
+          cache.add(requestUrl)
+          .then(function() {
+            // 'requestUrl' request has been added to 'cacheName' cache
+          });
+        })
+        .catch(function(error) {
+          console.log('Request creation failed', error);
+        });
+      &lt;/script&gt;
+    </template>
+
+    <template id="template-delete-request">
+      &lt;script&gt;
+        window.caches.open(cacheName)
+        .then(function(cache) {
+          // Cache is open and accessible as 'cache'.
+          cache.delete(requestUrl)
+          .then(function() {
+            // 'requestUrl' request has been deleted from 'cacheName' cache
+          });
+        })
+        .catch(function(error) {
+          console.log('Could not delete request', error);
+        });
+      &lt;/script&gt;
+    </template>
+
+    <!-- Main JavaScript -->
+
+    <script src="js/main.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,97 @@
+/*
+Copyright 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+html {
+  background-color: #efefef;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.controls-console {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#controls {
+  width: 30%;
+  min-width: 300px;
+}
+
+#console {
+  background-color: #d4d4d4;
+  width: 70%;
+  max-width: 700px;
+  font-size: 14px;
+  min-width: 700px;
+}
+
+#caches-list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.cache {
+  background: #3F51B5;
+  color: white;
+  padding: 10px;
+  list-style-type: none;
+  border-radius: 7px;
+  border: solid 1px #7d7d7d;
+  box-shadow: 3px 3px 5px #888888;
+  border: solid 1px #7d7d7d;
+  margin: 10px;
+  min-width: 350px;
+  overflow: hidden;
+}
+
+.request {
+  background: #607D8B;
+  padding: 5px;
+  margin: 10px 0 10px 0;
+  border-radius: 5px;
+  border: solid 1px #484848;
+  box-shadow: 3px 3px 5px #4c4c4c;
+  border: solid 1px #484848;
+  max-width: 100%;
+}
+
+.active-cache {
+  background-color: #546df5;
+}
+
+.active-request {
+  background-color: #85acbf;
+}
+
+.delete {
+  float: right;
+  margin-left: 20px;
+}
+
+.add {
+  margin-left: 20px;
+}

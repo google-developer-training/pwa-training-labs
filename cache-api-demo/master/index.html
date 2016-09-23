@@ -1,0 +1,184 @@
+<!--
+Copyright 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0,
+    initial-scale=1.0, user-scalable=yes">
+    <meta charset="utf-8">
+    <title>Cache API Demo</title>
+
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet"
+    href="https://code.getmdl.io/1.2.1/material.indigo-deep_orange.min.css">
+    <link rel="stylesheet" href="styles/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+
+  <body id="body">
+
+    <!-- HTML skeleton -->
+
+    <h3 class="mdl-color--primary mdl-shadow--2dp header">Cache API Demo</h3>
+
+    <div class="container">
+
+      <div class="controls-container">
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="cache-input">
+            <label class="mdl-textfield__label" for="cache-input">Cache name</label>
+          </div>
+        </form>
+
+        <button id="add-cache" class="mdl-button mdl-js-button
+        mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Create
+        </button>
+        <button id="delete-cache" class="mdl-button mdl-js-button
+        mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Delete
+        </button>
+
+        <ul class="mdl-list" id="files-list"></ul>
+      </div>
+
+      <div class="caches-container">
+        <div id="caches"></div>
+      </div>
+
+      <div class="mdl-card mdl-shadow--2dp" id="console">
+        <div class="mdl-card__supporting-text">
+          <pre><code id="code"></code></pre>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- Templates -->
+
+    <script id="template-file" type="text/x-handlebars-template">
+      <li class="mdl-list__item file">
+        <span class="mdl-list__item-primary-content">
+          {{file}}
+        </span>
+      </li>
+    </script>
+
+    <script id="template-add" type="text/x-handlebars-template">
+      <button class="mdl-button mdl-js-button mdl-button--fab
+      mdl-button--mini-fab mdl-button--colored mdl-js-ripple-effect add">
+        <i class="material-icons">add</i>
+      </button>
+    </script>
+
+    <script id="template-cache" type="text/x-handlebars-template">
+      <div class="mdl-card mdl-shadow--8dp cache mdl-color--primary">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">{{cacheName}}</h2>
+        </div>
+        <ul class="mdl-list requests"></ul>
+        <div class="mdl-card__menu delete-location"></div>
+      </div>
+    </script>
+
+    <script id="template-request" type="text/x-handlebars-template">
+      <li class="mdl-list__item request mdl-shadow--4dp mdl-color--accent">
+        <span class="mdl-list__item-primary-content">
+          {{request}}
+        </span>
+        <span class="delete-location"></span>
+      </li>
+    </script>
+
+    <script id="template-delete" type="text/x-handlebars-template">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect delete">
+        <i class="material-icons">cancel</i>
+      </button>
+    </script>
+
+    <script id="template-add-cache" type="text/x-handlebars-template">
+      &lt;script&gt;
+        window.caches.open('<strong>{{cacheName}}</strong>')
+        .then(function(cache) {
+          // Cache is open and accessible as 'cache'.
+          // If no '<strong>{{cacheName}}</strong>' cache existed, it was created.
+        })
+        .catch(function(error) {
+          console.log('Cache creation failed', error);
+        });
+      &lt;/script&gt;
+    </script>
+
+    <script id="template-delete-cache" type="text/x-handlebars-template">
+      &lt;script&gt;
+        window.caches.delete('<strong>{{cacheName}}</strong>')
+        .then(function() {
+          // '<strong>{{cacheName}}</strong>' cache has been deleted
+          // If no '<strong>{{cacheName}}</strong>' cache existed, nothing happens
+        })
+        .catch(function(error) {
+          console.log('Cache deletion failed', error);
+        });
+      &lt;/script&gt;
+    </script>
+
+    <script id="template-add-request" type="text/x-handlebars-template">
+      &lt;script&gt;
+        window.caches.open('<strong>{{cacheName}}</strong>')
+        .then(function(cache) {
+          // Cache is open and accessible as 'cache'.
+          cache.add('<strong>{{requestUrl}}</strong>')
+          .then(function() {
+            // '<strong>{{requestUrl}}</strong>' request
+            // has been added to '<strong>{{cacheName}}</strong>' cache
+          });
+        })
+        .catch(function(error) {
+          console.log('Request creation failed', error);
+        });
+      &lt;/script&gt;
+    </script>
+
+    <script id="template-delete-request" type="text/x-handlebars-template">
+      &lt;script&gt;
+        window.caches.open('<strong>{{cacheName}}</strong>')
+        .then(function(cache) {
+          // Cache is open and accessible as 'cache'.
+          cache.delete('<strong>{{requestUrl}}</strong>')
+          .then(function() {
+            // '<strong>{{requestUrl}}</strong>' request
+            // has been deleted from '<strong>{{cacheName}}</strong>' cache
+          });
+        })
+        .catch(function(error) {
+          console.log('Could not delete request', error);
+        });
+      &lt;/script&gt;
+    </script>
+
+    <!-- JavaScript -->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js">
+    </script>
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <script src="js/main.js"></script>
+
+  </body>
+</html>

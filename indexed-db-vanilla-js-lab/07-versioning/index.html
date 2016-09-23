@@ -1,0 +1,113 @@
+<!--
+Copyright 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+    <script type="text/javascript" src="js/idb.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </head>
+
+  <body>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col">
+      <h4>Add Item</h4>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="name" placeholder="Name"><br/>
+        <input class="mdl-textfield__input" type="text" id="price" placeholder="Price"><br/>
+        <input class="mdl-textfield__input" type="text" id="desc" placeholder="Description"><br/>
+      </div>
+      <button id="addItem" class="mdl-button mdl-js-button mdl-button--raised">Add Item</button>
+    </div>
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    <div class="mdl-cell mdl-cell--3-col">
+      <h4>Add Note</h4>
+      <div class="mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input" type="text" id="note"></textarea>
+      </div>
+      <button id="addNote" class="mdl-button mdl-js-button mdl-button--raised">Add Note</button>
+    </div>
+  </div>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col">
+      <h4>Get Item</h4>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="getname" placeholder="Name">
+      </div>
+      <button id="getItem" class="mdl-button mdl-js-button mdl-button--raised">Get Item</button>
+    </div>
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    <div class="mdl-cell mdl-cell--3-col">
+      <h4>Get Note</h4>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="getnote" placeholder="Id">
+      </div>
+      <button id="getNote" class="mdl-button mdl-js-button mdl-button--raised">Get Note</button>
+    </div>
+  </div>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col">
+      <h4>Update Item</h4>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="updateName" placeholder="Name"><br/>
+        <input class="mdl-textfield__input" type="text" id="updatePrice" placeholder="Price"><br/>
+        <input class="mdl-textfield__input" type="text" id="updateDesc" placeholder="Description"><br/>
+        <input type="hidden" id="created">
+      </div>
+      <button id="updateItem" class="mdl-button mdl-js-button mdl-button--raised">Update Item</button>
+    </div>
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    <div class="mdl-cell mdl-cell--3-col">
+      <h4>Delete Item</h4>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="deleteName" placeholder="Name">
+      </div>
+      <button id="deleteItem" class="mdl-button mdl-js-button mdl-button--raised">Delete Item</button>
+    </div>
+  </div>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col">
+      <h4>Get All</h4>
+      <button id="getAll" class="mdl-button mdl-js-button mdl-button--raised">Get All</button>
+    </div>
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    <div class="mdl-cell mdl-cell--3-col">
+      <h4>Show All</h4>
+      <button id="showAll" class="mdl-button mdl-js-button mdl-button--raised">Show All</button>
+    </div>
+  </div>
+
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col">
+      <h4>Search Items By Price</h4>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="lower">
+        <label class="mdl-textfield__label" for="lower">Lower limit</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="upper">
+        <label class="mdl-textfield__label" for="upper">Upper limit</label>
+      </div>
+      <button id="search" class="mdl-button mdl-js-button mdl-button--raised">Search</button>
+    </div>
+  </div>
+
+  <div id="results"></div>
+
+  </body>
+</html>

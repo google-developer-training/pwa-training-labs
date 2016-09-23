@@ -1,0 +1,144 @@
+<!--
+Copyright 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+
+  <!-- Set the viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <!-- Set character encoding -->
+  <meta charset="utf-8">
+
+  <!-- Set title -->
+  <title>My responsive blog: picture story</title>
+
+  <!-- Request fonts and styles -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="style/main.css" />
+  <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=zocial" />
+
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#2E3AA1">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="demoApp">
+  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Demo App">
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+  <!-- Tile color for Win8 -->
+  <meta name="msapplication-TileColor" content="#3372DF">
+
+  <!-- Tile icon for Win8 (144x144) -->
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body>
+
+  <article>
+
+    <h1>My responsive blog</h1>
+
+    <picture id="banner">
+      <source media="(min-width: 750px)" srcset="images/still_life-1600_large_2x.jpg 2x, images/still_life-800_large_1x.jpg" />
+      <source media="(min-width: 500px)" srcset="images/still_life_medium.jpg" />
+      <img src="images/still_life_small.jpg" alt="Vase, fruit bowl and other objects on a cupboad">
+    </picture>
+
+    <section id="post">
+
+      <h2>My blog post</h2>
+
+      <p class="lead">
+        I love cheese, especially manchego swiss. ☺ Fromage queso jarlsberg cheesy
+        feet emmental cottage cheese camembert de normandie bocconcini. Cottage cheese
+        everyone loves cauliflower cheese rubber cheese squirty cheese halloumi cow
+        fondue. Bocconcini cheese and biscuits everyone loves fondue red leicester
+        st. agur blue cheese rubber cheese ricotta. Cheesy grin mozzarella.
+      </p></br></br>
+
+      <!-- Links to blog post pages -->
+      <ul id="post-list">
+
+        <li>
+        <a href="pages/post1.html" class="post-link">Horses in a field</a>
+        </li>
+
+        <li>
+          <a href="pages/post2.html" class="post-link">Volt sign</a>
+        </li>
+
+        <li>
+          <a href="pages/post3.html" class="post-link">Cockatoos on the deck</a>
+        </li>
+
+        <li>
+          <a href="pages/post4.html" class="post-link">An old letter</a>
+        </li>
+
+        <li>
+          <a href="pages/post5.html" class="post-link">Grasshopper friend</a>
+        </li>
+
+        <li>
+          <a href="pages/post6.html" class="post-link">Overlooking SFO</a>
+        </li>
+
+        <li>
+          <a href="pages/post7.html" class="post-link">A bird and her snack</a>
+        </li>
+
+      </ul>
+
+    </section>
+
+  </article>
+
+  <footer>
+
+    <div id="social">
+      <a href="#" class="zocial-twitter">Twitter</a>
+      <a href="#" class="zocial-facebook">Facebook</a>
+      <a href="#">Google+</a>
+      <a href="#" class="zocial-digg">Digg</a>
+    </div>
+
+  </footer>
+
+  <script>
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(function(registration) {
+          console.log('Service Worker registration successful with scope: ',
+          registration.scope);
+        })
+        .catch(function(err) {
+          console.log('Service Worker registration failed: ', err);
+        });
+    }
+
+  </script>
+
+</body>
+</html>

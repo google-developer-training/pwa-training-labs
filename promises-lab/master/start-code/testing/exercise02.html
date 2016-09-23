@@ -1,0 +1,51 @@
+<!--
+Copyright 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<doctype html>
+<html>
+  <head>
+    <title>Test Page</title>
+    <link rel='stylesheet' href='https://code.jquery.com/qunit/qunit-2.0.1.css'>
+  </head>
+
+  <body>
+    <div id='qunit'></div>
+    <div id='qunit-fixture'></div>
+    <script src='../js/codelab02.js'></script>
+    <script src='https://code.jquery.com/qunit/qunit-2.0.1.js'></script>
+    <!-- Write your tests inside the script tag below -->
+    <script>
+
+    // Is the reponse in JSON format?
+    QUnit.test('Can retrieve a country name', function(assert) {
+      var done = assert.async();
+      getCountryInfo('Spain')
+      .then(function(json) {
+        assert.ok(json, 'Response exists');
+        var country = json.geonames[0].countryName;
+        assert.equal(country, 'Spain', 'Country name matches');
+        done();
+      })
+      .catch(error => {
+        assert.ok(false, error);
+        done();
+        console.log('Didn\'t fetch JSON');
+      });
+    });
+
+</script>
+
+  </body>
+</html>
