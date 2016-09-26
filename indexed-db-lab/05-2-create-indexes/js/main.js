@@ -13,18 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-window.onload = function() {
+var idbApp = (function() {
   'use strict';
 
-  document.getElementById('addProducts').addEventListener('click', addProducts);
-  document.getElementById('byName').addEventListener('click', getByName);
-  document.getElementById('byPrice').addEventListener('click', getByPrice);
-  document.getElementById('byDesc').addEventListener('click', getByDesc);
-  document.getElementById('addOrders').addEventListener('click', addOrders);
-  document.getElementById('showOrders').addEventListener('click', showOrders);
-  document.getElementById('fulfill').addEventListener('click', fulfillOrders);
-
-  if (!'indexedDB' in window) {return;}
+  if (!('indexedDB' in window)) {
+    console.log('This browser doesn\'t support IndexedDB');
+    return;
+  }
 
   var dbPromise = idb.open('couches-n-things', 3, function(upgradeDb) {
     switch (upgradeDb.oldVersion) {
@@ -118,10 +113,29 @@ window.onload = function() {
     });
   }
 
-  function getByName() {
+  function getByName(key) {
 
     // TODO 7 - use the get method to get an object by name
 
+  }
+
+  function displayByName() {
+    var key = document.getElementById('name').value;
+    if (key === '') {return;}
+    var s = '';
+    getByName(key).then(function(object) {
+      if (!object) {return;}
+
+      s += '<h2>' + object.name + '</h2><p>';
+      for (var field in object) {
+        s += field + ' = ' + object[field] + '<br/>';
+      }
+      s += '</p>';
+
+    }).then(function() {
+      if (s === '') {s = '<p>No results.</p>';}
+      document.getElementById('results').innerHTML = s;
+    });
   }
 
   function getByPrice() {
@@ -163,12 +177,14 @@ window.onload = function() {
     });
   }
 
+  function getOrders() {
+
+    // TODO 13 - get all objects from 'orders' object store
+
+  }
+
   function fulfillOrders() {
-    dbPromise.then(function(db) {
-
-      // TODO 13 - get all objects from 'orders' object store
-
-    }).then(function(orders) {
+    getOrders().then(function(orders) {
       return processOrders(orders);
     }).then(function(updatedProducts) {
       updateProductsStore(updatedProducts);
@@ -198,4 +214,20 @@ window.onload = function() {
       '<h3>Order processed successfully!</h3>';
     });
   }
-};
+
+  return {
+    dbPromise: (dbPromise),
+    addProducts: (addProducts),
+    getByName: (getByName),
+    displayByName: (displayByName),
+    getByPrice: (getByPrice),
+    getByDesc: (getByDesc),
+    addOrders: (addOrders),
+    showOrders: (showOrders),
+    getOrders: (getOrders),
+    fulfillOrders: (fulfillOrders),
+    processOrders: (processOrders),
+    decrementQuantity: (decrementQuantity),
+    updateProductsStore: (updateProductsStore)
+  };
+})();

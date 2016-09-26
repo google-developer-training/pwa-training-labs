@@ -13,18 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-window.onload = function() {
+var idbApp = (function() {
   'use strict';
 
-  if (!'indexedDB' in window) {return;}
-
-  document.getElementById('addProducts').addEventListener('click', addProducts);
-  document.getElementById('byName').addEventListener('click', getByName);
-  document.getElementById('byPrice').addEventListener('click', getByPrice);
-  document.getElementById('byDesc').addEventListener('click', getByDesc);
-  document.getElementById('addOrders').addEventListener('click', addOrders);
-  document.getElementById('showOrders').addEventListener('click', showOrders);
-  document.getElementById('fulfill').addEventListener('click', fulfillOrders);
+  if (!('indexedDB' in window)) {
+    console.log('This browser doesn\'t support IndexedDB');
+    return;
+  }
 
   var dbPromise = idb.open('couches-n-things', 4, function(upgradeDb) {
     switch (upgradeDb.oldVersion) {
@@ -118,16 +113,20 @@ window.onload = function() {
     });
   }
 
-  function getByName() {
-    var key = document.getElementById('name').value;
-    if (key === '') {return;}
-    var s = '';
-    dbPromise.then(function(db) {
+  function getByName(key) {
+    return dbPromise.then(function(db) {
       var tx = db.transaction('products', 'readonly');
       var store = tx.objectStore('products');
       var index = store.index('name');
       return index.get(key);
-    }).then(function(object) {
+    });
+  }
+
+  function displayByName() {
+    var key = document.getElementById('name').value;
+    if (key === '') {return;}
+    var s = '';
+    getByName(key).then(function(object) {
       if (!object) {return;}
 
       s += '<h2>' + object.name + '</h2><p>';
@@ -273,12 +272,16 @@ window.onload = function() {
     });
   }
 
-  function fulfillOrders() {
-    dbPromise.then(function(db) {
+  function getOrders() {
+    return dbPromise.then(function(db) {
       var tx = db.transaction('orders');
       var ordersOS = tx.objectStore('orders');
       return ordersOS.getAll();
-    }).then(function(orders) {
+    });
+  }
+
+  function fulfillOrders() {
+    getOrders().then(function(orders) {
       return processOrders(orders);
     }).then(function(updatedProducts) {
       updateProductsStore(updatedProducts);
@@ -307,7 +310,7 @@ window.onload = function() {
         console.log('Not enough ' + product.id + ' left in stock!');
         document.getElementById('receipt').innerHTML =
         '<h3>Not enough ' + product.id + ' left in stock!</h3>';
-        return reject(new Error('Out of stock!'));
+        throw 'Out of stock!';
       }
       item.quantity = qtyRemaining;
       return resolve(item);
@@ -315,7 +318,7 @@ window.onload = function() {
   }
 
   function updateProductsStore(products) {
-    dbPromise.then(function(db) {
+    return dbPromise.then(function(db) {
       var tx = db.transaction('products', 'readwrite');
       var store = tx.objectStore('products');
       products.forEach(function(item) {
@@ -328,4 +331,20 @@ window.onload = function() {
       '<h3>Order processed successfully!</h3>';
     });
   }
-};
+
+  return {
+    dbPromise: (dbPromise),
+    addProducts: (addProducts),
+    getByName: (getByName),
+    displayByName: (displayByName),
+    getByPrice: (getByPrice),
+    getByDesc: (getByDesc),
+    addOrders: (addOrders),
+    showOrders: (showOrders),
+    getOrders: (getOrders),
+    fulfillOrders: (fulfillOrders),
+    processOrders: (processOrders),
+    decrementQuantity: (decrementQuantity),
+    updateProductsStore: (updateProductsStore)
+  };
+})();

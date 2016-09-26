@@ -13,20 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-window.onload = function() {
+var idbApp = (function() {
   'use strict';
 
-  document.getElementById('addProducts').addEventListener('click', addProducts);
-  document.getElementById('byName').addEventListener('click', getByName);
-  document.getElementById('byPrice').addEventListener('click', getByPrice);
-  document.getElementById('byDesc').addEventListener('click', getByDesc);
-  document.getElementById('addOrders').addEventListener('click', addOrders);
-  document.getElementById('showOrders').addEventListener('click', showOrders);
-  document.getElementById('fulfill').addEventListener('click', fulfillOrders);
+  if (!('indexedDB' in window)) {
+    console.log('This browser doesn\'t support IndexedDB');
+    return;
+  }
 
-  if (!'indexedDB' in window) {return;}
-
-  var dbPromise = idb.open('couches-n-things', 3, function(upgradeDb) {
+  var dbPromise = idb.open('couches-n-things', 4, function(upgradeDb) {
     switch (upgradeDb.oldVersion) {
       case 0:
         console.log('Creating the products object store');
@@ -40,9 +35,9 @@ window.onload = function() {
         var store = upgradeDb.transaction.objectStore('products');
         store.createIndex('price', 'price');
         store.createIndex('description', 'description');
-
-      // TODO 10 - create an ‘orders’ object store
-
+      case 3:
+        console.log('Creating the orders object store');
+        upgradeDb.createObjectStore('orders', {keyPath: 'id'});
     }
   });
 
@@ -118,16 +113,20 @@ window.onload = function() {
     });
   }
 
-  function getByName() {
-    var key = document.getElementById('name').value;
-    if (key === '') {return;}
-    var s = '';
-    dbPromise.then(function(db) {
+  function getByName(key) {
+    return dbPromise.then(function(db) {
       var tx = db.transaction('products', 'readonly');
       var store = tx.objectStore('products');
       var index = store.index('name');
       return index.get(key);
-    }).then(function(object) {
+    });
+  }
+
+  function displayByName() {
+    var key = document.getElementById('name').value;
+    if (key === '') {return;}
+    var s = '';
+    getByName(key).then(function(object) {
       if (!object) {return;}
 
       s += '<h2>' + object.name + '</h2><p>';
@@ -262,12 +261,14 @@ window.onload = function() {
     });
   }
 
+  function getOrders() {
+
+    // TODO 13 - get all objects from 'orders' object store
+
+  }
+
   function fulfillOrders() {
-    dbPromise.then(function(db) {
-
-      // TODO 13 - get all objects from 'orders' object store
-
-    }).then(function(orders) {
+    getOrders().then(function(orders) {
       return processOrders(orders);
     }).then(function(updatedProducts) {
       updateProductsStore(updatedProducts);
@@ -297,4 +298,20 @@ window.onload = function() {
       '<h3>Order processed successfully!</h3>';
     });
   }
-};
+
+  return {
+    dbPromise: (dbPromise),
+    addProducts: (addProducts),
+    getByName: (getByName),
+    displayByName: (displayByName),
+    getByPrice: (getByPrice),
+    getByDesc: (getByDesc),
+    addOrders: (addOrders),
+    showOrders: (showOrders),
+    getOrders: (getOrders),
+    fulfillOrders: (fulfillOrders),
+    processOrders: (processOrders),
+    decrementQuantity: (decrementQuantity),
+    updateProductsStore: (updateProductsStore)
+  };
+})();
