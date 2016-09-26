@@ -1,4 +1,4 @@
-<!--
+/*
 Copyright 2016 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,29 +12,22 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
--->
-<!DOCTYPE html>
-<html>
-<head>
+*/
+(function() {
+  'use strict';
 
-  <!-- Set the viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Set character encoding -->
-  <meta charset="utf-8">
-  <!-- Set title -->
-  <title>Other</title>
-  <!-- Add stylesheet -->
-  <link href="/styles/other.css" rel="stylesheet">
+  self.addEventListener('install', function(event) {
+    console.log('Service worker installing...');
+  });
 
-</head>
+  self.addEventListener('activate', function(event) {
+    console.log('Service worker activating...');
+  });
 
-<body>
+  // A comment ;)
 
-  <h1>Other Page</h1>
+  self.addEventListener('fetch', function(event) {
+    console.log('Fetching:', event.request.url);
+  });
 
-  <a href="index.html">Back</a>
-
-  <script src="/js/other.js"></script>
-
-</body>
-</html>
+})();

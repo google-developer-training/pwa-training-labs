@@ -26,43 +26,19 @@ limitations under the License. -->
   <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
   <script>
     /*jshint esversion: 6*/
-    QUnit.test('Step 3: Service worker registered', function(assert) {
+    QUnit.test('Step 5 (OPTIONAL): Setting scope', function(assert) {
       var done = assert.async();
-      navigator.serviceWorker.getRegistration()
-      .then((reg) => {
-        assert.ok(reg, 'There is a service worker registered (at /)');
-        done();
-      });
-    });
-
-    QUnit.test('Step 4: A new service is waiting', function(assert) {
-      var done = assert.async();
-      navigator.serviceWorker.getRegistration()
-      .then((reg) => {
-        if (!reg) {
-          assert.ok(false, 'There is a service worker registered (at /)');
-          done();
-        } else {
-          assert.ok(reg.waiting, 'A new service worker is waiting');
-          done();
-        }
-      });
-    });
-
-    QUnit.test('Step 6 (OPTIONAL): Setting scope', function(assert) {
-      var done = assert.async();
-      navigator.serviceWorker.getRegistration('/below/')
+      navigator.serviceWorker.getRegistration('/02_setting-up/below/')
       .then((reg) => {
         if (!reg) {
           assert.ok(false, 'There is a service worker is registered');
           done();
         } else {
-          assert.ok(~reg.scope.indexOf('below'), 'Service worker scope at /below/');
+          assert.ok(~reg.scope.indexOf('below'), 'Service worker scope at below/');
           done();
         }
       });
     });
-
   </script>
 </body>
 </html>
