@@ -24,7 +24,7 @@ limitations under the License.
     <!-- Set title -->
     <title>Service Worker Example</title>
     <!-- Add stylesheet -->
-    <link href="/05_scoped-service-worker/styles/index.css" rel="stylesheet">
+    <link href="styles/index.css" rel="stylesheet">
 
   </head>
 
@@ -32,11 +32,11 @@ limitations under the License.
 
     <h1>Service Worker Example</h1>
 
-    <a href="/05_scoped-service-worker/other.html">Other page</a>
+    <a href="other.html">Other page</a>
 
     <br><br>
 
-    <a href="/05_scoped-service-worker/below/another.html">Another page</a>
+    <a href="below/another.html">Another page</a>
 
     <script>
       (function() {
@@ -47,7 +47,7 @@ limitations under the License.
           return;
         }
         navigator.serviceWorker.register('service-worker.js', {
-          scope: '/05_scoped-service-worker/below/'
+          scope: 'below/'
         })
         .then(function(registration) {
           console.log('Registered at scope:', registration.scope);
