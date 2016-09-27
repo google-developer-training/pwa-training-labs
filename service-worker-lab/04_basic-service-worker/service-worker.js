@@ -24,6 +24,8 @@ limitations under the License.
     console.log('Service worker activating...');
   });
 
+  // A comment ;)
+
   self.addEventListener('fetch', function(event) {
     console.log('Fetching:', event.request.url);
   });
