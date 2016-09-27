@@ -1,4 +1,4 @@
-/*
+<!--
 Copyright 2016 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,339 +12,369 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
-var idbApp = (function() {
-  'use strict';
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>IndexedDB Codelab testing</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+  <script type="text/javascript" src="../js/idb.js"></script>
+  <script type="text/javascript" src="../js/main.js"></script>
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <div id="receipt" style="display: none;"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+  <script>
+    function promisifyRequest(request) {
+      return new Promise(function(resolve, reject) {
+        request.onsuccess = function() {
+          resolve(request.result);
+        };
 
-  if (!('indexedDB' in window)) {
-    console.log('This browser doesn\'t support IndexedDB');
-    return;
-  }
-
-  var dbPromise = idb.open('couches-n-things', 4, function(upgradeDb) {
-    switch (upgradeDb.oldVersion) {
-      case 0:
-        console.log('Creating the products object store');
-        upgradeDb.createObjectStore('products', {keyPath: 'id'});
-      case 1:
-        console.log('Creating a name index');
-        var store = upgradeDb.transaction.objectStore('products');
-        store.createIndex('name', 'name', {unique: true});
-      case 2:
-        console.log('Creating a price and description index');
-        var store = upgradeDb.transaction.objectStore('products');
-        store.createIndex('price', 'price');
-        store.createIndex('description', 'description');
-      case 3:
-        console.log('Creating the orders object store');
-        upgradeDb.createObjectStore('orders', {keyPath: 'id'});
-    }
-  });
-
-  function addProducts() {
-    dbPromise.then(function(db) {
-      var tx = db.transaction('products', 'readwrite');
-      var store = tx.objectStore('products');
-      var items = [
-        {
-          name: 'Couch',
-          id: 'cch-blk-ma',
-          price: 499.99,
-          color: 'black',
-          material: 'mahogany',
-          description: 'A very comfy couch',
-          quantity: 3
-        },
-        {
-          name: 'Armchair',
-          id: 'ac-gr-pin',
-          price: 299.99,
-          color: 'grey',
-          material: 'pine',
-          description: 'A plush recliner armchair',
-          quantity: 7
-        },
-        {
-          name: 'Stool',
-          id: 'st-re-pin',
-          price: 59.99,
-          color: 'red',
-          material: 'pine',
-          description: 'A light, high-stool',
-          quantity: 3
-        },
-        {
-          name: 'Chair',
-          id: 'ch-blu-pin',
-          price: 49.99,
-          color: 'blue',
-          material: 'pine',
-          description: 'A plain chair for the kitchen table',
-          quantity: 1
-        },
-        {
-          name: 'Dresser',
-          id: 'dr-wht-ply',
-          price: 399.99,
-          color: 'white',
-          material: 'plywood',
-          description: 'A plain dresser with five drawers',
-          quantity: 4
-        },
-        {
-          name: 'Cabinet',
-          id: 'ca-brn-ma',
-          price: 799.99,
-          color: 'brown',
-          material: 'mahogany',
-          description: 'An intricately-designed, antique cabinet',
-          quantity: 11
-        }
-      ];
-      items.forEach(function(item) {
-        console.log('Adding item: ', item);
-        store.add(item);
+        request.onerror = function() {
+          reject(request.error);
+        };
       });
-      return tx.complete;
-    }).then(function() {
-      console.log('All items added successfully!');
-    }).catch(function(e) {
-      console.log('Error adding items: ', e);
-    });
-  }
-
-  function getByName(key) {
-    return dbPromise.then(function(db) {
-      var tx = db.transaction('products', 'readonly');
-      var store = tx.objectStore('products');
-      var index = store.index('name');
-      return index.get(key);
-    });
-  }
-
-  function displayByName() {
-    var key = document.getElementById('name').value;
-    if (key === '') {return;}
-    var s = '';
-    getByName(key).then(function(object) {
-      if (!object) {return;}
-
-      s += '<h2>' + object.name + '</h2><p>';
-      for (var field in object) {
-        s += field + ' = ' + object[field] + '<br/>';
-      }
-      s += '</p>';
-
-    }).then(function() {
-      if (s === '') {s = '<p>No results.</p>';}
-      document.getElementById('results').innerHTML = s;
-    });
-  }
-
-  function getByPrice() {
-    var lower = Number(document.getElementById('priceLower').value);
-    var upper = Number(document.getElementById('priceUpper').value);
-    if (lower == '' && upper == '') {return;}
-
-    var range;
-    if (lower != '' && upper != '') {
-      range = IDBKeyRange.bound(lower, upper);
-    } else if (lower == '') {
-      range = IDBKeyRange.upperBound(upper);
-    } else {
-      range = IDBKeyRange.lowerBound(lower);
     }
-    var s = '';
-    dbPromise.then(function(db) {
-      var tx = db.transaction('products', 'readonly');
-      var store = tx.objectStore('products');
-      var index = store.index('price');
-      return index.openCursor(range);
-    }).then(function showRange(cursor) {
-      if (!cursor) {return;}
-      console.log('Cursored at:', cursor.value.name);
 
-      s += '<h2>Price - ' + cursor.value.price + '</h2><p>';
-      for (var field in cursor.value) {
-        s += field + '=' + cursor.value[field] + '<br/>';
-      }
-      s += '</p>';
+    checkDb();
 
-      return cursor.continue().then(showRange);
-    }).then(function() {
-      if (s === '') {s = '<p>No results.</p>';}
-      document.getElementById('results').innerHTML = s;
-    });
-  }
-
-  function getByDesc() {
-    var key = document.getElementById('desc').value;
-    if (key === '') {return;}
-    var range = IDBKeyRange.only(key);
-    var s = '';
-    dbPromise.then(function(db) {
-      var tx = db.transaction('products', 'readonly');
-      var store = tx.objectStore('products');
-      var index = store.index('description');
-      return index.openCursor(range);
-    }).then(function showRange(cursor) {
-      if (!cursor) {return;}
-      console.log('Cursored at:', cursor.value.name);
-
-      s += '<h2>Description - ' + cursor.value.description + '</h2><p>';
-      for (var field in cursor.value) {
-        s += field + '=' + cursor.value[field] + '<br/>';
-      }
-      s += '</p>';
-
-      return cursor.continue().then(showRange);
-    }).then(function() {
-      if (s === '') {s = '<p>No results.</p>';}
-      document.getElementById('results').innerHTML = s;
-    });
-  }
-
-  function addOrders() {
-    dbPromise.then(function(db) {
-      var tx = db.transaction('orders', 'readwrite');
-      var store = tx.objectStore('orders');
-      var items = [
-        {
-          name: 'Cabinet',
-          id: 'ca-brn-ma',
-          price: '799.99',
-          color: 'brown',
-          material: 'mahogany',
-          description: 'An intricately-designed, antique cabinet',
-          quantity: 7
-        },
-        {
-          name: 'Armchair',
-          id: 'ac-gr-pin',
-          price: '299.99',
-          color: 'grey',
-          material: 'pine',
-          description: 'A plush recliner armchair',
-          quantity: 3
-        },
-        {
-          name: 'Couch',
-          id: 'cch-blk-ma',
-          price: '499.99',
-          color: 'black',
-          material: 'mahogany',
-          description: 'A very comfy couch',
-          quantity: 3
+    function checkDb() {
+      var dbExists = false;
+      // Webkit only works in Chrome
+      return promisifyRequest(indexedDB.webkitGetDatabaseNames())
+      .then(function(dbNames) {
+        for (name in dbNames) {
+          if (dbNames[name] == 'couches-n-things') {
+            dbExists = true;
+            break;
+          }
         }
-      ];
-      items.forEach(function(item) {
-        console.log('Adding item: ', item);
-        store.add(item);
+        return dbExists;
+      }).catch(function() {
+        console.log('Browser doesn\'t support webkitGetDatabaseNames().' +
+        'Use Chrome');
       });
-      return tx.complete;
-    }).then(function() {
-      console.log('All items added successfully!');
-    }).catch(function(e) {
-      console.log('Error adding items: ', e);
-    });
-  }
+    }
 
-  function showOrders() {
-    var s = '';
-    dbPromise.then(function(db) {
-      var tx = db.transaction('orders', 'readonly');
-      var store = tx.objectStore('orders');
-      return store.openCursor();
-    }).then(function showRange(cursor) {
-      if (!cursor) {return;}
-      console.log('Cursored at:', cursor.value.name);
-
-      s += '<h2>' + cursor.value.name + '</h2><p>';
-      for (var field in cursor.value) {
-        s += field + '=' + cursor.value[field] + '<br/>';
-      }
-      s += '</p>';
-
-      return cursor.continue().then(showRange);
-    }).then(function() {
-      if (s === '') {s = '<p>No results.</p>';}
-      document.getElementById('orders').innerHTML = s;
-    });
-  }
-
-  function getOrders() {
-    return dbPromise.then(function(db) {
-      var tx = db.transaction('orders');
-      var ordersOS = tx.objectStore('orders');
-      return ordersOS.getAll();
-    });
-  }
-
-  function fulfillOrders() {
-    getOrders().then(function(orders) {
-      return processOrders(orders);
-    }).then(function(updatedProducts) {
-      updateProductsStore(updatedProducts);
-    });
-  }
-
-  function processOrders(orders) {
-    return dbPromise.then(function(db) {
-      var tx = db.transaction('products');
-      var store = tx.objectStore('products');
-      return Promise.all(
-        orders.map(function(order) {
-          return store.get(order.id).then(function(product) {
-            return decrementQuantity(product, order);
+    function checkOs(objectStore) {
+      var osExists = false;
+      return checkDb().then(function(dbExists) {
+        if (dbExists) {
+          return idb.open('couches-n-things').then(function(db) {
+            if (db.objectStoreNames.contains(objectStore)) {
+              osExists = true;
+            }
+            return osExists;
           });
-        })
-      );
-    });
-  }
-
-  function decrementQuantity(product, order) {
-    return new Promise(function(resolve, reject) {
-      var item = product;
-      var qtyRemaining = item.quantity - order.quantity;
-      if (qtyRemaining < 0) {
-        console.log('Not enough ' + product.id + ' left in stock!');
-        document.getElementById('receipt').innerHTML =
-        '<h3>Not enough ' + product.id + ' left in stock!</h3>';
-        throw 'Out of stock!';
-      }
-      item.quantity = qtyRemaining;
-      return resolve(item);
-    });
-  }
-
-  function updateProductsStore(products) {
-    return dbPromise.then(function(db) {
-      var tx = db.transaction('products', 'readwrite');
-      var store = tx.objectStore('products');
-      products.forEach(function(item) {
-        store.put(item);
+        }
+        return osExists;
       });
-      return tx.complete;
-    }).then(function() {
-      console.log('Orders processed successfully!');
-      document.getElementById('receipt').innerHTML =
-      '<h3>Order processed successfully!</h3>';
-    });
-  }
+    }
 
-  return {
-    dbPromise: (dbPromise),
-    addProducts: (addProducts),
-    getByName: (getByName),
-    displayByName: (displayByName),
-    getByPrice: (getByPrice),
-    getByDesc: (getByDesc),
-    addOrders: (addOrders),
-    showOrders: (showOrders),
-    getOrders: (getOrders),
-    fulfillOrders: (fulfillOrders),
-    processOrders: (processOrders),
-    decrementQuantity: (decrementQuantity),
-    updateProductsStore: (updateProductsStore)
-  };
-})();
+    function checkIndex(objectStore, indexName) {
+      var indexExists = false;
+      return checkDb().then(function(dbExists) {
+        if (dbExists) {
+          return idb.open('couches-n-things').then(function(db) {
+            if (db.objectStoreNames.contains(objectStore)) {
+              var tx = db.transaction(objectStore);
+              var productsOS = tx.objectStore(objectStore);
+              return productsOS.indexNames;
+            }
+            return [];
+          }).then(function(indexes) {
+            for (index in indexes) {
+              if (indexes[index] == indexName) {
+                indexExists = true;
+                break;
+              }
+            }
+            return indexExists;
+          });
+        }
+        return indexExists;
+      });
+    }
+
+    QUnit.test('Was couches-n-things database created?', function(assert) {
+      var done = assert.async();
+      checkDb().then(function(dbExists) {
+        assert.ok(dbExists, 'couches-n-things database exists');
+        done();
+      });
+    });
+
+    QUnit.test('Was products object store created?', function(assert) {
+      var done = assert.async();
+      checkOs('products').then(function(osExists) {
+        assert.ok(osExists, 'products object store exists');
+        done();
+      });
+    });
+
+    QUnit.test('Are the sample objects in the store?', function(assert) {
+      var done = assert.async();
+      var bProds = false;
+      checkDb().then(function(dbExists) {
+        if (dbExists) {
+          return idb.open('couches-n-things').then(function(db) {
+            if (db.objectStoreNames.contains('products')) {
+              var tx = db.transaction('products');
+              var productsOS = tx.objectStore('products');
+              return productsOS.getAll();
+            }
+            return [];
+          }).then(function(arrProducts) {
+            if (arrProducts.length > 0) {
+              bProds = true;
+            }
+          });
+        }
+      }).then(function() {
+        assert.ok(bProds, 'Products exist in the store');
+        done();
+      });
+    });
+
+    function testIndex(indexName) {
+      QUnit.test('Was ' + indexName + ' index created on the products store?',
+      function(assert) {
+        var done = assert.async();
+        checkIndex('products', indexName).then(function(indexExists) {
+          assert.ok(indexExists, indexName + ' index exists');
+          done();
+        });
+      });
+    }
+    testIndex('name');
+    testIndex('price');
+    testIndex('description');
+
+    QUnit.test('Does getByName return a database object?', function(assert) {
+      var done = assert.async();
+      checkDb().then(function(dbExists) {
+        if (dbExists) {
+          checkOs('products').then(function(osExists) {
+            if (osExists) {
+              checkIndex('products', 'name').then(function(indexExists) {
+                if (indexExists) {
+                  if (idbApp.getByName('Chair')) {
+                    idbApp.getByName('Chair').then(function(object) {
+                      if (object) {
+                        assert.ok(true, 'getByName works');
+                        done();
+                      } else {
+                        assert.ok(false, 'getByName not working');
+                        done();
+                      }
+                    });
+                  } else {
+                    assert.ok(false, 'getByName function empty');
+                    done();
+                  }
+                } else {
+                  assert.ok(false, 'name index does not exist');
+                  done();
+                }
+              });
+            } else {
+              assert.ok(false, 'products objects store does not exist');
+              done();
+            }
+          });
+        } else {
+          assert.ok(false, 'couches-n-things database does not exist');
+          done();
+        }
+      });
+    });
+
+    QUnit.test('Was the "orders" object store created?', function(assert) {
+      var done = assert.async();
+      checkOs('orders').then(function(osExists) {
+        assert.ok(osExists, 'orders object store exists');
+        done();
+      });
+    });
+
+    QUnit.test('Are the orders in the store?', function(assert) {
+      var done = assert.async();
+      var bProds = false;
+      checkDb().then(function(dbExists) {
+        if (dbExists) {
+          return idb.open('couches-n-things').then(function(db) {
+            if (db.objectStoreNames.contains('orders')) {
+              var tx = db.transaction('orders');
+              var productsOS = tx.objectStore('orders');
+              return productsOS.getAll();
+            }
+            return [];
+          }).then(function(arrProducts) {
+            if (arrProducts.length > 0) {
+              bProds = true;
+            }
+          }).then(function() {
+            assert.ok(bProds, 'Orders exist in the store');
+            done();
+          });
+        } else {
+          assert.ok(false, 'couches-n-things database does not exist');
+          done();
+        }
+      });
+    });
+
+    QUnit.test('Does getOrders return database objects?', function(assert) {
+      var done = assert.async();
+      checkDb().then(function(dbExists) {
+        if (dbExists) {
+          checkOs('orders').then(function(osExists) {
+            if (osExists) {
+              if (idbApp.getOrders()) {
+                idbApp.getOrders().then(function(orders) {
+                  if (orders.length > 0) {
+                    assert.ok(true, 'getByName function working');
+                    done();
+                  } else {
+                    assert.ok(false, 'getByName returning empty array');
+                    done();
+                  }
+                });
+              } else {
+                assert.ok(false, 'getByName not returning anything');
+                done();
+              }
+            } else {
+              assert.ok(false, 'orders object store does not exist');
+              done();
+            }
+          });
+        } else {
+          assert.ok(false, 'couches-n-things database does not exist');
+          done();
+        }
+      });
+    });
+
+    QUnit.test('Does decrementQuantity decrement quantity?', function(assert) {
+      var done = assert.async(2);
+      idbApp.decrementQuantity({quantity: 3}, {quantity: 1})
+      .then(function(item) {
+        assert.equal(item.quantity, 2, 'decrementQuantity working');
+        done();
+      });
+      idbApp.decrementQuantity({quantity: 3}, {quantity: 4})
+      .catch(function(err) {
+        assert.equal(err, 'Out of stock!', 'decrementQuantity working');
+        done();
+      });
+    });
+
+    function addTestObjects() {
+      return checkDb().then(function(dbExists) {
+        if (dbExists) {
+          return checkOs('products').then(function(osExists) {
+            if (osExists) {
+              return idbApp.dbPromise.then(function(db) {
+                var tx = db.transaction('products', 'readwrite');
+                var store = tx.objectStore('products');
+                var items = [
+                  {id: 'test1', quantity: 4},
+                  {id: 'test2', quantity: 3}
+                ];
+                items.forEach(function(item) {
+                  store.add(item);
+                });
+                return tx.complete;
+              });
+            } else {
+              return false;
+            }
+          });
+        } else {
+          return false;
+        }
+      });
+    }
+
+    function getTestObject(primaryKey) {
+      return idbApp.dbPromise.then(function(db) {
+        var tx = db.transaction('products', 'readonly');
+        var store = tx.objectStore('products');
+        return store.get(primaryKey);
+      });
+    }
+
+    function deleteTestObjects(key) {
+      return idbApp.dbPromise.then(function(db) {
+        var tx = db.transaction('products', 'readwrite');
+        var store = tx.objectStore('products');
+        store.delete(key);
+        return tx.complete;
+      });
+    }
+
+    function fulfillOrders() {
+      return processOrders([
+          {id: 'test1', quantity: 4},
+          {id: 'test2', quantity: 3}
+      ]).then(function(updatedProducts) {
+        idbApp.updateProductsStore(updatedProducts);
+      });
+    }
+
+    function processOrders(orders) {
+      return idbApp.dbPromise.then(function(db) {
+        var tx = db.transaction('products');
+        var store = tx.objectStore('products');
+        return Promise.all(
+          orders.map(function(order) {
+            return store.get(order.id).then(function(product) {
+              return updateTestProducts(product);
+            });
+          })
+        );
+      });
+    }
+
+    function updateTestProducts(product) {
+      return new Promise(function(resolve) {
+        var item = product;
+        item.quantity = 1;
+        return resolve(item);
+      });
+    }
+
+    QUnit.test('Does updateProductsStore update items in the products' +
+    ' object store?', function(assert) {
+      var done = assert.async();
+      addTestObjects().then(function(result) {
+        if (result !== false) {
+          return fulfillOrders().then(function() {
+            return getTestObject('test1').then(function(object) {
+              assert.equal(object.quantity, 1, 'Test 1');
+            });
+          }).then(function() {
+            return getTestObject('test2').then(function(object) {
+              assert.equal(object.quantity, 1, 'Test 2');
+              done();
+            });
+          });
+        } else {
+          assert.ok(false, 'couches-n-things database or products object' +
+          'store does not exist');
+          done();
+        }
+      }).then(function() {
+        deleteTestObjects('test1');
+      }).then(function() {
+        deleteTestObjects('test2');
+      });
+    });
+  </script>
+</body>
+</html>

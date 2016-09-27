@@ -145,7 +145,7 @@ limitations under the License.
       function(assert) {
         var done = assert.async();
         checkIndex('products', indexName).then(function(indexExists) {
-          assert.ok(indexExists, 'name index exists');
+          assert.ok(indexExists, indexName + ' index exists');
           done();
         });
       });
