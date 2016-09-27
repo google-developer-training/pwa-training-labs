@@ -44,7 +44,7 @@ var idbApp = (function() {
         {
           name: 'Couch',
           id: 'cch-blk-ma',
-          price: '499.99',
+          price: 499.99,
           color: 'black',
           material: 'mahogany',
           description: 'A very comfy couch',
@@ -53,7 +53,7 @@ var idbApp = (function() {
         {
           name: 'Armchair',
           id: 'ac-gr-pin',
-          price: '299.99',
+          price: 299.99,
           color: 'grey',
           material: 'pine',
           description: 'A plush recliner armchair',
@@ -62,7 +62,7 @@ var idbApp = (function() {
         {
           name: 'Stool',
           id: 'st-re-pin',
-          price: '59.99',
+          price: 59.99,
           color: 'red',
           material: 'pine',
           description: 'A light, high-stool',
@@ -71,7 +71,7 @@ var idbApp = (function() {
         {
           name: 'Chair',
           id: 'ch-blu-pin',
-          price: '49.99',
+          price: 49.99,
           color: 'blue',
           material: 'pine',
           description: 'A plain chair for the kitchen table',
@@ -80,7 +80,7 @@ var idbApp = (function() {
         {
           name: 'Dresser',
           id: 'dr-wht-ply',
-          price: '399.99',
+          price: 399.99,
           color: 'white',
           material: 'plywood',
           description: 'A plain dresser with five drawers',
@@ -89,7 +89,7 @@ var idbApp = (function() {
         {
           name: 'Cabinet',
           id: 'ca-brn-ma',
-          price: '799.99',
+          price: 799.99,
           color: 'brown',
           material: 'mahogany',
           description: 'An intricately-designed, antique cabinet',
