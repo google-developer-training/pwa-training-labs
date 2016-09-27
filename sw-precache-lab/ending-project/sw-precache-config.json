@@ -1,0 +1,12 @@
+ {
+  "staticFileGlobs": [
+	  "index.html",
+    "js/main.js",
+    "css/main.css",
+    "images/**/*.{svg,png,jpg,gif}"
+  ],
+  "importScripts": [
+    "node_modules/sw-toolbox/sw-toolbox.js",
+    "js/toolbox-scripts.js"
+  ]
+}

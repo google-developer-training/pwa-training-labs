@@ -13,18 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-window.onload = function() {
+var idbApp = (function() {
   'use strict';
 
-  if (!'indexedDB' in window) {return;}
-
-  document.getElementById('addProducts').addEventListener('click', addProducts);
-  document.getElementById('byName').addEventListener('click', getByName);
-  document.getElementById('byPrice').addEventListener('click', getByPrice);
-  document.getElementById('byDesc').addEventListener('click', getByDesc);
-  document.getElementById('addOrders').addEventListener('click', addOrders);
-  document.getElementById('showOrders').addEventListener('click', showOrders);
-  document.getElementById('fulfill').addEventListener('click', fulfillOrders);
+  if (!('indexedDB' in window)) {
+    console.log('This browser doesn\'t support IndexedDB');
+    return;
+  }
 
   var dbPromise = idb.open('couches-n-things', 4, function(upgradeDb) {
     switch (upgradeDb.oldVersion) {
@@ -54,7 +49,7 @@ window.onload = function() {
         {
           name: 'Couch',
           id: 'cch-blk-ma',
-          price: 499.99,
+          price: '499.99',
           color: 'black',
           material: 'mahogany',
           description: 'A very comfy couch',
@@ -63,7 +58,7 @@ window.onload = function() {
         {
           name: 'Armchair',
           id: 'ac-gr-pin',
-          price: 299.99,
+          price: '299.99',
           color: 'grey',
           material: 'pine',
           description: 'A plush recliner armchair',
@@ -72,7 +67,7 @@ window.onload = function() {
         {
           name: 'Stool',
           id: 'st-re-pin',
-          price: 59.99,
+          price: '59.99',
           color: 'red',
           material: 'pine',
           description: 'A light, high-stool',
@@ -81,7 +76,7 @@ window.onload = function() {
         {
           name: 'Chair',
           id: 'ch-blu-pin',
-          price: 49.99,
+          price: '49.99',
           color: 'blue',
           material: 'pine',
           description: 'A plain chair for the kitchen table',
@@ -90,7 +85,7 @@ window.onload = function() {
         {
           name: 'Dresser',
           id: 'dr-wht-ply',
-          price: 399.99,
+          price: '399.99',
           color: 'white',
           material: 'plywood',
           description: 'A plain dresser with five drawers',
@@ -99,7 +94,7 @@ window.onload = function() {
         {
           name: 'Cabinet',
           id: 'ca-brn-ma',
-          price: 799.99,
+          price: '799.99',
           color: 'brown',
           material: 'mahogany',
           description: 'An intricately-designed, antique cabinet',
@@ -118,16 +113,20 @@ window.onload = function() {
     });
   }
 
-  function getByName() {
-    var key = document.getElementById('name').value;
-    if (key === '') {return;}
-    var s = '';
-    dbPromise.then(function(db) {
+  function getByName(key) {
+    return dbPromise.then(function(db) {
       var tx = db.transaction('products', 'readonly');
       var store = tx.objectStore('products');
       var index = store.index('name');
       return index.get(key);
-    }).then(function(object) {
+    });
+  }
+
+  function displayByName() {
+    var key = document.getElementById('name').value;
+    if (key === '') {return;}
+    var s = '';
+    getByName(key).then(function(object) {
       if (!object) {return;}
 
       s += '<h2>' + object.name + '</h2><p>';
@@ -143,8 +142,8 @@ window.onload = function() {
   }
 
   function getByPrice() {
-    var lower = Number(document.getElementById('priceLower').value);
-    var upper = Number(document.getElementById('priceUpper').value);
+    var lower = document.getElementById('priceLower').value;
+    var upper = document.getElementById('priceUpper').value;
     if (lower == '' && upper == '') {return;}
 
     var range;
@@ -273,12 +272,16 @@ window.onload = function() {
     });
   }
 
-  function fulfillOrders() {
+  function getOrders() {
     dbPromise.then(function(db) {
       var tx = db.transaction('orders');
       var ordersOS = tx.objectStore('orders');
       return ordersOS.getAll();
-    }).then(function(orders) {
+    });
+  }
+
+  function fulfillOrders() {
+    getOrders().then(function(orders) {
       return processOrders(orders);
     }).then(function(updatedProducts) {
       updateProductsStore(updatedProducts);
@@ -328,4 +331,20 @@ window.onload = function() {
       '<h3>Order processed successfully!</h3>';
     });
   }
-};
+
+  return {
+    dbPromise: (dbPromise),
+    addProducts: (addProducts),
+    getByName: (getByName),
+    displayByName: (displayByName),
+    getByPrice: (getByPrice),
+    getByDesc: (getByDesc),
+    addOrders: (addOrders),
+    showOrders: (showOrders),
+    getOrders: (getOrders),
+    fulfillOrders: (fulfillOrders),
+    processOrders: (processOrders),
+    decrementQuantity: (decrementQuantity),
+    updateProductsStore: (updateProductsStore)
+  };
+})();

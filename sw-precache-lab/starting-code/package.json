@@ -1,0 +1,14 @@
+{
+  "name": "sw-precache-demo",
+  "title": "SW Precache Demo",
+  "version": "0.0.1",
+  "homepage": "",
+  "author": "",
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "gulp": "^3.9.1",
+    "path": "^0.12.7",
+    "sw-precache": "^3.2.0",
+    "sw-toolbox": "^3.2.1"
+  }
+}

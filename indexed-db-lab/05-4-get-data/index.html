@@ -22,17 +22,17 @@ limitations under the License.
 </head>
 <body>
   <h1>Couches-N-Things</h1>
-  <button id="addProducts">Add Products</button></br></br>
+  <button id="addProducts" onclick="idbApp.addProducts()">Add Products</button></br></br>
   <h2>Search Products</h2>
-  By Name: <input type="text" id="name" placeholder="Name"> <button id="byName">Search</button></br></br>
-  By Price: <input type="text" id="priceLower" placeholder="Min"><input type="text" id="priceUpper" placeholder="Max"> <button id="byPrice">Search</button></br></br>
-  By Description: <input type="text" id="desc" placeholder="Description"> <button id="byDesc">Search</button></br></br>
+  By Name: <input type="text" id="name" placeholder="Name"> <button id="byName" onclick="idbApp.displayByName()">Search</button></br></br>
+  By Price: <input type="text" id="priceLower" placeholder="Min"><input type="text" id="priceUpper" placeholder="Max"> <button id="byPrice" onclick="idbApp.getByPrice()">Search</button></br></br>
+  By Description: <input type="text" id="desc" placeholder="Description"> <button id="byDesc" onclick="idbApp.getByDesc()">Search</button></br></br>
   <div id="results"></div>
   <h2>Orders</h2>
-  <button id="addOrders">Add Orders</button></br></br>
-  <button id="showOrders">Show Orders</button></br></br>
+  <button id="addOrders" onclick="idbApp.addOrders()">Add Orders</button></br></br>
+  <button id="showOrders" onclick="idbApp.showOrders()">Show Orders</button></br></br>
   <div id="orders"></div>
-  <button id="fulfill">Fulfill</button></br></br>
+  <button id="fulfill" onclick="idbApp.fulfillOrders()">Fulfill</button></br></br>
   <div id="receipt"></div>
 </body>
 </html>
