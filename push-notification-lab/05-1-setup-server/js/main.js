@@ -60,7 +60,7 @@ function displayNotification() {
 }
 
 function getSubObject() {
-  navigator.serviceWorker.ready.then(reg => {
+  return navigator.serviceWorker.ready.then(reg => {
     return reg.pushManager.getSubscription();
   }).then(subscription => {
     document.getElementById('subObject').innerHTML = JSON.stringify(

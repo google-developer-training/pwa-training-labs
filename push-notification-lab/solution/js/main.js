@@ -22,32 +22,20 @@ Notification.requestPermission(function(status) {
 });
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.ready.then(function(reg) {
-    reg.pushManager.getSubscription().then(function(sub) {
-      if (sub == undefined) {
-        // Update UI to ask user to register for Push
-      } else {
-        // We have a subscrition, update the database
-        console.log('Subscription object: ', sub);
-      }
-    });
-  });
-}
-
-if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').then(function(reg) {
     console.log('Service Worker Registered!', reg);
-    reg.pushManager.subscribe({
-      userVisibleOnly: true
-    }).then(function(sub) {
-      console.log('Endpoint URL: ', sub.endpoint);
-      // send the subscription object to the server
-    }).catch(function(e) {
-      if (Notification.permission === 'denied') {
-        console.warn('Permission for notifications was denied');
-      } else {
-        console.error('Unable to subscribe to push', e);
-      }
+    navigator.serviceWorker.ready.then(function(reg) {
+      reg.pushManager.subscribe({
+        userVisibleOnly: true
+      }).then(function(sub) {
+        console.log('Endpoint URL: ', sub.endpoint);
+      }).catch(function(e) {
+        if (Notification.permission === 'denied') {
+          console.warn('Permission for notifications was denied');
+        } else {
+          console.error('Unable to subscribe to push', e);
+        }
+      });
     });
   }).catch(function(err) {
     console.log('Service Worker registration failed: ', err);
@@ -85,5 +73,14 @@ function getSubObject() {
   }).then(subscription => {
     document.getElementById('subObject').innerHTML = JSON.stringify(
       subscription);
+  });
+}
+
+function getSubId() {
+  navigator.serviceWorker.ready.then(reg => {
+    return reg.pushManager.getSubscription();
+  }).then(subscription => {
+    document.getElementById('subId').innerHTML =
+    subscription.endpoint.slice(subscription.endpoint.lastIndexOf('/') + 1);
   });
 }

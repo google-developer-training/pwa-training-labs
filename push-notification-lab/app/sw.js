@@ -1,4 +1,4 @@
-<!--
+/*
 Copyright 2016 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,26 +12,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
--->
-<!DOCTYPE html>
-<html>
-<head>
-  <!-- Set the viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Set character encoding -->
-  <meta charset="utf-8">
-  <!-- Include script -->
-  <script src="js/main.js"></script>
-  <!-- Set title -->
-  <title>Push Notifications</title>
+*/
+// TODO 6 - Handle the notificationclose event
 
-</head>
+// TODO 7 - Handle the notificationclick event
 
-<body>
-
-  <h1>Push Notification codelab</h1>
-  <p>This page must be accessed using HTTPS or via localhost.</p>
-  <button onclick="displayNotification()">Notify me!</button>
-
-</body>
-</html>
+// TODO 10 - add push event listener

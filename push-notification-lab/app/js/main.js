@@ -20,9 +20,30 @@ limitations under the License.
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').then(function(reg) {
     console.log('Service Worker Registered!', reg);
+
+    // TODO 11 - subscribe to the push service
+
   }).catch(function(err) {
     console.log('Service Worker registration failed: ', err);
   });
 }
 
 // TODO 3 - Display the notification
+
+function getSubObject() {
+  navigator.serviceWorker.ready.then(reg => {
+    return reg.pushManager.getSubscription();
+  }).then(subscription => {
+    document.getElementById('subObject').innerHTML = JSON.stringify(
+      subscription);
+  });
+}
+
+function getSubId() {
+  navigator.serviceWorker.ready.then(reg => {
+    return reg.pushManager.getSubscription();
+  }).then(subscription => {
+    document.getElementById('subId').innerHTML =
+    subscription.endpoint.slice(subscription.endpoint.lastIndexOf('/') + 1);
+  });
+}
