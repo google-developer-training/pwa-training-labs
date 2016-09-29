@@ -38,7 +38,7 @@ function getCountryName(json) {
 }
 
 function fetchFlag(country) {
-  var url = 'https://caraya.github.io/promises-lab/end-code/flags/';
+  var url = '';
   var countryFlag = url + country + '.png';
   console.log(countryFlag);
   return fetch(countryFlag, {mode: 'cors'})

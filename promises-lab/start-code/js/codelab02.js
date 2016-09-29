@@ -60,7 +60,7 @@ function getCountryName(json) {
 // response object.  If the response succeeds, then return the response object
 // parsed as a blob.
 function fetchFlag(country) {
-  var url = 'https://caraya.github.io/promises-lab/end-code/flags/';
+  var url = '';
   var countryFlag = url + country + '.png';
   // console.log(countryFlag);
   return fetch(countryFlag, {mode: 'cors'})
