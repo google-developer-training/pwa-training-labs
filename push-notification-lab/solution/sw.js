@@ -30,9 +30,28 @@ self.addEventListener('notificationclick', function(e) {
   if (action === 'close') {
     notification.close();
   } else {
-    clients.openWindow('samples/page' + primaryKey + '.html');
-    notification.close();
+    e.waitUntil(
+      clients.matchAll().then(function(clis) {
+        var client = clis.find(function(c) {
+          return c.visibilityState === 'visible';
+        });
+        if (client != undefined) {
+          client.navigate('samples/page' + primaryKey + '.html');
+          client.focus();
+        } else {
+          // there are no visible windows. Open one.
+          clients.openWindow('samples/page' + primaryKey + '.html');
+          notification.close();
+        }
+      })
+    );
   }
+
+  self.registration.getNotifications().then(function(notifications) {
+    notifications.forEach(function(notification) {
+      notification.close();
+    });
+  });
 });
 
 self.addEventListener('push', function(e) {
@@ -63,7 +82,16 @@ self.addEventListener('push', function(e) {
         icon: 'images/xmark.png'},
     ]
   };
-  e.waitUntil(
-    self.registration.showNotification(title, options)
-  );
+
+  clients.matchAll().then(function(c) {
+    if (c.length == 0) {
+      // Show notification
+      e.waitUntil(
+        self.registration.showNotification(title, options)
+      );
+    } else {
+      // Send a message to the page to update the UI
+      console.log('Application is already open!');
+    }
+  });
 });

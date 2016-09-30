@@ -17,8 +17,6 @@ var webPush = require('web-push');
 
 var keys = webPush.generateVAPIDKeys();
 
-var subscriptionJSONString = process.argv.slice(2);
-
 var subscription = YOUR_SUBSCRIPTION_OBJECT;
 
 webPush.setGCMAPIKey('AIzaSyD1JcZ8WM1vTtH6Y0tXq_Pnuw4jgj_92yg');

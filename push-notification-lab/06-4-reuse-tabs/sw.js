@@ -30,24 +30,24 @@ self.addEventListener('notificationclick', function(e) {
   if (action === 'close') {
     notification.close();
   } else {
-    clients.matchAll().then(function(clis) {
-      var client = clis.find(function(c) {
-        c.visibilityState === 'visible';
-      });
-      if (client !== undefined) {
-        client.navigate('samples/page' + primaryKey + '.html');
-        client.focus();
-      } else {
-        // there are no visible windows. Open one.
-        clients.openWindow('samples/page' + primaryKey + '.html');
-        notification.close();
-      }
-    });
+    e.waitUntil(
+      clients.matchAll().then(function(clis) {
+        var client = clis.find(function(c) {
+          return c.visibilityState === 'visible';
+        });
+        if (client != undefined) {
+          client.navigate('samples/page' + primaryKey + '.html');
+          client.focus();
+        } else {
+          // there are no visible windows. Open one.
+          clients.openWindow('samples/page' + primaryKey + '.html');
+          notification.close();
+        }
+      })
+    );
   }
 
-  var options = {tag: 'id2'};
-
-  self.registration.getNotifications(options).then(function(notifications) {
+  self.registration.getNotifications().then(function(notifications) {
     notifications.forEach(function(notification) {
       notification.close();
     });

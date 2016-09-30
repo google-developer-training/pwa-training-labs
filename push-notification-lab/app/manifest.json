@@ -1,4 +1,4 @@
 {
   "name": "Push Notifications codelab",
-  "gcm_sender_id": "229012024496"
+  "gcm_sender_id": "YOUR_SENDER_ID"
 }
