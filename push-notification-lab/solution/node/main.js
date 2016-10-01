@@ -15,9 +15,9 @@ limitations under the License.
 */
 var webPush = require('web-push');
 
-var serviceKeys = webPush.generateVAPIDKeys();
+var keys = webPush.generateVAPIDKeys();
 
-var subscription = {"endpoint":"https://android.googleapis.com/gcm/send/f0KET8aAw1o:APA91bEM1vfZprNeDQA1ujPhd5B8F4bh2y5zPNE47PIo7NH3CsMirq0X9HPlapM9DYJt440kjDwC6k_ratiVYUkre16Hm66RiCyTlNQV-FjCIDwtprk1JdgSfG4uhfVuhGX8je5ag_Su","keys":{"p256dh":"BIiaJaQjDFX7lrbuuDHSRHuuy2RiRi927U1RqEzB9nJP3jT_i5eoL-03btlLQGvDbZ8nWaGvRWYinRwE3k8FlsA=","auth":"Rcp0FqWYvFgoj0b_cBqC2w=="}}
+var subscription = YOUR_SUBSCRIPTION_OBJECT;
 
 webPush.setGCMAPIKey('AIzaSyD1JcZ8WM1vTtH6Y0tXq_Pnuw4jgj_92yg');
 
@@ -26,8 +26,8 @@ webPush.sendNotification(subscription.endpoint, {
   userAuth: subscription.keys.auth,
   vapid: {
     subject: 'mailto: YOUR_EMAIL',
-    publicKey: serviceKeys.publicKey,
-    privateKey: serviceKeys.privateKey
+    publicKey: keys.publicKey,
+    privateKey: keys.privateKey
   },
   payload: JSON.stringify({
     'title': 'First push message!',

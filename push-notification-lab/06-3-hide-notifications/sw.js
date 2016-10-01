@@ -38,9 +38,7 @@ self.addEventListener('notificationclick', function(e) {
     notification.close();
   }
 
-  var options = {tag: 'id2'};
-
-  self.registration.getNotifications(options).then(function(notifications) {
+  self.registration.getNotifications().then(function(notifications) {
     notifications.forEach(function(notification) {
       notification.close();
     });

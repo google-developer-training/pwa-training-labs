@@ -17,9 +17,7 @@ var webPush = require('web-push');
 
 var serviceKeys = webPush.generateVAPIDKeys();
 
-var subscriptionJSONString = process.argv.slice(2);
-
-var subscription = JSON.parse(subscriptionJSONString);
+var subscription = {"endpoint":"https://android.googleapis.com/gcm/send/d8vGk-cGnoo:APA91bEt8UEK_CHNKhwFvAMEPl-qu2Z-y7BvNmC5ETgUYb8G0Zx081fRyXgJRN-Rfm4EcF9WMl60OhPjp5AdBr_vdwSdVVD0XyqlLSawzEi_L-Y1yobGQ4BHr2hxMbpO0xtXhAYoZ5Ii","keys":{"p256dh":"BMtHh2IGPioVeF-dMV5UN2HapC5Si94he3L9rwf_y_f3SPaAk4m3GOob8DufWRo_3g4g8KUdFfRDTLGN48viXc8=","auth":"dNI70P-m7V7b9ZdmeTVOJA=="}}
 
 webPush.setGCMAPIKey('AIzaSyD1JcZ8WM1vTtH6Y0tXq_Pnuw4jgj_92yg');
 
