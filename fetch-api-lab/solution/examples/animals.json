@@ -1,0 +1,8 @@
+{
+	"animals": {
+		"cat": "kitten",
+		"dog": "puppy",
+		"kangaroo": "joey"
+	},
+	"type": "animal"
+}
