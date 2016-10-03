@@ -13,9 +13,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
 var webPush = require('web-push');
 
-var serviceKeys = webPush.generateVAPIDKeys();
+// TODO 14 - generate VAPID keys
 
 var subscription = YOUR_SUBSCRIPTION_OBJECT;
 
@@ -24,11 +25,9 @@ webPush.setGCMAPIKey('YOUR_SERVER_KEY');
 webPush.sendNotification(subscription.endpoint, {
   userPublicKey: subscription.keys.p256dh,
   userAuth: subscription.keys.auth,
-  vapid: {
-    subject: 'mailto: YOUR_EMAIL',
-    publicKey: serviceKeys.publicKey,
-    privateKey: serviceKeys.privateKey
-  },
+
+  // TODO 15 - add VAPID object
+
   payload: JSON.stringify({
     'title': 'First push message!',
     'body': 'From a server!',

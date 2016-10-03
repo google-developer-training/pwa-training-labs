@@ -60,7 +60,6 @@ self.addEventListener('push', function(e) {
     var title = data.title;
     var body = data.body;
     var primaryKey = data.primaryKey;
-    console.log(data);
   } else {
     var title = 'Push message no payload';
     var body = 'Default body';

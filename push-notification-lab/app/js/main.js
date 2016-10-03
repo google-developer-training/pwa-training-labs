@@ -38,9 +38,9 @@ var app = (function() {
   }
 
   function getSubObject() {
-    navigator.serviceWorker.ready.then(reg => {
+    navigator.serviceWorker.ready.then(function(reg) {
       return reg.pushManager.getSubscription();
-    }).then(subscription => {
+    }).then(function(subscription) {
       if (subscription) {
         document.getElementById('subObject').innerHTML = JSON.stringify(
           subscription);
@@ -49,9 +49,9 @@ var app = (function() {
   }
 
   function getSubId() {
-    navigator.serviceWorker.ready.then(reg => {
+    navigator.serviceWorker.ready.then(function(reg) {
       return reg.pushManager.getSubscription();
-    }).then(subscription => {
+    }).then(function(subscription) {
       if (subscription) {
         document.getElementById('subId').innerHTML =
         subscription.endpoint.slice(subscription.endpoint.lastIndexOf('/') + 1);

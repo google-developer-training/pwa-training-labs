@@ -13,10 +13,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-'use strict';
-
-// TODO 6 - Handle the notificationclose event
-
-// TODO 7 - Handle the notificationclick event
-
-// TODO 10 - add push event listener
+// TODO 13 - push a message using the web-push library
