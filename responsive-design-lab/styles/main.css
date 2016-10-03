@@ -2,8 +2,8 @@
 /* TODO 4 */
 body {
     font-family: "Raleway", sans-serif;
-    font-size: 100; /* Base Font Size*/
-    line-height: 1.4; 
+    font-size: 100%; /* Base Font Size*/
+    line-height: 1.4;
 }
 
 .content {
@@ -48,7 +48,7 @@ figure figcaption {
 }
 
 #fluid .col:nth-child(1) {
-    margin-left: 33.3%; 
+    margin-left: 33.3%;
     background: #eee;
 }
 
@@ -59,7 +59,7 @@ figure figcaption {
 
 #fluid .col:nth-child(3) {
     left: 0;
-    background: #eee; 
+    background: #eee;
 }
 
 #fluid p {
@@ -104,4 +104,3 @@ figure figcaption {
         order: 2;
     }
 }
-
