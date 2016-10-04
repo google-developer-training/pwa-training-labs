@@ -1,5 +1,5 @@
 /* main.css */
-/* TODO 4 */
+
 body {
     font-family: "Raleway", sans-serif;
     font-size: 100%; /* Base Font Size*/
@@ -20,21 +20,7 @@ h2 {
     font-size: 2.5rem;
 }
 
-.center-me {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-figure image {
-    max-width: 100%;
-}
-
-figure caption,
-figure figcaption {
-    width: max-content;
-}
-
-/* TODO 6 */
+/*
 #fluid {
     overflow: hidden;
 }
@@ -65,8 +51,8 @@ figure figcaption {
 #fluid p {
     margin-bottom: 30px;
 }
+*/
 
-/* TODO 7*/
 .flexbox {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -80,7 +66,6 @@ figure figcaption {
   padding: 1rem;
 }
 
-/* TODO 8 */
 @media screen and (max-width: 48rem) {
     .flexbox {
         display: -webkit-box;
