@@ -30,21 +30,11 @@ self.addEventListener('notificationclick', function(e) {
   if (action === 'close') {
     notification.close();
   } else {
-    e.waitUntil(
-      clients.matchAll().then(function(clis) {
-        var client = clis.find(function(c) {
-          return c.visibilityState === 'visible';
-        });
-        if (client != undefined) {
-          client.navigate('samples/page' + primaryKey + '.html');
-          client.focus();
-        } else {
-          // there are no visible windows. Open one.
-          clients.openWindow('samples/page' + primaryKey + '.html');
-          notification.close();
-        }
-      })
-    );
+
+    // TODO 19 - reuse open tabs
+
+    clients.openWindow('samples/page' + primaryKey + '.html');
+    notification.close();
   }
 
   self.registration.getNotifications().then(function(notifications) {
@@ -60,7 +50,6 @@ self.addEventListener('push', function(e) {
     var title = data.title;
     var body = data.body;
     var primaryKey = data.primaryKey;
-    console.log(data);
   } else {
     var title = 'Push message no payload';
     var body = 'Default body';
@@ -82,7 +71,6 @@ self.addEventListener('push', function(e) {
         icon: 'images/xmark.png'},
     ]
   };
-
   clients.matchAll().then(function(c) {
     if (c.length == 0) {
       // Show notification

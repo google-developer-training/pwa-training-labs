@@ -32,7 +32,7 @@ var app = (function() {
         reg.pushManager.subscribe({
           userVisibleOnly: true
         }).then(function(sub) {
-          console.log('Subscription object: ', sub);
+          console.log('Endpoint URL: ', sub);
         }).catch(function(e) {
           if (Notification.permission === 'denied') {
             console.warn('Permission for notifications was denied');
@@ -44,8 +44,6 @@ var app = (function() {
     }).catch(function(err) {
       console.log('Service Worker registration failed: ', err);
     });
-  } else {
-    console.log('This browser does not support service workers');
   }
 
   function displayNotification() {
@@ -53,7 +51,6 @@ var app = (function() {
       navigator.serviceWorker.getRegistration().then(function(reg) {
         var options = {
           body: 'First notification!',
-          tag: 'id1',
           icon: 'images/notification-flat.png',
           vibrate: [100, 50, 100],
           data: {
@@ -66,6 +63,7 @@ var app = (function() {
             {action: 'close', title: 'Close the notification',
               icon: 'images/xmark.png'},
           ]
+          // tag: 'id1'
         };
         reg.showNotification('Hello world!', options);
       });

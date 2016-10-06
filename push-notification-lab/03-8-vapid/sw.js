@@ -30,28 +30,15 @@ self.addEventListener('notificationclick', function(e) {
   if (action === 'close') {
     notification.close();
   } else {
-    e.waitUntil(
-      clients.matchAll().then(function(clis) {
-        var client = clis.find(function(c) {
-          return c.visibilityState === 'visible';
-        });
-        if (client != undefined) {
-          client.navigate('samples/page' + primaryKey + '.html');
-          client.focus();
-        } else {
-          // there are no visible windows. Open one.
-          clients.openWindow('samples/page' + primaryKey + '.html');
-          notification.close();
-        }
-      })
-    );
+
+    // TODO 19 - reuse open tabs
+
+    clients.openWindow('samples/page' + primaryKey + '.html');
+    notification.close();
   }
 
-  self.registration.getNotifications().then(function(notifications) {
-    notifications.forEach(function(notification) {
-      notification.close();
-    });
-  });
+  // TODO 18 - close all notifications when one is clicked
+
 });
 
 self.addEventListener('push', function(e) {
@@ -60,7 +47,6 @@ self.addEventListener('push', function(e) {
     var title = data.title;
     var body = data.body;
     var primaryKey = data.primaryKey;
-    console.log(data);
   } else {
     var title = 'Push message no payload';
     var body = 'Default body';
@@ -83,15 +69,9 @@ self.addEventListener('push', function(e) {
     ]
   };
 
-  clients.matchAll().then(function(c) {
-    if (c.length == 0) {
-      // Show notification
-      e.waitUntil(
-        self.registration.showNotification(title, options)
-      );
-    } else {
-      // Send a message to the page to update the UI
-      console.log('Application is already open!');
-    }
-  });
+  // TODO 17 - replace the e.waitUntil function below with the code to check the service worker clients
+
+  e.waitUntil(
+    self.registration.showNotification(title, options)
+  );
 });

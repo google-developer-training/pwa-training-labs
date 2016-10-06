@@ -30,50 +30,28 @@ self.addEventListener('notificationclick', function(e) {
   if (action === 'close') {
     notification.close();
   } else {
-    e.waitUntil(
-      clients.matchAll().then(function(clis) {
-        var client = clis.find(function(c) {
-          return c.visibilityState === 'visible';
-        });
-        if (client != undefined) {
-          client.navigate('samples/page' + primaryKey + '.html');
-          client.focus();
-        } else {
-          // there are no visible windows. Open one.
-          clients.openWindow('samples/page' + primaryKey + '.html');
-          notification.close();
-        }
-      })
-    );
+
+    // TODO 19 - reuse open tabs
+
+    clients.openWindow('samples/page' + primaryKey + '.html');
+    notification.close();
   }
 
-  self.registration.getNotifications().then(function(notifications) {
-    notifications.forEach(function(notification) {
-      notification.close();
-    });
-  });
+  // TODO 18 - close all notifications when one is clicked
+
 });
 
 self.addEventListener('push', function(e) {
-  if (e.data) {
-    var data = e.data.json();
-    var title = data.title;
-    var body = data.body;
-    var primaryKey = data.primaryKey;
-    console.log(data);
-  } else {
-    var title = 'Push message no payload';
-    var body = 'Default body';
-    var primaryKey = 1;
-  }
+
+  // TODO 12 - update push event handler to get data from the message
 
   var options = {
-    body: body,
+    body: 'This notification was generated from a push!',
     icon: 'images/notification-flat.png',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
-      primaryKey: primaryKey
+      primaryKey: '-push-notification'
     },
     actions: [
       {action: 'explore', title: 'Go to the site',
@@ -82,16 +60,7 @@ self.addEventListener('push', function(e) {
         icon: 'images/xmark.png'},
     ]
   };
-
-  clients.matchAll().then(function(c) {
-    if (c.length == 0) {
-      // Show notification
-      e.waitUntil(
-        self.registration.showNotification(title, options)
-      );
-    } else {
-      // Send a message to the page to update the UI
-      console.log('Application is already open!');
-    }
-  });
+  e.waitUntil(
+    self.registration.showNotification('Hello world!', options)
+  );
 });
