@@ -18,8 +18,8 @@ article {
   align-items: center;
   display: flex;
   flex-direction: column;
-  /*max-width: 50em;
-  width: 90vw;*/
+  max-width: 50em;
+  width: 90vw;
   border-bottom: 1px solid #ddd;
 }
 
@@ -33,17 +33,17 @@ body {
 }
 
 img {
-  max-width: 100vw;
+  max-width: 100%;
 }
 
-img#ghopper {
+img#sfo {
   transition: width 0.5s;
-  /*width: 50vw;*/
+  width: 50vw;
 }
 
-@media screen and (max-width: 500px) {
-  img#ghopper {
-    max-width: 100vw;
+@media screen and (max-width: 700px) {
+  img#sfo {
+    width: 90vw;
   }
 }
 

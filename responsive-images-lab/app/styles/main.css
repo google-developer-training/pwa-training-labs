@@ -1,106 +1,70 @@
-/* main.css */
-/* TODO 4 */
-body {
-    font-family: "Raleway", sans-serif;
-    font-size: 100%; /* Base Font Size*/
-    line-height: 1.4;
+/*
+Copyright 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+article {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 50em;
+  width: 90vw;
+  border-bottom: 1px solid #ddd;
 }
 
-.content {
-    margin: 0 3rem;
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  margin: 3vh 0 3vh 0;
+  text-align: center;
+}
+
+/* TODO 1 - set the image max-width */
+
+/* TODO 4 - display the SFO image at 50vw */
+
+/* TODO 6 - add a media query */
+
+figcaption {
+  color: #bb021e;
+  font-family: 'Roboto condensed', sans-serif;
+  padding: 2em 0;
+  text-align: center;
+}
+
+figure {
+  margin: 1em 0 1em 0;
 }
 
 h1 {
-    font-family: "Lobster", cursive;
-    font-size: 4rem;
+  color: #bb021e;
+  font-family: 'Roboto condensed', sans-serif;
+  font-size: 6vw;
+  font-weight: 500;
+  margin: 0 0 1em 0;
+  padding: 0 0 1em 0;
+  border-bottom: 1px solid #ddd;
 }
 
-h2 {
-    font-family: "Lobster", cursive;
-    font-size: 2.5rem;
-}
-
-.center-me {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-figure image {
-    max-width: 100%;
-}
-
-figure caption,
-figure figcaption {
-    width: max-content;
-}
-
-/* TODO 6 */
-#fluid {
-    overflow: hidden;
-}
-
-#fluid .col {
-  width: 27%;
-  padding: 30px 3.15% 0;
-  float: left;
-  margin-bottom: -999px;
-  padding-bottom: 999px;
-}
-
-#fluid .col:nth-child(1) {
-    margin-left: 33.3%;
-    background: #eee;
-}
-
-#fluid .col:nth-child(2) {
-    margin-left: -66.3%;
-    background: #eee;
-}
-
-#fluid .col:nth-child(3) {
-    left: 0;
-    background: #eee;
-}
-
-#fluid p {
-    margin-bottom: 30px;
-}
-
-/* TODO 7*/
-.flexbox {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 3rem;
-  overflow: hidden;
-}
-
-.flexbox .col {
-  flex: 1;
-  padding: 1rem;
-}
-
-/* TODO 8 */
-@media screen and (max-width: 48rem) {
-    .flexbox {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        flex-flow: column;
-    }
-
-    .flexbox .col:nth-child(1) {
-        order: 1;
-        color: rebeccapurple;
-    }
-
-    .flexbox .col:nth-child(2) {
-        order: 3;
-        color: slategrey;
-    }
-
-    .flexbox .col:nth-child(3) {
-        color: cornflowerblue;
-        order: 2;
-    }
+p {
+  color: #444;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.6em;
+  margin: 0 auto 1em auto;
+  text-align: justify;
+  max-width: 50em;
 }
