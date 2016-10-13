@@ -40,13 +40,27 @@ goog.offlineGoogleAnalytics.initialize();
     var notification = e.notification;
     var primaryKey = notification.data.primaryKey;
     notification.close();
-    e.waitUntil(
-      Promise.all([
-        clients.openWindow('pages/page' + primaryKey + '.html'),
-        // TODO Step 8.2c - Notification click event
-        sendAnalyticsEvent('click', 'notification')
-      ])
-    );
+    // Optional TODO - Add actions with analytics
+    var action = e.action;
+    if (action === 'delay') {
+      // Notificaion delay logic could go here in a real app
+      e.waitUntil(
+        sendAnalyticsEvent('delay', 'notification')
+      );
+    } else if (action === 'buy') {
+      // Purchase logic could go here in a real app
+      e.waitUntil(
+        sendAnalyticsEvent('purchase', 'notification')
+      );
+    } else {
+      e.waitUntil(
+        Promise.all([
+          clients.openWindow('pages/page' + primaryKey + '.html'),
+          // TODO Step 8.2c - Notification click event
+          sendAnalyticsEvent('click', 'notification')
+        ])
+      );
+    }
   });
 
   self.addEventListener('push', function(e) {
@@ -57,7 +71,14 @@ goog.offlineGoogleAnalytics.initialize();
       data: {
         dateOfArrival: Date.now(),
         primaryKey: '-push-notification'
-      }
+      },
+      // Optional TODO - Add actions
+      actions: [
+        {action: 'buy', title: 'Buy on sale!',
+          icon: 'images/checkmark.png'},
+        {action: 'delay', title: 'Not right now',
+          icon: 'images/xmark.png'},
+      ]
     };
     e.waitUntil(Promise.all([
         self.registration.showNotification('Hello world!', options),

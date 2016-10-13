@@ -26,10 +26,10 @@ limitations under the License.
     return;
   }
 
-  // if (!('PushManager' in window)) {
-  //   console.log('This browser does not support push!');
-  //   return;
-  // }
+  if (!('PushManager' in window)) {
+    console.log('This browser does not support push!');
+    return;
+  }
 
   // Request notification permission
   Notification.requestPermission(function(status) {
@@ -125,5 +125,18 @@ limitations under the License.
       ga('send', 'event', 'push', 'unsubscribe-err');
     });
   }
+
+  // Optional - Use hitCallback to send a hit
+  var link = document.getElementById('external');
+  link.addEventListener('click', function(event) {
+    event.preventDefault();
+    function navigate() {
+      window.location.href = event.target.href;
+    }
+    setTimeout(navigate, 1000);
+    ga('send', 'event', 'outbound', 'sponsor1', {
+      hitCallback: navigate
+    });
+  });
 
 })();
