@@ -8,6 +8,13 @@ Once you've cloned the repo, checkout the starting branch:
 
 Start a local server in the project directory and navigate to the appropriate local host port (e.g. http://localhost:8000/).
 
+To use the app, you will need a [Google Analytics](https://analytics.google.com/) account, and a [Firebase](https://console.firebase.google.com/) account.
+
+To run the solution code, first you need to:
+
+* Replace *UA-XXXXXXXX-Y* with your Google Analytics property/tracking ID in **index.html** and **pages/other.html**.
+
+* Replace *YOUR_SUBSCRIPTION_ID* with your Firebase project ID in **manifest.json**.
 
 ## License
 

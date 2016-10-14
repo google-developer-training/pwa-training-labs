@@ -81,7 +81,7 @@ limitations under the License.
             if (Notification.permission === 'denied') {
               console.warn('Subscribe failed, notifications are blocked');
               // Optional TODO - Send hits for subscribe error
-              ga('send', 'event', 'push', 'subscribe-err', 'notifications-blocked');
+              ga('send', 'event', 'push', 'subscribe-err', 'blocked');
             } else {
               console.error('Unable to subscribe to push', error);
               // Optional TODO - Send hits for subscribe error
