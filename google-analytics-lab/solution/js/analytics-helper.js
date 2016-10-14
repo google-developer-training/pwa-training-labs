@@ -68,7 +68,7 @@ function sendAnalyticsEvent(eventAction, eventCategory) {
       return payloadData[analyticsKey];
     })
     .map(function(analyticsKey) {
-      return analyticsKey + encodeURIComponent(payloadData[analyticsKey]);
+      return analyticsKey + '=' + encodeURIComponent(payloadData[analyticsKey]);
     })
     .join('&');
 
@@ -87,7 +87,8 @@ function sendAnalyticsEvent(eventAction, eventCategory) {
         );
       });
     } else {
-      console.log('Analytics event sent, check Google Analytics dashboard');
+      console.log(eventCategory + '/' + eventAction +
+        'hit sent, check the Analytics dashboard');
     }
   })
   .catch(function(err) {
