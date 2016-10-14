@@ -1,0 +1,66 @@
+<!--
+Copyright 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta name="description" content="Responsive Images course project" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta charset="utf-8">
+
+  <title>My responsive blog: picture story</title>
+
+  <link rel="icon" sizes="192x192" href="images/icon.png">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="styles/main.css" />
+
+</head>
+
+<body>
+
+  <article>
+
+    <h1>My responsive blog</h1>
+
+    <p class="lead">I love cheese, especially manchego swiss. ☺ Fromage queso jarlsberg cheesy feet emmental cottage cheese camembert de normandie bocconcini. Cottage cheese everyone loves cauliflower cheese rubber cheese squirty cheese halloumi cow fondue. Bocconcini cheese and biscuits everyone loves fondue red leicester st. agur blue cheese rubber cheese ricotta. Cheesy grin mozzarella.</p>
+
+
+    <figure>
+        <img id="sfo" src="images/sfo-500_small.jpg" srcset="images/sfo-1600_large.jpg 1600w,
+        images/sfo-1000_large.jpg 1000w, images/sfo-800_medium.jpg 800w, images/sfo-500_small.jpg 500w"
+        sizes="(max-width: 700px) 100vw, 50vw" alt="View from aircraft window near San Francisco airport">
+      <figcaption>Near SFO</figcaption>
+    </figure>
+
+    <p>Bocconcini swiss cut the cheese. Manchego boursin smelly cheese cheesy grin squirty cheese mozzarella cheddar hard cheese. Manchego roquefort camembert de normandie cheese slices mascarpone cow cheesy feet airedale. Port-salut jarlsberg gouda port-salut port-salut cheese on toast.</p>
+
+    <p>St. agur blue cheese cheese and wine say cheese. Goat cottage cheese brie cheese triangles say cheese when the cheese comes out everybody's happy stinking bishop dolcelatte. Parmesan say cheese cream cheese goat cauliflower cheese st. agur blue cheese cheese slices hard cheese. Cheese triangles.</p>
+
+    <figure>
+      <picture>
+        <source media="(min-width: 750px)" srcset="images/horses-1600_large_2x.jpg 2x, images/horses-800_large_1x.jpg" />
+        <source media="(min-width: 500px)" srcset="images/horses_medium.jpg" />
+        <img src="images/horses_small.jpg" alt="Horses in Hawaii">
+      </picture>
+      <figcaption>Horses in Hawaii</figcaption>
+    </figure>
+
+    <p>Paneer st. agur blue cheese bocconcini. The big cheese chalk and cheese cheese and biscuits cream cheese cheese triangles mascarpone everyone loves rubber cheese. Stinking bishop manchego the big cheese lancashire hard cheese the big cheese danish fontina squirty cheese. Cheesy feet croque monsieur boursin squirty cheese cheddar boursin boursin pepper jack. Squirty cheese halloumi camembert de normandie macaroni cheese.</p>
+
+  </article>
+
+</body>
+</html>

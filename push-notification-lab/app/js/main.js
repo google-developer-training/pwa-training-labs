@@ -16,6 +16,11 @@ limitations under the License.
 var app = (function() {
   'use strict';
 
+  if (!('PushManager' in window)) {
+    console.log('PushManager not supported in this browser');
+    return;
+  }
+
   // TODO 1 - Test for notification support
 
   // TODO 2 - Request permission to display notifications
