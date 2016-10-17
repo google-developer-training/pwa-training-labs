@@ -12,7 +12,7 @@ To use the app, you will need a [Google Analytics](https://analytics.google.com/
 
 To run the solution code, first you need to:
 
-* Replace *UA-XXXXXXXX-Y* with your Google Analytics property/tracking ID in **index.html** and **pages/other.html**.
+* Replace *UA-XXXXXXXX-Y* with your Google Analytics property/tracking ID in **index.html**, **pages/other.html**, and **analytics-helper.js**.
 
 * Replace *YOUR_SUBSCRIPTION_ID* with your Firebase project ID in **manifest.json**.
 
