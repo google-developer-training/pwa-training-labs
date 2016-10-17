@@ -6,10 +6,6 @@ body {
     line-height: 1.4;
 }
 
-.content {
-    margin: 0 3rem;
-}
-
 h1 {
     font-family: "Lobster", cursive;
     font-size: 4rem;
@@ -20,12 +16,12 @@ h2 {
     font-size: 2.5rem;
 }
 
-/*
-#fluid {
+.no-flexbox .container {
+    margin: 0 3rem;
     overflow: hidden;
 }
 
-#fluid .col {
+.no-flexbox .container .col {
   width: 27%;
   padding: 30px 3.15% 0;
   float: left;
@@ -33,27 +29,26 @@ h2 {
   padding-bottom: 999px;
 }
 
-#fluid .col:nth-child(1) {
+.no-flexbox .container .col:nth-child(1) {
     margin-left: 33.3%;
     background: #eee;
 }
 
-#fluid .col:nth-child(2) {
+.no-flexbox .container .col:nth-child(2) {
     margin-left: -66.3%;
     background: #eee;
 }
 
-#fluid .col:nth-child(3) {
+.no-flexbox .container .col:nth-child(3) {
     left: 0;
     background: #eee;
 }
 
-#fluid p {
+.no-flexbox .container p {
     margin-bottom: 30px;
 }
-*/
 
-.flexbox {
+.flexbox .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -61,30 +56,30 @@ h2 {
   overflow: hidden;
 }
 
-.flexbox .col {
+.flexbox .container .col {
   flex: 1;
   padding: 1rem;
 }
 
 @media screen and (max-width: 48rem) {
-    .flexbox {
+    .flexbox .container {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         flex-flow: column;
     }
 
-    .flexbox .col:nth-child(1) {
+    .flexbox .container .col:nth-child(1) {
         order: 1;
         color: rebeccapurple;
     }
 
-    .flexbox .col:nth-child(2) {
+    .flexbox .container .col:nth-child(2) {
         order: 3;
         color: slategrey;
     }
 
-    .flexbox .col:nth-child(3) {
+    .flexbox .container .col:nth-child(3) {
         color: cornflowerblue;
         order: 2;
     }
