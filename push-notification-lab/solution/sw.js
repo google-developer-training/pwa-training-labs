@@ -55,17 +55,17 @@ self.addEventListener('notificationclick', function(e) {
 });
 
 self.addEventListener('push', function(e) {
-  if (e.data) {
-    var data = e.data.json();
-    var title = data.title;
-    var body = data.body;
-    var primaryKey = data.primaryKey;
-    console.log(data);
-  } else {
+  // if (e.data) {
+  //   var data = e.data.json();
+  //   var title = data.title;
+  //   var body = data.body;
+  //   var primaryKey = data.primaryKey;
+  //   console.log(data);
+  // } else {
     var title = 'Push message no payload';
     var body = 'Default body';
     var primaryKey = 1;
-  }
+  // }
 
   var options = {
     body: body,
@@ -82,16 +82,16 @@ self.addEventListener('push', function(e) {
         icon: 'images/xmark.png'},
     ]
   };
-
-  clients.matchAll().then(function(c) {
-    if (c.length == 0) {
-      // Show notification
-      e.waitUntil(
-        self.registration.showNotification(title, options)
-      );
-    } else {
-      // Send a message to the page to update the UI
-      console.log('Application is already open!');
-    }
-  });
+  e.waitUntil(
+    clients.matchAll().then(function(c) {
+      console.log(c);
+      if (c.length == 0) {
+        // Show notification
+        self.registration.showNotification(title, options);
+      } else {
+        // Send a message to the page to update the UI
+        console.log('Application is already open!');
+      }
+    })
+  );
 });
