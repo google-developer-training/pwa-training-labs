@@ -4,7 +4,7 @@ In this project you will learn how to use the Fetch API.
 ## Getting started
 Once you've cloned the repo, checkout the starting branch:
 
-`$ git checkout 02_setting-up`
+`$ git checkout app`
 
 Start a local server in the project directory and navigate to the appropriate local host port (e.g. http://localhost:8000/).
 
