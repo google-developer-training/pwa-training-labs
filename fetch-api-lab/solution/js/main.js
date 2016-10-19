@@ -24,22 +24,22 @@ var app = (function() {
     console.log('Looks like there was a problem: \n', error);
   }
 
-  // TODO Step 2.1: Fetch a JSON file
-
+  // TODO Step 2.1a
   if (!('fetch' in window)) {
     console.log('Fetch API not found, try including the polyfill');
     return;
   }
 
-  function fetchJSON(pathToResource) {
-    fetch(pathToResource) // 1
+  function fetchJSON() {
+    fetch('examples/animals.json') // 1
     .then(validateResponse) // 2
     .then(readResponseAsJSON) // 3
     .then(logResult) // 4
     .catch(logError);
   }
 
-  fetchJSON('examples/animals.json');
+  var jsonButton = document.getElementById('json-button');
+  jsonButton.addEventListener('click', fetchJSON);
 
   function validateResponse(response) {
     // TODO Step 2.3
@@ -68,17 +68,17 @@ var app = (function() {
     return response.blob();
   }
 
-  function fetchImage(pathToResource) {
+  function fetchImage() {
     // TODO Step 3c
-    fetch(pathToResource)
+    fetch('examples/kitten.jpg')
     .then(validateResponse)
     .then(readResponseAsBlob)
     .then(showImage)
     .catch(logError);
   }
 
-  // TODO Step 3d: Fetch an image file
-  fetchImage('examples/kitten.jpg');
+  var imgButton = document.getElementById('img-button');
+  imgButton.addEventListener('click', fetchImage);
 
   function showText(responseAsText) {
     //  TODO Step 4a
@@ -91,33 +91,31 @@ var app = (function() {
     return response.text();
   }
 
-  function fetchText(pathToResource) {
+  function fetchText() {
     // TODO Step 4c
-    fetch(pathToResource)
+    fetch('examples/words.txt')
     .then(validateResponse)
     .then(readResponseAsText)
     .then(showText)
     .catch(logError);
   }
 
-  // TODO Step 4d: Fetch a text file
-  fetchText('examples/words.txt');
+  var textButton = document.getElementById('text-button');
+  textButton.addEventListener('click', fetchText);
 
-  function headRequest(pathToResource) {
-    // TODO Step 5.1a
-    fetch(pathToResource, {
+  function headRequest() {
+    fetch('examples/words.txt', {
       method: 'HEAD'
     })
     .then(validateResponse)
-    // Updated in Step 5.1
     .then(logSize)
     .then(readResponseAsText)
     .then(logResult)
     .catch(logError);
   }
 
-  // TODO Step 5.1b: Make a HEAD request
-  headRequest('examples/words.txt');
+  var headButton = document.getElementById('head-button');
+  headButton.addEventListener('click', headRequest);
 
   function logSize(response) {
     // TODO Step 5.2
@@ -126,11 +124,13 @@ var app = (function() {
   }
 
   /* NOTE: Never send unencrypted user credentials in production! */
-  function postRequest(pathToResource) {
-    // TODO Step 6.2a
-    fetch(pathToResource, {
+  function postRequest() {
+    // TODO Step 6.2
+    // TODO Step 6.3
+    var formData = new FormData(document.getElementById('myForm'));
+    fetch('http://localhost:5000/', {
       method: 'POST',
-      body: 'username=david&password=12345'
+      body: formData
     })
     .then(validateResponse)
     .then(readResponseAsText)
@@ -138,8 +138,8 @@ var app = (function() {
     .catch(logError);
   }
 
-  // TODO Step 6.2b: Make a POST request
-  postRequest('http://localhost:5000/');
+  var postButton = document.getElementById('post-button');
+  postButton.addEventListener('click', postRequest);
 
   // Don't worry if you don't understand this, it's not part of the Fetch API.
   // We are using the JavaScript Module Pattern to enable unit testing of
