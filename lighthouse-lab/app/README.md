@@ -5,7 +5,7 @@ and and convert it into a Progressive Web App.
 ## Getting started
 Once you've cloned the repo, checkout the starting branch:
 
-`$ git checkout 02_setting-up`
+`$ git checkout app`
 
 Start a local server in the project directory and navigate to the appropriate local host port (e.g. http://localhost:8000/). You should see a responsive blog site.
 
