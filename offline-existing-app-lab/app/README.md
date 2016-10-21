@@ -1,4 +1,19 @@
-/*
+# Adding offline
+This lab will walk you through how to add offline capabilities to an existing application.
+
+## Getting started
+Once you've cloned the repo, checkout the starting branch:
+
+`$ git checkout app`
+
+Start a local server in the project directory and navigate to the appropriate local host port (e.g. http://localhost:8000/).
+
+## Note
+
+Some contents from Responsive Blog Sample - Copyright Sam Dutton 2016
+
+## License
+
 Copyright 2016 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,17 +27,5 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
-self.addEventListener('fetch', function(event) {
-  event.respondWith(caches.match(event.request)
-  .then(function(response) {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      })
-    .catch(function() {
-      console.log('resource not available');
-    })
-  );
-});
+
+This is not an official Google product.

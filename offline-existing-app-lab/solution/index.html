@@ -22,39 +22,9 @@ limitations under the License.
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta charset="utf-8">
 
-  <!-- Place favicon.ico in the `app/` directory -->
-
-  <!-- Chrome for Android theme color -->
-  <meta name="theme-color" content="#2E3AA1">
-
-  <!-- Web Application Manifest -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- Tile color for Win8 -->
-  <meta name="msapplication-TileColor" content="#3372DF">
-
-  <!-- Add to homescreen for Chrome on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="PSK">
-  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
-
-  <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
-  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
-
-  <!-- Tile icon for Win8 (144x144) -->
-  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-
-  <base target="_blank">
-
   <title>My responsive blog: picture story</title>
 
-  <link rel="icon" sizes="192x192" href="images/icon.png">
-  <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=zocial" />
+  <link rel="stylesheet" href="styles/main.css" />
 
 </head>
 
@@ -176,14 +146,24 @@ limitations under the License.
   <footer>
 
     <div id="social">
-      <a href="#" class="zocial-twitter">Twitter</a>
-      <a href="#" class="zocial-facebook">Facebook</a>
-      <a href="#" class="zocial-googleplus">Google+</a>
-      <a href="#" class="zocial-digg">Digg</a>
+      <a href="#">Twitter</a>
+      <a href="#">Facebook</a>
+      <a href="#">Google+</a>
+      <a href="#">Digg</a>
     </div>
 
   </footer>
-
-  <!-- TODO 2: insert the code to install service worker here -->
+  <script>
+  // TODO Step 2.3 - Register the service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+    .then(function(registration) {
+      console.log('Registered:', registration);
+    })
+    .catch(function(error) {
+      console.log('Registration failed: ', error);
+    });
+  }
+  </script>
 </body>
 </html>

@@ -13,18 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-[class*="zocial-"]:before {
-  color: black;
-  display: inline-block;
-  font-family: 'zocial', sans-serif;
-  text-shadow: 3px 3px 3px #aaa;
-  width: 2em;
-}
-
-a:hover [class*="zocial-"]:before {
-  color: #3d85c6;
-}
-
 a {
   color: #4183C4;
   font-weight: 300;
@@ -68,7 +56,6 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column;
-  font-family: 'Roboto', sans-serif;
   margin: 3vh 0 3vh 0;
   text-align: center;
 }
@@ -79,7 +66,6 @@ div#social {
 
 figcaption {
   color: #bb021e;
-  font-family: 'Roboto condensed', sans-serif;
   padding: 2em 0;
   text-align: center;
 }
@@ -94,7 +80,6 @@ footer {
 
 h1 {
   color: #444;
-  font-family: 'Roboto condensed', sans-serif;
   font-size: 6vw;
   font-weight: 500;
   margin: 0 0 1em 0;
@@ -107,7 +92,6 @@ header:hover h1 {
 h2 {
   border-bottom: 1px solid #ddd;
   color: #bb021e;
-  font-family: 'Roboto condensed', sans-serif;
   font-size: 5vw;
   margin: 0 0 1em 0;
   padding: 0 0 1em 0;

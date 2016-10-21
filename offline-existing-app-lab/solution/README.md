@@ -1,10 +1,12 @@
-# Adding offline capabilities to an existing application
-
+# Adding offline
 This lab will walk you through how to add offline capabilities to an existing application.
 
 ## Getting started
+Once you've cloned the repo, checkout the starting branch:
 
-Change to the `starting-project` directory.
+`$ git checkout app`
+
+Start a local server in the project directory and navigate to the appropriate local host port (e.g. http://localhost:8000/).
 
 ## Note
 
