@@ -17,32 +17,12 @@ limitations under the License.
 <html>
   <head>
     <title>Test Page</title>
-    <script src="js/codelab02.js"></script>
   </head>
 
   <body>
-
+    <script src='../js/codelab02.js'></script>
     <script>
-function delay(ms) {
-  return new Promise(function(resolve, reject) {
-    setTimeout(resolve, ms);
-  });
-}
-
-function timedLoad() {
-  Promise.race([
-    promiseFlag('Spain'),
-    delay(2500)
-  ])
-  .then(function() {
-    console.log('image loaded first');
-  })
-  .catch(function(reason) {
-    console.log('timeout triggered');
-  });
-}
-
-timedLoad();
+    showFlag('Spain', 1, 'caraya');
     </script>
   </body>
 </html>

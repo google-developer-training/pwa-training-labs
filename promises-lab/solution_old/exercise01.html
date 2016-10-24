@@ -17,35 +17,16 @@ limitations under the License.
 <html>
   <head>
     <title>Test Page</title>
-    <script src="js/codelab02.js"></script>
+    <link rel='stylesheet' href='https://code.jquery.com/qunit/qunit-2.0.1.css'>
   </head>
 
   <body>
+    <div id='qunit'></div>
+    <div id='qunit-fixture'></div>
+    <script src='js/codelab01.js'></script>
 
     <script>
-      //jshint esversion:6
-      function delay(ms) {
-        return new Promise(function(resolve, reject) {
-          setTimeout(function() {
-            reject(ms);
-          }, ms);
-        });
-      }
-
-      function timedLoad() {
-        Promise.race([
-          promiseFlag('Spain'),
-          delay(1000)
-        ])
-        .then(function() {
-          console.log('image loaded first');
-        })
-        .catch(function(reason) {
-          console.log('timeout triggered', reason);
-        });
-      }
-
-      timedLoad();
+    promiseFlag('Spain');
     </script>
   </body>
 </html>

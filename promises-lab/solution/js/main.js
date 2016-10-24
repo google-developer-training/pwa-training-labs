@@ -22,9 +22,48 @@ function promiseFlag(country) {
   .then(displayFlag)
   .catch(function(err) {
     console.log(err);
-    throw Error('Fetch Flag failed');
+    throw Error('Could not load flag');
   });
 }
+
+// TODO 2 - replace the call to promiseFlag below with a timed race
+
+// promiseFlag('Spain');
+
+function delay(ms) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      reject(ms);
+    }, ms);
+  });
+}
+
+function timedLoad() {
+  Promise.race([
+    promiseFlag('Spain'),
+    delay(2500)
+  ]).then(function() {
+    console.log('image loaded first');
+  }).catch(function(reason) {
+    console.log('timeout triggered');
+  });
+}
+
+// TODO 3 - comment out the call to timedLoad below and add the code to fulfill multiple promises at once
+
+// timedLoad();
+
+const image1 = promiseFlag('Spain');
+const image2 = promiseFlag('Argentina');
+const image3 = promiseFlag('Armenia');
+
+Promise.all([image1, image2, image3])
+.then(function() {
+  console.log('All images loaded successfully');
+})
+.catch(function(message) {
+  console.log('One or more images failed to load ' + message);
+});
 
 // This first function queries  geonames.org using the country name and a
 // registered account name. It returns a Javascript object with the result.
@@ -60,7 +99,7 @@ function getCountryName(json) {
 // response object.  If the response succeeds, then return the response object
 // parsed as a blob.
 function fetchFlag(country) {
-  var url = '';
+  var url = 'flags/';
   var countryFlag = url + country + '.png';
   // console.log(countryFlag);
   return fetch(countryFlag, {mode: 'cors'})
