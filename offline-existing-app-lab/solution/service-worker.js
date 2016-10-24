@@ -11,9 +11,6 @@ self.addEventListener('install', function(event) {
     .then(function(cache) {
       return cache.addAll(urlsToCache);
     })
-    .catch(function(error) {
-      console.log('Could not cache assets:', error);
-    })
   );
 });
 
