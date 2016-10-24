@@ -1,4 +1,4 @@
-/*
+<!--
 Copyright 2016 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,25 +12,23 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
-//jshint esversion:6
-function delay(ms) {
-  return new Promise(function(resolve, reject) {
-    setTimeout(resolve, ms);
-  });
-}
+-->
+<doctype html>
+<html>
+  <head>
+    <title>Test Page</title>
+    <link rel='stylesheet' href='https://code.jquery.com/qunit/qunit-2.0.1.css'>
+  </head>
 
-function timedLoad() {
-  Promise.race([
-    promiseFlag('Spain'),
-    delay(2500)
-  ])
-  .then(function() {
-    console.log('image loaded first');
-  })
-  .catch(function(reason) {
-    console.log('timeout triggered');
-  });
-}
-
-timedLoad();
+  <body>
+    <div id='qunit'></div>
+    <div id='qunit-fixture'></div>
+    <script src='../js/codelab05.js'></script>
+    <script src='https://code.jquery.com/qunit/qunit-2.0.1.js'></script>
+  <body>
+    <script src='../js/codelab05.js'></script>
+    <!-- Write your tests inside the script tag below -->
+    <script>
+    </script>
+  </body>
+</html>

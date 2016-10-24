@@ -28,44 +28,20 @@ limitations under the License.
     <!-- Write your tests inside the script tag below -->
     <script>
 
-
-    QUnit.test('Did we get data?', function(assert) {
-      var done = assert.async(1);
-
-      var p = new Promise(function(resolve) {
-        resolve(1);
-      });
-
-      p.then(function() {
-        return fetchFlag('Spain');
-      })
-      .then(function(response) {
-          console.log(response);
-          var fixture = document.getElementById('qunit-fixture');
-          var flagImage = new Image();
-          flagImage.src = response;
-          fixture.appendChild(flagImage);
-          return flagImage;
-        })
-      .then(function(flagImage) {
-          var images = document.querySelectorAll('img');
-          assert.equal(images.length, 1, 'image inserted');
-          done();
-        });
-    });
-
     // Is the reponse in JSON format?
     QUnit.test('Can retrieve a country name', function(assert) {
-      assert.expect(2);
-      var done = assert.async(2);
+      var done = assert.async();
       getCountryInfo('Spain')
-      .then(function(response) {
-        assert.ok(response, 'Response exists');
-        return response.json();
-      }).then(function(json) {
+      .then(function(json) {
+        assert.ok(json, 'Response exists');
         var country = json.geonames[0].countryName;
         assert.equal(country, 'Spain', 'Country name matches');
         done();
+      })
+      .catch(error => {
+        assert.ok(false, error);
+        done();
+        console.log('Didn\'t fetch JSON');
       });
     });
 

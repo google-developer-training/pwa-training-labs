@@ -55,17 +55,17 @@ self.addEventListener('notificationclick', function(e) {
 });
 
 self.addEventListener('push', function(e) {
-  // if (e.data) {
-  //   var data = e.data.json();
-  //   var title = data.title;
-  //   var body = data.body;
-  //   var primaryKey = data.primaryKey;
-  //   console.log(data);
-  // } else {
+  if (e.data) {
+    var data = e.data.json();
+    var title = data.title;
+    var body = data.body;
+    var primaryKey = data.primaryKey;
+    console.log(data);
+  } else {
     var title = 'Push message no payload';
     var body = 'Default body';
     var primaryKey = 1;
-  // }
+  }
 
   var options = {
     body: body,
