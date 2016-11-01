@@ -32,22 +32,4 @@
       maxEntries: 50
     }
   });
-
-  // pull html content using network first
-  global.addEventListner('fetch', function(event) {
-    if (event.request.headers.get('accept').includes('text/html')) {
-      event.respondWith(toolbox.networkFirst(event.request));
-    }
-    // you can add additional synchronous checks based on event.request.
-  });
-
-  // pull video using network only. We don't want such large files in the cache
-  global.toolbox.router.get('/video/(.+)', global.toolbox.networkOnly);
-  // If the video comes from youtube or vimeo still use networkOnly
-  global.toolbox.router.get('(.+)', global.toolbox.networkOnly, {
-    origin: /\.(?:youtube|vimeo)\.com$/
-  });
-
-  // the default route is global and uses cacheFirst
-  global.toolbox.router.get('/*', global.toolbox.cacheFirst);
 })(self);

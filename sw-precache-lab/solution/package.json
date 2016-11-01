@@ -1,14 +1,18 @@
 {
-  "name": "sw-precache-demo",
-  "title": "SW Precache Demo",
-  "version": "0.0.1",
-  "homepage": "",
-  "author": "",
+  "name": "solution",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {},
   "devDependencies": {
-    "eslint": "^3.5.0",
     "gulp": "^3.9.1",
     "path": "^0.12.7",
-    "sw-precache": "^3.2.0",
-    "sw-toolbox": "^3.2.1"
-  }
+    "sw-precache": "^4.2.1",
+    "sw-toolbox": "^3.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }

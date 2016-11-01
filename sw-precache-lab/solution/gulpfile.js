@@ -29,10 +29,7 @@ gulp.task('service-worker', function(callback) {
   swPrecache.write(path.join(paths.src, 'service-worker.js'), {
     staticFileGlobs: [
       paths.src + 'index.html',
-      paths.src + 'js/main.js',
       paths.src + 'css/main.css',
-      paths.src + 'images/**/*'
-
     ],
     importScripts: [
       'node_modules/sw-toolbox/sw-toolbox.js',
