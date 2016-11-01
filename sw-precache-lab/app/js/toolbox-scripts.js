@@ -16,6 +16,6 @@
 (function(global) {
   'use strict';
 
-  //TODO 5.1: Paste code from exercise 5 here.
+  // TODO 3 - Add the sw-toolbox routes
 
 })(self);

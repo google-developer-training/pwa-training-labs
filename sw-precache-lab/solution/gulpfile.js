@@ -16,10 +16,10 @@
  */
 
 // Assigning modules to local constants
-const gulp = require('gulp');
+var gulp = require('gulp');
 // Required for sw-precache
-const path = require('path');
-const swPrecache = require('sw-precache');
+var path = require('path');
+var swPrecache = require('sw-precache');
 // Array of paths. Currently only uses the src to represent the path to source
 var paths = {
   src: './'
