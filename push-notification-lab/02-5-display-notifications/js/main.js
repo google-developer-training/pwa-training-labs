@@ -78,13 +78,13 @@ var app = (function() {
     });
   }
 
-  function getSubId() {
+  function getEndpointURL() {
     navigator.serviceWorker.ready.then(function(reg) {
       return reg.pushManager.getSubscription();
     }).then(function(subscription) {
       if (subscription) {
-        document.getElementById('subId').innerHTML =
-        subscription.endpoint.slice(subscription.endpoint.lastIndexOf('/') + 1);
+        document.getElementById('endpointURL').innerHTML =
+        subscription.endpoint;
       }
     });
   }
@@ -92,6 +92,6 @@ var app = (function() {
   return {
     displayNotification: (displayNotification),
     getSubObject: (getSubObject),
-    getSubId: (getSubId)
+    getEndpointURL: (getEndpointURL)
   };
 })();
