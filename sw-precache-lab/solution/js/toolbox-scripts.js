@@ -16,6 +16,20 @@
 (function(global) {
   'use strict';
 
-  //TODO 5.1: Paste code from exercise 5 here.
+  // The route for any requests from the googleapis origin
+  global.toolbox.router.get('/(.*)', global.toolbox.cacheFirst, {
+    cache: {
+      name: 'googleapis',
+      maxEntries: 20,
+    },
+    origin: /\.googleapis\.com$/
+  });
 
+  // We want no more than 50 images in the cache. We check using a cache first strategy
+  global.toolbox.router.get(/\.(?:png|gif|jpg)$/, global.toolbox.cacheFirst, {
+    cache: {
+      name: 'images-cache',
+      maxEntries: 50
+    }
+  });
 })(self);

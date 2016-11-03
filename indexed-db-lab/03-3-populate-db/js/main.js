@@ -21,9 +21,11 @@ var idbApp = (function() {
     return;
   }
 
-  var dbPromise = idb.open('couches-n-things', 1, function(upgradeDb) {
+  var dbPromise = idb.open('couches-n-things', 2, function(upgradeDb) {
     switch (upgradeDb.oldVersion) {
       case 0:
+        // a placeholder case so that the switch block will execute when the database is first created (oldVersion is 0)
+      case 1:
         console.log('Creating the products object store');
         upgradeDb.createObjectStore('products', {keyPath: 'id'});
 

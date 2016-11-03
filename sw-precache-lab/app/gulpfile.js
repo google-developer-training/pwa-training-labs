@@ -15,12 +15,14 @@
  * limitations under the License.
  */
 
-// Assigning modules to local constants
-const gulp = require('gulp');
-// Required for sw-precache
-const path = require('path');
-const swPrecache = require('sw-precache');
-// Array of paths. Currently only uses the src to represent the path to source
+// TODO 1 - Require gulp and plugins
+
+// TODO 2 - Insert the gulp task code
+
+var gulp = require('gulp');
+var path = require('path');
+var swPrecache = require('sw-precache');
+
 var paths = {
   src: './'
 };
@@ -29,10 +31,7 @@ gulp.task('service-worker', function(callback) {
   swPrecache.write(path.join(paths.src, 'service-worker.js'), {
     staticFileGlobs: [
       paths.src + 'index.html',
-      paths.src + 'js/main.js',
-      paths.src + 'css/main.css',
-      paths.src + 'images/**/*'
-
+      paths.src + 'css/main.css'
     ],
     importScripts: [
       'node_modules/sw-toolbox/sw-toolbox.js',

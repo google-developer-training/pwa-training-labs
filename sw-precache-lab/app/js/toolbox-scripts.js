@@ -13,5 +13,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-// Does the browser support Service Workers?
-//TODO 6.1 Paste the code from section 6
+(function(global) {
+  'use strict';
+
+  // TODO 3 - Add the sw-toolbox routes
+
+})(self);
