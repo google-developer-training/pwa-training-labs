@@ -25,7 +25,7 @@ var paths = {
   src: './'
 };
 
-gulp.task('service-worker', function(callback) {
+gulp.task('service-worker', function() {
   swPrecache.write(path.join(paths.src, 'service-worker.js'), {
     staticFileGlobs: [
       paths.src + 'index.html',
@@ -36,5 +36,5 @@ gulp.task('service-worker', function(callback) {
       paths.src + 'js/toolbox-scripts.js'
     ],
     stripPrefix: paths.src
-  }, callback);
+  });
 });
