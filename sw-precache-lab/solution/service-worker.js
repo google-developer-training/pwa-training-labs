@@ -230,5 +230,5 @@ self.addEventListener('fetch', function(event) {
 
 
 
-importScripts("node_modules/sw-toolbox/sw-toolbox.js","./js/toolbox-scripts.js");
+importScripts("node_modules/sw-toolbox/sw-toolbox.js","./js/tox-scripts.js");
 

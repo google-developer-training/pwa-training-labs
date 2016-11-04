@@ -5,6 +5,6 @@
   ],
   "importScripts": [
     "node_modules/sw-toolbox/sw-toolbox.js",
-    "js/toolbox-scripts.js"
+    "js/toolbox-script.js"
   ]
 }

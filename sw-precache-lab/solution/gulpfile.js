@@ -25,16 +25,16 @@ var paths = {
   src: './'
 };
 
-gulp.task('service-worker', function() {
+gulp.task('service-worker', function(callback) {
   swPrecache.write(path.join(paths.src, 'service-worker.js'), {
     staticFileGlobs: [
       paths.src + 'index.html',
       paths.src + 'css/main.css',
     ],
     importScripts: [
-      'node_modules/sw-toolbox/sw-toolbox.js',
-      paths.src + 'js/toolbox-scripts.js'
+      paths.src + 'node_modules/sw-toolbox/sw-toolbox.js',
+      paths.src + 'js/toolbox-script.js'
     ],
     stripPrefix: paths.src
-  });
+  }, callback);
 });
