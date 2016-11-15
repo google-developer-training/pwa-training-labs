@@ -118,13 +118,22 @@ var app = (function() {
     var formData = new FormData(document.getElementById('myForm'));
     fetch('http://localhost:5000/', {
       method: 'POST',
-      body: formData
+      body: formData,
+      mode: 'cors', // This is optional - mode's default value is 'cors'
+      headers: customHeaders
     })
     .then(validateResponse)
     .then(readResponseAsText)
     .then(logResult)
     .catch(logError);
   }
+
+  var customHeaders = new Headers({
+    'Content-Type': 'text/plain',
+    // 'Content-Length': 'kittens' // Content-Length can't be modified!
+    'X-Custom': 'hello world',
+    // 'Y-Custom': 'this won\'t work' // Y-Custom is not accepted by our echo server!
+  });
 
   // Don't worry if you don't understand this, it's not part of the Fetch API.
   // We are using the JavaScript Module Pattern to enable unit testing of
