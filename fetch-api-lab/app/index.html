@@ -58,6 +58,19 @@ limitations under the License.
 
     <script src="js/main.js"></script>
 
+    <script>
+      var jsonButton = document.getElementById('json-button');
+      jsonButton.addEventListener('click', app.fetchJSON);
+      var imgButton = document.getElementById('img-button');
+      imgButton.addEventListener('click', app.fetchImage);
+      var textButton = document.getElementById('text-button');
+      textButton.addEventListener('click', app.fetchText);
+      var headButton = document.getElementById('head-button');
+      headButton.addEventListener('click', app.headRequest);
+      var postButton = document.getElementById('post-button');
+      postButton.addEventListener('click', app.postRequest);
+    </script>
+
   </body>
 
 </html>

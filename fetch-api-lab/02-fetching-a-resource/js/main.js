@@ -110,7 +110,12 @@ var app = (function() {
     readResponseAsJSON: (readResponseAsJSON),
     readResponseAsBlob: (readResponseAsBlob),
     readResponseAsText: (readResponseAsText),
-    validateResponse: (validateResponse)
+    validateResponse: (validateResponse),
+    fetchJSON: (fetchJSON),
+    fetchImage: (fetchImage),
+    fetchText: (fetchText),
+    headRequest: (headRequest),
+    postRequest: (postRequest)
   };
 
 })();
