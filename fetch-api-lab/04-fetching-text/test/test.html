@@ -144,7 +144,7 @@ limitations under the License. -->
       });
     });
 
-    QUnit.test('echo server running', function(assert) {
+    QUnit.test('echo server #1 running (with CORS)', function(assert) {
       var done = assert.async();
 
       fetch('http://localhost:5000/app/examples/words.txt')
@@ -154,6 +154,26 @@ limitations under the License. -->
           done();
         } else {
           throw Error('bad response from server');
+        }
+      })
+      .catch((error) => {
+        assert.ok(false, 'echo server running');
+        done();
+      });
+    });
+
+    QUnit.test('echo server #2 running (without CORS)', function(assert) {
+      var done = assert.async();
+
+      fetch('http://localhost:5001/app/examples/words.txt', {
+        mode: 'no-cors'
+      })
+      .then((response) => {
+        if (response.type == 'opaque') {
+          assert.ok(true, 'echo server running');
+          done();
+        } else {
+          throw Error('unexpected response from server');
         }
       })
       .catch((error) => {
