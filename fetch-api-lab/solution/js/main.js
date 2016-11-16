@@ -38,9 +38,6 @@ var app = (function() {
     .catch(logError);
   }
 
-  var jsonButton = document.getElementById('json-button');
-  jsonButton.addEventListener('click', fetchJSON);
-
   function validateResponse(response) {
     // TODO Step 2.3
     if (!response.ok) {
@@ -77,9 +74,6 @@ var app = (function() {
     .catch(logError);
   }
 
-  var imgButton = document.getElementById('img-button');
-  imgButton.addEventListener('click', fetchImage);
-
   function showText(responseAsText) {
     //  TODO Step 4a
     var message = document.getElementById('message');
@@ -100,9 +94,6 @@ var app = (function() {
     .catch(logError);
   }
 
-  var textButton = document.getElementById('text-button');
-  textButton.addEventListener('click', fetchText);
-
   function headRequest() {
     fetch('examples/words.txt', {
       method: 'HEAD'
@@ -113,9 +104,6 @@ var app = (function() {
     .then(logResult)
     .catch(logError);
   }
-
-  var headButton = document.getElementById('head-button');
-  headButton.addEventListener('click', headRequest);
 
   function logSize(response) {
     // TODO Step 5.2
@@ -130,7 +118,9 @@ var app = (function() {
     var formData = new FormData(document.getElementById('myForm'));
     fetch('http://localhost:5000/', {
       method: 'POST',
-      body: formData
+      body: formData,
+      mode: 'cors', // This is optional - mode's default value is 'cors'
+      headers: customHeaders
     })
     .then(validateResponse)
     .then(readResponseAsText)
@@ -138,8 +128,12 @@ var app = (function() {
     .catch(logError);
   }
 
-  var postButton = document.getElementById('post-button');
-  postButton.addEventListener('click', postRequest);
+  var customHeaders = new Headers({
+    'Content-Type': 'text/plain',
+    // 'Content-Length': 'kittens' // Content-Length can't be modified!
+    'X-Custom': 'hello world',
+    // 'Y-Custom': 'this won\'t work' // Y-Custom is not accepted by our echo server!
+  });
 
   // Don't worry if you don't understand this, it's not part of the Fetch API.
   // We are using the JavaScript Module Pattern to enable unit testing of
@@ -148,7 +142,12 @@ var app = (function() {
     readResponseAsJSON: (readResponseAsJSON),
     readResponseAsBlob: (readResponseAsBlob),
     readResponseAsText: (readResponseAsText),
-    validateResponse: (validateResponse)
+    validateResponse: (validateResponse),
+    fetchJSON: (fetchJSON),
+    fetchImage: (fetchImage),
+    fetchText: (fetchText),
+    headRequest: (headRequest),
+    postRequest: (postRequest)
   };
 
 })();
