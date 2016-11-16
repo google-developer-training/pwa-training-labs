@@ -16,8 +16,6 @@ limitations under the License.
 var app = (function() {
   'use strict';
 
-  var applicationServerPublicKey = 'YOUR_VAPID_PUBLIC_KEY';
-
   var isSubscribed = false;
   var swRegistration = null;
 
@@ -28,6 +26,10 @@ var app = (function() {
     console.log('Notifications not supported in this browser');
     return;
   }
+
+  Notification.requestPermission(function(status) {
+    console.log('Notification permission status:', status);
+  });
 
   function displayNotification() {
     if (Notification.permission == 'granted') {
@@ -51,95 +53,6 @@ var app = (function() {
         reg.showNotification('Hello world!', options);
       });
     }
-  }
-
-  function urlB64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
-    const base64 = (base64String + padding)
-      .replace(/\-/g, '+')
-      .replace(/_/g, '/');
-
-    const rawData = window.atob(base64);
-    const outputArray = new Uint8Array(rawData.length);
-
-    for (let i = 0; i < rawData.length; ++i) {
-      outputArray[i] = rawData.charCodeAt(i);
-    }
-    return outputArray;
-  }
-
-  function updateBtn() {
-    if (Notification.permission === 'denied') {
-      pushButton.textContent = 'Push Messaging Blocked';
-      pushButton.disabled = true;
-      updateSubscriptionOnServer(null);
-      return;
-    }
-
-    if (isSubscribed) {
-      pushButton.textContent = 'Disable Push Messaging';
-    } else {
-      pushButton.textContent = 'Enable Push Messaging';
-    }
-
-    pushButton.disabled = false;
-  }
-
-  function updateSubscriptionOnServer(subscription) {
-    // Here's where you would send the subscription to the application server
-
-    var subscriptionJson = document.querySelector('.js-subscription-json');
-    var endpointURL = document.querySelector('.js-endpoint-url');
-    var subAndEndpoint = document.querySelector('.js-sub-endpoint');
-
-    if (subscription) {
-      subscriptionJson.textContent = JSON.stringify(subscription);
-      endpointURL.textContent = subscription.endpoint;
-      subAndEndpoint.style.display = 'block';
-    } else {
-      subAndEndpoint.style.display = 'none';
-    }
-  }
-
-  function subscribeUser() {
-    const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
-    swRegistration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: applicationServerKey
-    })
-    .then(function(subscription) {
-      console.log('User is subscribed:', subscription);
-
-      updateSubscriptionOnServer(subscription);
-
-      isSubscribed = true;
-
-      updateBtn();
-    })
-    .catch(function(err) {
-      console.log('Failed to subscribe the user: ', err);
-      updateBtn();
-    });
-  }
-
-  function unsubscribeUser() {
-    swRegistration.pushManager.getSubscription()
-    .then(function(subscription) {
-      if (subscription) {
-        return subscription.unsubscribe();
-      }
-    })
-    .catch(function(error) {
-      console.log('Error unsubscribing', error);
-    })
-    .then(function() {
-      updateSubscriptionOnServer(null);
-
-      console.log('User is unsubscribed.');
-      isSubscribed = false;
-
-      updateBtn();
-    });
   }
 
   function initializeUI() {
@@ -169,6 +82,53 @@ var app = (function() {
     });
   }
 
+  var applicationServerPublicKey = 'YOUR_VAPID_PUBLIC_KEY';
+
+  function subscribeUser() {
+    var applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+    swRegistration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: applicationServerKey
+    })
+    .then(function(subscription) {
+      console.log('User is subscribed:', subscription);
+
+      updateSubscriptionOnServer(subscription);
+
+      isSubscribed = true;
+
+      updateBtn();
+    })
+    .catch(function(err) {
+      if (Notification.permission === 'denied') {
+        console.warn('Permission for notifications was denied');
+      } else {
+        console.error('Failed to subscribe the user: ', err);
+      }
+      updateBtn();
+    });
+  }
+
+  function unsubscribeUser() {
+    swRegistration.pushManager.getSubscription()
+    .then(function(subscription) {
+      if (subscription) {
+        return subscription.unsubscribe();
+      }
+    })
+    .catch(function(error) {
+      console.log('Error unsubscribing', error);
+    })
+    .then(function() {
+      updateSubscriptionOnServer(null);
+
+      console.log('User is unsubscribed');
+      isSubscribed = false;
+
+      updateBtn();
+    });
+  }
+
   if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.log('Service Worker and Push is supported');
 
@@ -185,6 +145,54 @@ var app = (function() {
   } else {
     console.warn('Push messaging is not supported');
     pushButton.textContent = 'Push Not Supported';
+  }
+
+  function updateSubscriptionOnServer(subscription) {
+    // Here's where you would send the subscription to the application server
+
+    var subscriptionJson = document.querySelector('.js-subscription-json');
+    var endpointURL = document.querySelector('.js-endpoint-url');
+    var subAndEndpoint = document.querySelector('.js-sub-endpoint');
+
+    if (subscription) {
+      subscriptionJson.textContent = JSON.stringify(subscription);
+      endpointURL.textContent = subscription.endpoint;
+      subAndEndpoint.style.display = 'block';
+    } else {
+      subAndEndpoint.style.display = 'none';
+    }
+  }
+
+  function updateBtn() {
+    if (Notification.permission === 'denied') {
+      pushButton.textContent = 'Push Messaging Blocked';
+      pushButton.disabled = true;
+      updateSubscriptionOnServer(null);
+      return;
+    }
+
+    if (isSubscribed) {
+      pushButton.textContent = 'Disable Push Messaging';
+    } else {
+      pushButton.textContent = 'Enable Push Messaging';
+    }
+
+    pushButton.disabled = false;
+  }
+
+  function urlB64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+      .replace(/\-/g, '+')
+      .replace(/_/g, '/');
+
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+
+    for (let i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
   }
 
   notifyButton.addEventListener('click', function() {
