@@ -33,9 +33,6 @@ self.addEventListener('install', function(event) {
     .then(function(cache) {
       return cache.addAll(filesToCache);
     })
-    .catch(function(error) {
-      console.log('Installation failed, ', error);
-    })
   );
 });
 

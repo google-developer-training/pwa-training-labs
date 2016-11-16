@@ -15,29 +15,25 @@ limitations under the License.
 */
 var webPush = require('web-push');
 
-var serviceKeys = webPush.generateVAPIDKeys();
+var pushSubscription = YOUR_SUBSCRIPTION_OBJECT;
 
-var subscription = YOUR_SUBSCRIPTION_OBJECT;
+var vapidPublicKey = 'YOUR_VAPID_PUBLIC_KEY';
+var vapidPrivateKey = 'YOUR_VAPID_PRIVATE_KEY';
 
-webPush.setGCMAPIKey('YOUR_SERVER_KEY');
+const payload = 'Here is a payload!';
 
-webPush.sendNotification(subscription.endpoint, {
-  userPublicKey: subscription.keys.p256dh,
-  userAuth: subscription.keys.auth,
-  vapid: {
-    subject: 'mailto: YOUR_EMAIL',
-    publicKey: serviceKeys.publicKey,
-    privateKey: serviceKeys.privateKey
-  },
-  payload: JSON.stringify({
-    'title': 'First push message!',
-    'body': 'From a server!',
-    'primaryKey': '-push-notification'
-  })
-})
-.then(function(r) {
-  console.log('Pushed message successfully!', r);
-})
-.catch(function(e) {
-  console.log('Error', e);
-});
+const options = {
+  // gcmAPIKey: 'YOUR_SERVER_KEY',
+  TTL: 60,
+  vapidDetails: {
+    subject: 'mailto:YOUR_EMAIL_ADDRESS',
+    publicKey: vapidPublicKey,
+    privateKey: vapidPrivateKey
+  }
+};
+
+webPush.sendNotification(
+  pushSubscription,
+  payload,
+  options
+);

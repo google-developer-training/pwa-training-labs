@@ -20,7 +20,8 @@ var filesToCache = [
   '/',
   'style/main.css',
   'index.html',
-  'pages/offline.html'
+  'pages/offline.html',
+  'pages/404.html'
 ];
 
 var staticCacheName = 'pages-cache-v1';
@@ -31,9 +32,6 @@ self.addEventListener('install', function(event) {
     caches.open(staticCacheName)
     .then(function(cache) {
       return cache.addAll(filesToCache);
-    })
-    .catch(function(error) {
-      console.log('Installation failed, ', error);
     })
   );
 });
