@@ -22,8 +22,6 @@ limitations under the License.
   <meta charset="utf-8">
   <!-- Include manifest -->
   <link rel="manifest" href="manifest.json">
-  <!-- Include script -->
-  <script src="js/main.js"></script>
   <!-- Set title -->
   <title>Push Notifications</title>
 
@@ -33,11 +31,17 @@ limitations under the License.
 
   <h1>Push Notification codelab</h1>
   <p>This page must be accessed using HTTPS or via localhost.</p>
-  <button onclick="app.displayNotification()">Notify me!</button>
-  <button onclick="app.getSubObject()">Show Subscription Object</button>
-  <button onclick="app.getEndpointURL()">Show Endpoint URL</button>
-  <p id="subObject"></p>
-  <p id="endpointURL"></p>
+  <button class="js-notify-btn">Notify me!</button>
+  <button disabled class="js-push-btn">Enable Push Messaging</button><br><br>
+  <section class="js-sub-endpoint" style="display:none;width:80%">
+    <h3>Subscription Object:</h3>
+    <code class="js-subscription-json"></code><br><br><br>
+    <h3>Endpoint URL:</h3>
+    <code class="js-endpoint-url"></code>
+  </section>
+
+  <!-- Include script -->
+  <script src="js/main.js"></script>
 
 </body>
 </html>

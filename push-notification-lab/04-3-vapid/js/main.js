@@ -58,24 +58,76 @@ var app = (function() {
   }
 
   function initializeUI() {
+    pushButton.addEventListener('click', function() {
+      pushButton.disabled = true;
+      if (isSubscribed) {
+        unsubscribeUser();
+      } else {
+        subscribeUser();
+      }
+    });
 
-    // TODO 12 - add a click event listener to the "Enable Push" button
-    // and get the subscription object
+    swRegistration.pushManager.getSubscription()
+    .then(function(subscription) {
+      isSubscribed = !(subscription === null);
 
+      updateSubscriptionOnServer(subscription);
+
+      if (isSubscribed) {
+        console.log('User IS subscribed.');
+      } else {
+        console.log('User is NOT subscribed.');
+      }
+
+      updateBtn();
+    });
   }
 
-  // TODO 17 - add VAPID public key
+  var applicationServerPublicKey = 'YOUR_VAPID_PUBLIC_KEY';
 
   function subscribeUser() {
+    var applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+    swRegistration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: applicationServerKey
+    })
+    .then(function(subscription) {
+      console.log('User is subscribed:', subscription);
 
-    // TODO 13 - subscribe to the push service
+      updateSubscriptionOnServer(subscription);
 
+      isSubscribed = true;
+
+      updateBtn();
+    })
+    .catch(function(err) {
+      if (Notification.permission === 'denied') {
+        console.warn('Permission for notifications was denied');
+      } else {
+        console.error('Failed to subscribe the user: ', err);
+      }
+      updateBtn();
+    });
   }
 
   function unsubscribeUser() {
+    swRegistration.pushManager.getSubscription()
+    .then(function(subscription) {
+      if (subscription) {
+        return subscription.unsubscribe();
+      }
+    })
+    .catch(function(error) {
+      console.log('Error unsubscribing', error);
+    })
+    .then(function() {
+      updateSubscriptionOnServer(null);
 
-    // TODO 14 - unsubscribe from the push service
+      console.log('User is unsubscribed');
+      isSubscribed = false;
 
+      updateBtn();
+    });
   }
 
   function updateSubscriptionOnServer(subscription) {
@@ -139,8 +191,7 @@ var app = (function() {
 
       swRegistration = swReg;
 
-      // TODO 11 - call the initializeUI() function
-
+      initializeUI();
     })
     .catch(function(error) {
       console.error('Service Worker Error', error);

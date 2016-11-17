@@ -13,5 +13,24 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+var webPush = require('web-push');
 
-// TODO 16 - push a message using the web push library
+var pushSubscription = YOUR_SUBSCRIPTION_OBJECT;
+
+// TODO 19 - include VAPID keys
+
+const payload = 'Here is a payload!';
+
+const options = {
+  gcmAPIKey: 'YOUR_SERVER_KEY',
+  TTL: 60,
+
+  // TODO 20 - add VAPID details
+
+};
+
+webPush.sendNotification(
+  pushSubscription,
+  payload,
+  options
+);

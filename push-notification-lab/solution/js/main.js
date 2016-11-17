@@ -129,24 +129,6 @@ var app = (function() {
     });
   }
 
-  if ('serviceWorker' in navigator && 'PushManager' in window) {
-    console.log('Service Worker and Push is supported');
-
-    navigator.serviceWorker.register('sw.js')
-    .then(function(swReg) {
-      console.log('Service Worker is registered', swReg);
-
-      swRegistration = swReg;
-      initializeUI();
-    })
-    .catch(function(error) {
-      console.error('Service Worker Error', error);
-    });
-  } else {
-    console.warn('Push messaging is not supported');
-    pushButton.textContent = 'Push Not Supported';
-  }
-
   function updateSubscriptionOnServer(subscription) {
     // Here's where you would send the subscription to the application server
 
@@ -198,5 +180,23 @@ var app = (function() {
   notifyButton.addEventListener('click', function() {
     displayNotification();
   });
+
+  if ('serviceWorker' in navigator && 'PushManager' in window) {
+    console.log('Service Worker and Push is supported');
+
+    navigator.serviceWorker.register('sw.js')
+    .then(function(swReg) {
+      console.log('Service Worker is registered', swReg);
+
+      swRegistration = swReg;
+      initializeUI();
+    })
+    .catch(function(error) {
+      console.error('Service Worker Error', error);
+    });
+  } else {
+    console.warn('Push messaging is not supported');
+    pushButton.textContent = 'Push Not Supported';
+  }
 
 })();
