@@ -1,0 +1,153 @@
+<!-- Copyright 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>QUnit Example</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    /*jshint esversion: 6*/
+    QUnit.test('getImageName', function(assert) {
+      var inputs = ['Spain', 'Peru', 'Chile'];
+      var outputs = ['Spain.png', 'Peru.png', 'Chile.png'];
+      var msg;
+      var expected;
+      var done = assert.async(4);
+
+      inputs.forEach(function(input, i) {
+        app.getImageName(input)
+        .then(r => {
+          expected = outputs[i];
+          msg = '"' + input + '"' + ' input resolves to ' + '"' + outputs[i] + '"';
+          assert.equal(r, outputs[i], msg);
+          done();
+        }).catch(e => {
+          // msg = inputs[i] + ' input resolves';
+          assert.ok(false, msg);
+          done();
+        });
+      });
+
+      app.getImageName('invalid input')
+      .then(r => {
+        assert.ok(false, 'invalid inputs reject');
+        done();
+      }).catch(e => {
+        assert.ok(true, 'invalid inputs reject');
+        done();
+      });
+    });
+
+    QUnit.test('isSpain', function(assert) {
+      var done = assert.async(2);
+
+      app.isSpain('Spain')
+      .then(r => {
+        assert.ok(true, 'resolves for "Spain" input');
+        done();
+      }).catch(e => {
+        assert.ok(false, 'resolves for "Spain" input');
+        done();
+      });
+
+      app.isSpain('Chile')
+      .then(r => {
+        assert.ok(false, 'rejects for input other than "Spain"');
+        done();
+      }).catch(e => {
+        assert.ok(true, 'rejects for inputs other than "Spain"');
+        done();
+      });
+    });
+
+    QUnit.test('spainTest', function(assert) {
+      var done = assert.async(2);
+
+      app.spainTest('Spain')
+      .then(r => {
+        assert.equal(r, true, 'returns true for "Spain" input');
+        done();
+      }).catch(e => {
+        assert.ok(false, 'catches rejections');
+        done();
+      });
+
+      app.spainTest('Chile')
+      .then(r => {
+        assert.equal(r, false, 'returns false for input other than "Spain"');
+        done();
+      }).catch(e => {
+        assert.ok(false, 'catches rejections');
+        done();
+      });
+    });
+
+    QUnit.test('flagChain (finished in section 3)', function(assert) {
+      var done = assert.async();
+
+      app.flagChain('invalid input')
+      .then(r => {
+        var domImages = document.getElementsByTagName('img');
+        assert.ok(domImages.length > 0, 'appends image to DOM');
+        done();
+      }).catch(e => {
+        assert.ok(false, 'catches rejections');
+        done();
+      });
+    });
+
+    QUnit.test('allFlags', function(assert) {
+      var done = assert.async(2);
+      var promises = [
+        app.getImageName('Spain'),
+        app.getImageName('Chile'),
+        app.getImageName('Peru')
+      ];
+      var badPromises = [
+        app.getImageName('Spain'),
+        app.getImageName('Chile17'),
+        app.getImageName('Peru')
+      ];
+      var msg = 'resolves with values of promises (as a list)';
+
+      app.allFlags(promises)
+      .then(values => {
+        assert.deepEqual(values, ['Spain.png', 'Chile.png', 'Peru.png'], msg);
+        done();
+      }).catch(e => {
+        assert.ok(false, 'catches rejections');
+        done();
+      });
+
+      app.allFlags(badPromises)
+      .then(r => {
+        assert.equal(r, false, 'returns false if input promise(s) rejects');
+        done();
+      }).catch(e => {
+        assert.ok(false, 'catches rejections');
+        done();
+      });
+    });
+  </script>
+</body>
+</html>

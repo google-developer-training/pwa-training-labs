@@ -1,10 +1,13 @@
 # Promises lab
 
-In this lab we explore promises, how to use them to replace callbacks, how to run multiple promises concurrently and how to run promises against a timer so they execute under a given time.
+In this lab you will learn how to use JavaScript Promises.
 
 ## Getting started
+Once you've cloned the repo, navigate to the **promises-lab/** directory:
 
-Go to the *app* directory.
+`cd promises-lab/`
+
+Start a local server in the project directory and navigate to the appropriate local host port (e.g. http://localhost:8000/).
 
 ## Note
 

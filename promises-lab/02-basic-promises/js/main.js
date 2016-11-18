@@ -19,18 +19,42 @@ var app = (function() {
 
   function getImageName(country) {
     // TODO Step 2.1 - create a promise
+    var promiseOfImageName = new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        if (country === 'Spain' || country === 'Chile' || country === 'Peru') {
+          resolve(country + '.png');
+        } else {
+          reject(Error('Didn\'t recieve a valid country name!'));
+        }
+      }, 1000);
+    });
+    console.log(promiseOfImageName);
+    return promiseOfImageName;
   }
 
   function isSpain(country) {
     // TODO - Optional
+    return new Promise(function(resolve, reject) {
+      if (country === 'Spain') {
+        resolve('It is Spain!');
+      } else {
+        reject('It is not Spain!');
+      }
+    });
   }
 
   function flagChain(country) {
     // TODO Step 2.2 - use the promise
+    return getImageName(country)
+    .then(logSuccess)
+    .catch(logError);
   }
 
   function spainTest(country) {
     // TODO - Optional
+    return isSpain(country)
+    .then(returnTrue)
+    .catch(returnFalse);
   }
 
   function allFlags(promiseList) {
