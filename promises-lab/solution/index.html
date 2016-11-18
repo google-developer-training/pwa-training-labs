@@ -16,10 +16,31 @@ limitations under the License.
 <doctype html>
 <html>
   <head>
-    <title>Test Page</title>
+    <title>Promises Lab</title>
   </head>
 
   <body>
+    <label for="country">Country Name:</label>
+    <input id="country" type="text" value="enter country name"><br><br>
+    <button id="get-image-name">Get Image Name</button><br><br>
+    <button id="flag-chain">Flag Chain</button><br><br>
+
     <script src="js/main.js"></script>
+
+    <script>
+      var country = document.getElementById('country');
+
+      var getImageNameButton = document.getElementById('get-image-name');
+      getImageNameButton.addEventListener('click', function() {
+        app.getImageName(country.value);
+      });
+
+      var flagChainButton = document.getElementById('flag-chain');
+      flagChainButton.addEventListener('click', function() {
+        app.flagChain(country.value);
+      });
+
+    </script>
+
   </body>
 </html>

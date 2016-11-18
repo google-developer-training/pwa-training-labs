@@ -30,9 +30,6 @@ var app = (function() {
     // TODO Step 2.1b
   }
 
-  var jsonButton = document.getElementById('json-button');
-  jsonButton.addEventListener('click', fetchJSON);
-
   function validateResponse(response) {
     // TODO Step 2.3
   }
@@ -53,9 +50,6 @@ var app = (function() {
     // TODO Step 3c
   }
 
-  var imgButton = document.getElementById('img-button');
-  imgButton.addEventListener('click', fetchImage);
-
   function showText(responseAsText) {
     //  TODO Step 4a
   }
@@ -68,15 +62,9 @@ var app = (function() {
     // TODO Step 4c
   }
 
-  var textButton = document.getElementById('text-button');
-  textButton.addEventListener('click', fetchText);
-
   function headRequest() {
     // TODO Step 5.1
   }
-
-  var headButton = document.getElementById('head-button');
-  headButton.addEventListener('click', headRequest);
 
   function logSize(response) {
     // TODO Step 5.2
@@ -86,9 +74,6 @@ var app = (function() {
   function postRequest() {
     // TODO Step 6.2
   }
-
-  var postButton = document.getElementById('post-button');
-  postButton.addEventListener('click', postRequest);
 
   // Don't worry if you don't understand this, it's not part of the Fetch API.
   // We are using the JavaScript Module Pattern to enable unit testing of

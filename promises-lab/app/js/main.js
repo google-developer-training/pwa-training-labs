@@ -1,4 +1,3 @@
-/*jshint esversion: 6*/
 /*
 Copyright 2016 Google Inc.
 
@@ -14,65 +13,84 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+/*jshint esversion: 6*/
 
-// TODO 1 - add the promiseFlag function containing the promise chain
+var app = (function() {
 
-// This first function queries  geonames.org using the country name and a
-// registered account name. It returns a Javascript object with the result.
-// (Note: This throws an exception if the lookup fails. This is a common
-// pattern when using promises: either returning a correct value or
-// throwing an exception.)
-function getCountryInfo(country, username) {
-  var apiUsername = username || 'caraya';
-  var apiCall = 'http://api.geonames.org/searchJSON?q=' + country +
-  '&maxRows=1' + '&username=' + apiUsername;
+  function getImageName(country) {
+    // TODO Step 2.1 - create a promise
+  }
 
-  return fetch(apiCall)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Unable to fetch file');
+  function isSpain(country) {
+    // TODO - Optional
+  }
+
+  function flagChain(country) {
+    // TODO Step 2.2 - use the promise
+  }
+
+  function spainTest(country) {
+    // TODO - Optional
+  }
+
+  function allFlags(promiseList) {
+    // TODO
+  }
+
+  // TODO Step 4 - Promise.all
+
+  /* Helper functions */
+
+  function logSuccess(result) {
+    console.log('Success!:\n' + result);
+  }
+
+  function logError(err) {
+    console.log('Oh no!:\n' + err);
+  }
+
+  function returnTrue() {
+    return true;
+  }
+
+  function returnFalse() {
+    return false;
+  }
+
+  function fetchFlag(imageName) {
+    return fetch('/app/flags/' + imageName); // fetch returns a promise
+  }
+
+  function processFlag(flagResponse) {
+    if (!flagResponse.ok) {
+      throw Error('Bad response for flag request!'); // This will implicitly reject
     }
-    console.log(response);
-    return response.json();
-  });
-}
+    return flagResponse.blob(); // blob() returns a promise
+  }
 
-// getCountryName  parses the JSON object returned from the last getCountryInfo
-// to obtain the country name. Then the function returns the name of the
-// country obtained from the JSON object.
-function getCountryName(json) {
-  var country = json.geonames[0].countryName;
-  return country;
-}
+  function appendFlag(flagBlob) {
+    var flagImage = document.createElement('img');
+    var flagDataURL = URL.createObjectURL(flagBlob);
+    flagImage.src = flagDataURL;
+    document.body.appendChild(flagImage);
+  }
 
-// The fetchFlag function uses the country name to generate a URL that fetches
-// the flag of the corresponding country from a Github pages site.  Next, it
-// verifies that the response succeeded by testing for the ok value in the
-// response object.  If the response succeeds, then return the response object
-// parsed as a blob.
-function fetchFlag(country) {
-  var url = '';
-  var countryFlag = url + country + '.png';
-  // console.log(countryFlag);
-  return fetch(countryFlag, {mode: 'cors'})
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Fetch failed: ' + response.status);
-    }
-    console.log(response.url);
-    return response.blob();
-  });
-}
+  function fallbackName() {
+    return 'Chile.png';
+  }
 
-// The final function, displayFlag takes the blob containing the flag and
-// performs the following steps:
-// 1. Create an image element (flagImage).
-// 2. Create an objectURL for the blob (flagDataURL).
-// 3. Attach the objectURL to the image source attribute.
-// 4. Append the image to the image element to the body of the document.
-function displayFlag(flagBlob) {
-  var flagImage = document.createElement('img');
-  var flagDataURL = URL.createObjectURL(flagBlob);
-  flagImage.src = flagDataURL;
-  document.body.appendChild(flagImage);
-}
+  // Don't worry if you don't understand this, it's not part of Promises.
+  // We are using the JavaScript Module Pattern to enable unit testing of
+  // our functions.
+  return {
+    getImageName: (getImageName),
+    flagChain: (flagChain),
+    isSpain: (isSpain),
+    spainTest: (spainTest),
+    fetchFlag: (fetchFlag),
+    processFlag: (processFlag),
+    appendFlag: (appendFlag),
+    allFlags: (allFlags)
+  };
+
+})();
