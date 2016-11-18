@@ -41,4 +41,43 @@ self.addEventListener('notificationclick', function(e) {
 
 });
 
-// TODO 10 - handle the push event
+self.addEventListener('push', function(e) {
+  if (e.data) {
+    var data = e.data.json();
+    var title = data.title;
+    var body = data.body;
+    var primaryKey = data.primaryKey;
+  } else {
+    var title = 'Push message no payload';
+    var body = 'Default body';
+    var primaryKey = 1;
+  }
+
+  var options = {
+    body: body,
+    icon: 'images/notification-flat.png',
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: primaryKey
+    },
+    actions: [
+      {action: 'explore', title: 'Go to the site',
+        icon: 'images/checkmark.png'},
+      {action: 'close', title: 'Close the notification',
+        icon: 'images/xmark.png'},
+    ]
+  };
+  e.waitUntil(
+    clients.matchAll().then(function(c) {
+      console.log(c);
+      if (c.length == 0) {
+        // Show notification
+        self.registration.showNotification(title, options);
+      } else {
+        // Send a message to the page to update the UI
+        console.log('Application is already open!');
+      }
+    })
+  );
+});

@@ -30,21 +30,11 @@ self.addEventListener('notificationclick', function(e) {
   if (action === 'close') {
     notification.close();
   } else {
-    e.waitUntil(
-      clients.matchAll().then(function(clis) {
-        var client = clis.find(function(c) {
-          return c.visibilityState === 'visible';
-        });
-        if (client != undefined) {
-          client.navigate('samples/page' + primaryKey + '.html');
-          client.focus();
-        } else {
-          // there are no visible windows. Open one.
-          clients.openWindow('samples/page' + primaryKey + '.html');
-          notification.close();
-        }
-      })
-    );
+
+    // TODO 24 - reuse open tabs
+
+    clients.openWindow('samples/page' + primaryKey + '.html');
+    notification.close();
   }
 
   self.registration.getNotifications().then(function(notifications) {
@@ -56,9 +46,14 @@ self.addEventListener('notificationclick', function(e) {
 
 self.addEventListener('push', function(e) {
   if (e.data) {
-    var body = e.data.text();
+    var data = e.data.json();
+    var title = data.title;
+    var body = data.body;
+    var primaryKey = data.primaryKey;
   } else {
+    var title = 'Push message no payload';
     var body = 'Default body';
+    var primaryKey = 1;
   }
 
   var options = {
@@ -67,7 +62,7 @@ self.addEventListener('push', function(e) {
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
-      primaryKey: 1
+      primaryKey: primaryKey
     },
     actions: [
       {action: 'explore', title: 'Go to the site',
@@ -81,7 +76,7 @@ self.addEventListener('push', function(e) {
       console.log(c);
       if (c.length == 0) {
         // Show notification
-        self.registration.showNotification('Push Notification', options);
+        self.registration.showNotification(title, options);
       } else {
         // Send a message to the page to update the UI
         console.log('Application is already open!');

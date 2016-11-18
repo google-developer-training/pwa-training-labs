@@ -8,7 +8,8 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "web-push": "^2.2.0"
+  "dependencies": {},
+  "devDependencies": {
+    "web-push": "^3.2.0"
   }
 }

@@ -41,4 +41,34 @@ self.addEventListener('notificationclick', function(e) {
 
 });
 
-// TODO 10 - handle the push event
+self.addEventListener('push', function(e) {
+  self.addEventListener('push', function(e) {
+    if (e.data) {
+      var body = e.data.text();
+    } else {
+      var body = 'Default body';
+    }
+
+    var options = {
+      body: body,
+      icon: 'images/notification-flat.png',
+      vibrate: [100, 50, 100],
+      data: {
+        dateOfArrival: Date.now(),
+        primaryKey: 1
+      },
+      actions: [
+        {action: 'explore', title: 'Go to the site',
+          icon: 'images/checkmark.png'},
+        {action: 'close', title: 'Close the notification',
+          icon: 'images/xmark.png'},
+      ]
+    };
+
+    // TODO 22 - replace the e.waitUntil function below with the code to check the service worker clients
+
+    e.waitUntil(
+      self.registration.showNotification('Push Notification', options)
+    );
+  });
+});
