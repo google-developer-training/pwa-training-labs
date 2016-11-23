@@ -71,7 +71,7 @@ var app = (function() {
     });
   }
 
-  // TODO Step 4 - Promise.all
+  // TODO Step 4.1 - Promise.all
   var promises = [
     getImageName('Spain'),
     getImageName('Chile'),
@@ -80,6 +80,19 @@ var app = (function() {
   allFlags(promises).then(function(result) {
     console.log(result);
   });
+
+  // TODO Step 4.2 - Promise.race
+  var promise1 = new Promise(function(resolve, reject) {
+    setTimeout(resolve, 500, 'one');
+  });
+
+  var promise2 = new Promise(function(resolve, reject) {
+    setTimeout(reject, 100, 'two');
+  });
+
+  Promise.race([promise1, promise2])
+  .then(logSuccess)
+  .catch(logError);
 
   /* Helper functions */
 
