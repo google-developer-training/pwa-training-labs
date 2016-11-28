@@ -275,7 +275,7 @@ var idbApp = (function() {
   }
 
   function getOrders() {
-    dbPromise.then(function(db) {
+    return dbPromise.then(function(db) {
       var tx = db.transaction('orders');
       var ordersOS = tx.objectStore('orders');
       return ordersOS.getAll();
