@@ -15,6 +15,6 @@
  * limitations under the License.
  */
 
-// TODO 1 - Require gulp and plugins
+// TODO 4.1 - Require gulp and plugins
 
-// TODO 2 - Insert the gulp task code
+// TODO 4.2 - Insert the gulp task code
