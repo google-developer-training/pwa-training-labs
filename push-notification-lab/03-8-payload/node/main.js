@@ -17,7 +17,7 @@ var webPush = require('web-push');
 
 var pushSubscription = YOUR_SUBSCRIPTION_OBJECT;
 
-// TODO 19 - include VAPID keys
+// TODO 4.3a - include VAPID keys
 
 const payload = 'Here is a payload!';
 
@@ -25,7 +25,7 @@ const options = {
   gcmAPIKey: 'YOUR_SERVER_KEY',
   TTL: 60,
 
-  // TODO 20 - add VAPID details
+  // TODO 4.3b - add VAPID details
 
 };
 

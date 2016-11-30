@@ -15,8 +15,8 @@ limitations under the License.
 */
 'use strict';
 
-// TODO 6 - Handle the notificationclose event
+// TODO 2.6 - Handle the notificationclose event
 
-// TODO 7 - Handle the notificationclick event
+// TODO 2.7 - Handle the notificationclick event
 
-// TODO 10 - add push event listener
+// TODO 3.1 - add push event listener

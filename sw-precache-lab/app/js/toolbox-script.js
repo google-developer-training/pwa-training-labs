@@ -16,6 +16,6 @@
 (function(global) {
   'use strict';
 
-  // TODO 3 - Add the sw-toolbox routes
+  // TODO 5 - Add the sw-toolbox routes
 
 })(self);

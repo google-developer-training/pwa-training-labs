@@ -49,7 +49,7 @@ var app = (function() {
               icon: 'images/xmark.png'},
           ]
 
-          // TODO 21 - add a tag to the notification
+          // TODO 5.1 - add a tag to the notification
 
         };
         reg.showNotification('Hello world!', options);
