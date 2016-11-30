@@ -38,7 +38,7 @@ var idbApp = (function() {
         store.createIndex('price', 'price');
         store.createIndex('description', 'description');
 
-      // TODO 10 - create an ‘orders’ object store
+      // TODO 5.1 - create an ‘orders’ object store
 
     }
   });
@@ -208,7 +208,7 @@ var idbApp = (function() {
 
   function addOrders() {
 
-    // TODO 11 - add items to the 'orders' object store
+    // TODO 5.2 - add items to the 'orders' object store
 
   }
 
@@ -216,7 +216,7 @@ var idbApp = (function() {
     var s = '';
     dbPromise.then(function(db) {
 
-      // TODO 12 - use a cursor to display the orders on the page
+      // TODO 5.3 - use a cursor to display the orders on the page
 
     }).then(function() {
       if (s === '') {s = '<p>No results.</p>';}
@@ -226,7 +226,7 @@ var idbApp = (function() {
 
   function getOrders() {
 
-    // TODO 13 - get all objects from 'orders' object store
+    // TODO 5.4 - get all objects from 'orders' object store
 
   }
 
@@ -240,20 +240,20 @@ var idbApp = (function() {
 
   function processOrders(orders) {
 
-    // TODO 14 - get items in the 'products' store matching the orders
+    // TODO 5.5 - get items in the 'products' store matching the orders
 
   }
 
   function decrementQuantity(product, order) {
 
-    // TODO 15 - check the quantity of remaining products
+    // TODO 5.6 - check the quantity of remaining products
 
   }
 
   function updateProductsStore(products) {
     dbPromise.then(function(db) {
 
-      // TODO 16 - update the items in the 'products' object store
+      // TODO 5.7 - update the items in the 'products' object store
 
     }).then(function() {
       console.log('Orders processed successfully!');

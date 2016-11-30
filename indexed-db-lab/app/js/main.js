@@ -16,21 +16,21 @@ limitations under the License.
 var idbApp = (function() {
   'use strict';
 
-  // TODO 1 - check for support
+  // TODO 2 - check for support
 
-  // TODO 2 - open a database
+  // TODO 3.1 - open a database
 
-  // TODO 3 - create an object store
+  // TODO 3.2 - create an object store
 
   function addProducts() {
 
-    // TODO 4 - add objects to the products store
+    // TODO 3.3 - add objects to the products store
 
   }
 
   function getByName(key) {
 
-    // TODO 7 - use the get method to get an object by name
+    // TODO 4.3 - use the get method to get an object by name
 
   }
 
@@ -55,7 +55,7 @@ var idbApp = (function() {
 
   function getByPrice() {
 
-    // TODO 8 - use a cursor to get objects by price
+    // TODO 4.4a - use a cursor to get objects by price
 
   }
 
@@ -66,7 +66,7 @@ var idbApp = (function() {
     var s = '';
     dbPromise.then(function(db) {
 
-      // TODO 9 - get items by their description
+      // TODO 4.4b - get items by their description
 
     }).then(function() {
       if (s === '') {s = '<p>No results.</p>';}
@@ -76,7 +76,7 @@ var idbApp = (function() {
 
   function addOrders() {
 
-    // TODO 11 - add items to the 'orders' object store
+    // TODO 5.2 - add items to the 'orders' object store
 
   }
 
@@ -84,7 +84,7 @@ var idbApp = (function() {
     var s = '';
     dbPromise.then(function(db) {
 
-      // TODO 12 - use a cursor to display the orders on the page
+      // TODO 5.3 - use a cursor to display the orders on the page
 
     }).then(function() {
       if (s === '') {s = '<p>No results.</p>';}
@@ -94,7 +94,7 @@ var idbApp = (function() {
 
   function getOrders() {
 
-    // TODO 13 - get all objects from 'orders' object store
+    // TODO 5.4 - get all objects from 'orders' object store
 
   }
 
@@ -108,20 +108,20 @@ var idbApp = (function() {
 
   function processOrders(orders) {
 
-    // TODO 14 - get items in the 'products' store matching the orders
+    // TODO 5.5 - get items in the 'products' store matching the orders
 
   }
 
   function decrementQuantity(product, order) {
 
-    // TODO 15 - check the quantity of remaining products
+    // TODO 5.6 - check the quantity of remaining products
 
   }
 
   function updateProductsStore(products) {
     dbPromise.then(function(db) {
 
-      // TODO 16 - update the items in the 'products' object store
+      // TODO 5.7 - update the items in the 'products' object store
 
     }).then(function() {
       console.log('Orders processed successfully!');
