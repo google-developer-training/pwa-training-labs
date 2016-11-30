@@ -27,8 +27,8 @@ gulp.task('default', ['serve']);
 
 // TODO Step 6.2 - watch files
 gulp.task('watch', function() {
-  gulp.watch('styles/**/*.css', ['processCSS']);
-  gulp.watch('js/**/*.js', ['minify']);
+  gulp.watch('styles/*.css', ['processCSS']);
+  gulp.watch('js/*.js', ['minify']);
 });
 
 // TODO Step 6.3b - run a local server
@@ -36,7 +36,7 @@ gulp.task('serve', ['processCSS', 'minify'], function() {
   browserSync.init({
     server: '.'
   });
-  gulp.watch('styles/**/*.css', ['processCSS']);
-  gulp.watch('js/**/*.js', ['minify']);
+  gulp.watch('styles/*.css', ['processCSS']);
+  gulp.watch('js/*.js', ['minify']);
   gulp.watch('*.html').on('change', browserSync.reload);
 });

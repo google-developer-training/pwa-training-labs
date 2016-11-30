@@ -37,7 +37,9 @@ var app = (function() {
     // TODO
   }
 
-  // TODO Step 4 - Promise.all
+  // TODO Step 4.1 - Promise.all
+
+  // TODO Step 4.2 - Promise.race
 
   /* Helper functions */
 
