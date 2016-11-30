@@ -32,11 +32,11 @@ body {
   text-align: center;
 }
 
-/* TODO 1 - set the image max-width */
+/* TODO 2 - set the image max-width */
 
-/* TODO 4 - display the SFO image at 50vw */
+/* TODO 4.1 - display the SFO image at 50vw */
 
-/* TODO 6 - add a media query */
+/* TODO 5.1 - add a media query */
 
 figcaption {
   color: #bb021e;
