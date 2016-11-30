@@ -189,6 +189,7 @@ var app = (function() {
       console.log('Service Worker is registered', swReg);
 
       swRegistration = swReg;
+
       initializeUI();
     })
     .catch(function(error) {

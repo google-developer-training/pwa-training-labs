@@ -150,13 +150,10 @@ var idbApp = (function() {
 
     var range;
     if (lower != '' && upper != '') {
-      console.log('bound');
       range = IDBKeyRange.bound(lower, upper);
     } else if (lower == '') {
-      console.log('only upper');
       range = IDBKeyRange.upperBound(upper);
     } else {
-      console.log('only lower');
       range = IDBKeyRange.lowerBound(lower);
     }
     var s = '';
