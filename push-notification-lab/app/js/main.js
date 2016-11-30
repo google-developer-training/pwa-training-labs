@@ -26,7 +26,7 @@ var app = (function() {
 
   // TODO 2.2 - request permission to show notifications
 
-  function showNotification() {
+  function displayNotification() {
 
     // TODO 2.3 - display a Notification
 

@@ -41,34 +41,33 @@ self.addEventListener('notificationclick', function(e) {
 
 });
 
+
 self.addEventListener('push', function(e) {
-  self.addEventListener('push', function(e) {
-    if (e.data) {
-      var body = e.data.text();
-    } else {
-      var body = 'Default body';
-    }
+  if (e.data) {
+    var body = e.data.text();
+  } else {
+    var body = 'Default body';
+  }
 
-    var options = {
-      body: body,
-      icon: 'images/notification-flat.png',
-      vibrate: [100, 50, 100],
-      data: {
-        dateOfArrival: Date.now(),
-        primaryKey: 1
-      },
-      actions: [
-        {action: 'explore', title: 'Go to the site',
-          icon: 'images/checkmark.png'},
-        {action: 'close', title: 'Close the notification',
-          icon: 'images/xmark.png'},
-      ]
-    };
+  var options = {
+    body: body,
+    icon: 'images/notification-flat.png',
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: 1
+    },
+    actions: [
+      {action: 'explore', title: 'Go to the site',
+        icon: 'images/checkmark.png'},
+      {action: 'close', title: 'Close the notification',
+        icon: 'images/xmark.png'},
+    ]
+  };
 
-    // TODO 5.2 - replace the e.waitUntil function below with the code to check the service worker clients
+  // TODO 5.2 - replace the e.waitUntil function below with the code to check the service worker clients
 
-    e.waitUntil(
-      self.registration.showNotification('Push Notification', options)
-    );
-  });
+  e.waitUntil(
+    self.registration.showNotification('Push Notification', options)
+  );
 });

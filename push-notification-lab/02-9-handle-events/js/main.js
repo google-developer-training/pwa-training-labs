@@ -31,7 +31,7 @@ var app = (function() {
     console.log('Notification permission status:', status);
   });
 
-  function showNotification() {
+  function displayNotification() {
     if (Notification.permission == 'granted') {
       navigator.serviceWorker.getRegistration().then(function(reg) {
         var options = {
