@@ -22,34 +22,34 @@ var app = (function() {
   var notifyButton = document.querySelector('.js-notify-btn');
   var pushButton = document.querySelector('.js-push-btn');
 
-  // TODO 1 - check for notification support
+  // TODO 2.1 - check for notification support
 
-  // TODO 2 - request permission to show notifications
+  // TODO 2.2 - request permission to show notifications
 
   function showNotification() {
 
-    // TODO 3 - display a Notification
+    // TODO 2.3 - display a Notification
 
   }
 
   function initializeUI() {
 
-    // TODO 12 - add a click event listener to the "Enable Push" button
+    // TODO 3.3b - add a click event listener to the "Enable Push" button
     // and get the subscription object
 
   }
 
-  // TODO 17 - add VAPID public key
+  // TODO 4.2a - add VAPID public key
 
   function subscribeUser() {
 
-    // TODO 13 - subscribe to the push service
+    // TODO 3.4 - subscribe to the push service
 
   }
 
   function unsubscribeUser() {
 
-    // TODO 14 - unsubscribe from the push service
+    // TODO 3.5 - unsubscribe from the push service
 
   }
 
@@ -114,7 +114,7 @@ var app = (function() {
 
       swRegistration = swReg;
 
-      // TODO 11 - call the initializeUI() function
+      // TODO 3.3a - call the initializeUI() function
 
     })
     .catch(function(error) {

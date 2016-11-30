@@ -49,7 +49,7 @@ var app = (function() {
               icon: 'images/xmark.png'},
           ]
 
-          // TODO 21 - add a tag to the notification
+          // TODO 5.1 - add a tag to the notification
 
         };
         reg.showNotification('Hello world!', options);
@@ -83,10 +83,10 @@ var app = (function() {
     });
   }
 
-  // TODO 17 - add VAPID public key
+  // TODO 4.2a - add VAPID public key
 
   function subscribeUser() {
-    // TODO 18 - subscribe using the VAPID public key
+    // TODO 4.2b - subscribe using the VAPID public key
 
     swRegistration.pushManager.subscribe({
       userVisibleOnly: true

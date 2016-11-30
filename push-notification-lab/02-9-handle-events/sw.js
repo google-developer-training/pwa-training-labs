@@ -31,14 +31,14 @@ self.addEventListener('notificationclick', function(e) {
     notification.close();
   } else {
 
-    // TODO 24 - reuse open tabs
+    // TODO 5.4 - reuse open tabs
 
     clients.openWindow('samples/page' + primaryKey + '.html');
     notification.close();
   }
 
-  // TODO 23 - close all notifications when one is clicked
+  // TODO 5.3 - close all notifications when one is clicked
 
 });
 
-// TODO 10 - handle the push event
+// TODO 3.1 - handle the push event

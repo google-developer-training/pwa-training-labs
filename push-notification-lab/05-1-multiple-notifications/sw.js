@@ -31,13 +31,13 @@ self.addEventListener('notificationclick', function(e) {
     notification.close();
   } else {
 
-    // TODO 24 - reuse open tabs
+    // TODO 5.4 - reuse open tabs
 
     clients.openWindow('samples/page' + primaryKey + '.html');
     notification.close();
   }
 
-  // TODO 23 - close all notifications when one is clicked
+  // TODO 5.3 - close all notifications when one is clicked
 
 });
 
@@ -65,7 +65,7 @@ self.addEventListener('push', function(e) {
       ]
     };
 
-    // TODO 22 - replace the e.waitUntil function below with the code to check the service worker clients
+    // TODO 5.2 - replace the e.waitUntil function below with the code to check the service worker clients
 
     e.waitUntil(
       self.registration.showNotification('Push Notification', options)

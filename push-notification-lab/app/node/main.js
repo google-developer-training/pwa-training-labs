@@ -14,4 +14,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// TODO 16 - push a message using the web push library
+// TODO 3.8 - push a message using the web push library
