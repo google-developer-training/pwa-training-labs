@@ -87,7 +87,7 @@ var app = (function() {
   }
 
   function fetchFlag(imageName) {
-    return fetch('/app/flags/' + imageName); // fetch returns a promise
+    return fetch('flags/' + imageName); // fetch returns a promise
   }
 
   function processFlag(flagResponse) {
