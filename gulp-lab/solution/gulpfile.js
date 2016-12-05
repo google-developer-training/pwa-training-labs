@@ -34,7 +34,8 @@ gulp.task('watch', function() {
 // TODO Step 6.3b - run a local server
 gulp.task('serve', ['processCSS', 'minify'], function() {
   browserSync.init({
-    server: '.'
+    server: '.',
+    port: 3000
   });
   gulp.watch('styles/*.css', ['processCSS']);
   gulp.watch('js/*.js', ['minify']);
