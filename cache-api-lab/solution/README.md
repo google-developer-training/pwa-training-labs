@@ -13,10 +13,6 @@ $ git checkout 02-setting-up
 Start a local web server at the app base directory.Then, open your browser and
 navigate to the appropriate local host port (for example, http://localhost:8000/).
 
-## Note
-
-Some contents from Responsive Blog Sample - Copyright Sam Dutton 2016
-
 ## License
 
 Copyright 2016 Google Inc.

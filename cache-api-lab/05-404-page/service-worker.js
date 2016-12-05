@@ -52,10 +52,10 @@ self.addEventListener('fetch', function(event) {
       });
     }).catch(function(error) {
 
-      // TODO 5 - Respond with custom offline page
+      // TODO 6 - Respond with custom offline page
 
     })
   );
 });
 
-// TODO 6 - delete unused caches
+// TODO 7 - delete unused caches

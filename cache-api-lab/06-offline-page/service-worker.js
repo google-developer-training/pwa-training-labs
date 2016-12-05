@@ -61,4 +61,4 @@ self.addEventListener('fetch', function(event) {
   );
 });
 
-// TODO 6 - delete unused caches
+// TODO 7 - delete unused caches
