@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -41,10 +41,10 @@ DOCTYPE html>
       var done = assert.async();
       var dirtyFlag = true;
       var appShell = [
-        'http://localhost:8000/',
-        'http://localhost:8000/style/main.css',
-        'http://localhost:8000/index.html',
-        'http://localhost:8000/pages/offline.html'
+        '../',
+        '../style/main.css',
+        '../index.html',
+        '../pages/offline.html'
       ];
       Promise.all(
         appShell.map(function(url) {

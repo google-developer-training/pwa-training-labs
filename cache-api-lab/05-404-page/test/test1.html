@@ -41,10 +41,10 @@ limitations under the License.
       var done = assert.async();
       var dirtyFlag = true;
       var appShell = [
-        'http://localhost:8000/',
-        'http://localhost:8000/style/main.css',
-        'http://localhost:8000/index.html',
-        'http://localhost:8000/pages/offline.html'
+        '../',
+        '../style/main.css',
+        '../index.html',
+        '../pages/offline.html'
       ];
       Promise.all(
         appShell.map(function(url) {
