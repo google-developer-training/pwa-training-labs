@@ -30,9 +30,6 @@ self.addEventListener('notificationclick', function(e) {
   if (action === 'close') {
     notification.close();
   } else {
-
-    // TODO 5.4 - reuse open tabs
-
     clients.openWindow('samples/page' + primaryKey + '.html');
     notification.close();
   }

@@ -86,8 +86,6 @@ var app = (function() {
   // TODO 4.2a - add VAPID public key
 
   function subscribeUser() {
-    // TODO 4.2b - subscribe using the VAPID public key
-
     swRegistration.pushManager.subscribe({
       userVisibleOnly: true
     })
