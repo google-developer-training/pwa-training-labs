@@ -14,8 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// TODO 2 - cache the application shell
+(function() {
+  'use strict';
 
-// TODO 3 - intercept network requests
+  // TODO 2 - cache the application shell
 
-// TODO 7 - delete unused caches
+  // TODO 3 - intercept network requests
+
+  // TODO 7 - delete unused caches
+
+})();
