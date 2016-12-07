@@ -1,16 +1,16 @@
-# Adding offline
-This lab will walk you through how to add offline capabilities to an existing application.
+## IndexedDB
 
-## Getting started
-Once you've cloned the repo, checkout the starting branch:
+In this lab you learn the basics of working with the IndexedDB API
+using the IndexedDB Promised library. It covers the how to create
+object stores and indexes, how to use the CRUD operations, and how
+to retrieve all of the data.
 
-`$ git checkout app`
+### Getting started
 
-Start a local server in the project directory and navigate to the appropriate local host port (e.g. http://localhost:8000/).
+Clone the repository and navigate to **indexed-db-lab/app**.
 
-## Note
-
-Some contents from Responsive Blog Sample - Copyright Sam Dutton 2016
+Start a local web server at the app base directory. Then, open your browser and
+navigate to the appropriate local host port (for example, http://localhost:8080/).
 
 ## License
 

@@ -1,13 +1,17 @@
-## Fetch API
-In this project you will learn how to use the Fetch API.
+## Push Notifications
 
-## Getting started
-Once you've cloned the repo, checkout the starting branch:
+In this lab you learn how to use the Notification API and Push API.
+It uses the web-push library to push a message with data to the service workers
+from a Node.js server.
 
-`$ git checkout app`
+### Getting started
 
-Start a local server in the project directory and navigate to the appropriate local host port (e.g. http://localhost:8000/).
+Clone the repository and navigate to **push-notification-lab/app**.
 
+Start a local web server at the app base directory. Then, open your browser and
+navigate to the appropriate local host port (for example, http://localhost:8080/).
+
+[Download and install Node.js](https://nodejs.org/en/download/).
 
 ## License
 
@@ -24,3 +28,5 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+This is not an official Google product.

@@ -1,16 +1,13 @@
-# Adding offline
-This lab will walk you through how to add offline capabilities to an existing application.
+## Fetch API
+
+In this project you will learn how to use the Fetch API.
 
 ## Getting started
-Once you've cloned the repo, checkout the starting branch:
 
-`$ git checkout app`
+Clone the repository and navigate to **fetch-api-lab/app**.
 
-Start a local server in the project directory and navigate to the appropriate local host port (e.g. http://localhost:8000/).
-
-## Note
-
-Some contents from Responsive Blog Sample - Copyright Sam Dutton 2016
+Start a local web server at the app base directory. Then, open your browser and
+navigate to the appropriate local host port (for example, http://localhost:8080/).
 
 ## License
 

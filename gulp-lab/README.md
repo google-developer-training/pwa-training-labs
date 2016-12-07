@@ -1,13 +1,12 @@
-## Fetch API
-In this project you will learn how to use the Fetch API.
+# Tooling and automation
+
+In this lab you learn how to automate tasks with [gulp](https://github.com/gulpjs/gulp/tree/master/docs), a build tool and task runner.
 
 ## Getting started
-Once you've cloned the repo, checkout the starting branch:
 
-`$ git checkout app`
+Clone the repository and navigate to **gulp-lab/app**.
 
-Start a local server in the project directory and navigate to the appropriate local host port (e.g. http://localhost:8000/).
-
+[Download and install Node.js](https://nodejs.org/en/download/).
 
 ## License
 
@@ -24,3 +23,5 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+This is not an official Google product.
