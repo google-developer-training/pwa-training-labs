@@ -78,7 +78,7 @@ limitations under the License. -->
     QUnit.test('readResponseAsJSON', function(assert) {
       var done = assert.async();
 
-      fetch('/app/examples/animals.json')
+      fetch('../examples/animals.json')
       .then(app.readResponseAsJSON)
       .then((actual) => {
         if (actual) {
@@ -107,7 +107,7 @@ limitations under the License. -->
     QUnit.test('readResponseAsBlob', function(assert) {
       var done = assert.async();
 
-      fetch('/app/examples/kitten.jpg')
+      fetch('../examples/kitten.jpg')
       .then(app.readResponseAsBlob)
       .then((blob) => {
         if (blob) {
@@ -127,7 +127,7 @@ limitations under the License. -->
     QUnit.test('readResponseAsText', function(assert) {
       var done = assert.async();
 
-      fetch('/app/examples/words.txt')
+      fetch('../examples/words.txt')
       .then(app.readResponseAsText)
       .then((text) => {
         if (text) {
