@@ -13,29 +13,32 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-'use strict';
+(function() {
+  'use strict';
 
-self.addEventListener('notificationclose', function(e) {
-  var notification = e.notification;
-  var primaryKey = notification.data.primaryKey;
+  self.addEventListener('notificationclose', function(e) {
+    var notification = e.notification;
+    var primaryKey = notification.data.primaryKey;
 
-  console.log('Closed notification: ' + primaryKey);
-});
+    console.log('Closed notification: ' + primaryKey);
+  });
 
-self.addEventListener('notificationclick', function(e) {
-  var notification = e.notification;
-  var primaryKey = notification.data.primaryKey;
-  var action = e.action;
+  self.addEventListener('notificationclick', function(e) {
+    var notification = e.notification;
+    var primaryKey = notification.data.primaryKey;
+    var action = e.action;
 
-  if (action === 'close') {
-    notification.close();
-  } else {
-    clients.openWindow('samples/page' + primaryKey + '.html');
-    notification.close();
-  }
+    if (action === 'close') {
+      notification.close();
+    } else {
+      clients.openWindow('samples/page' + primaryKey + '.html');
+      notification.close();
+    }
 
-  // TODO 5.3 - close all notifications when one is clicked
+    // TODO 5.3 - close all notifications when one is clicked
 
-});
+  });
 
-// TODO 3.1 - handle the push event
+  // TODO 3.1 - handle the push event
+
+})();

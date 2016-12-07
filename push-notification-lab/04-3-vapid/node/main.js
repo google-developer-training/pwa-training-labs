@@ -20,9 +20,9 @@ var pushSubscription = YOUR_SUBSCRIPTION_OBJECT;
 var vapidPublicKey = 'YOUR_VAPID_PUBLIC_KEY';
 var vapidPrivateKey = 'YOUR_VAPID_PRIVATE_KEY';
 
-const payload = 'Here is a payload!';
+var payload = 'Here is a payload!';
 
-const options = {
+var options = {
   // gcmAPIKey: 'YOUR_SERVER_KEY',
   TTL: 60,
   vapidDetails: {

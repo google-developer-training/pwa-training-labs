@@ -146,12 +146,12 @@ var idbApp = (function() {
   function getByPrice() {
     var lower = Number(document.getElementById('priceLower').value);
     var upper = Number(document.getElementById('priceUpper').value);
-    if (lower == '' && upper == '') {return;}
+    if (lower === '' && upper === '') {return;}
 
     var range;
-    if (lower != '' && upper != '') {
+    if (lower !== '' && upper !== '') {
       range = IDBKeyRange.bound(lower, upper);
-    } else if (lower == '') {
+    } else if (lower === '') {
       range = IDBKeyRange.upperBound(upper);
     } else {
       range = IDBKeyRange.lowerBound(lower);

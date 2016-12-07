@@ -13,55 +13,60 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-'use strict';
+(function() {
+  'use strict';
 
-self.addEventListener('notificationclose', function(e) {
-  var notification = e.notification;
-  var primaryKey = notification.data.primaryKey;
+  self.addEventListener('notificationclose', function(e) {
+    var notification = e.notification;
+    var primaryKey = notification.data.primaryKey;
 
-  console.log('Closed notification: ' + primaryKey);
-});
+    console.log('Closed notification: ' + primaryKey);
+  });
 
-self.addEventListener('notificationclick', function(e) {
-  var notification = e.notification;
-  var primaryKey = notification.data.primaryKey;
-  var action = e.action;
+  self.addEventListener('notificationclick', function(e) {
+    var notification = e.notification;
+    var primaryKey = notification.data.primaryKey;
+    var action = e.action;
 
-  if (action === 'close') {
-    notification.close();
-  } else {
-    clients.openWindow('samples/page' + primaryKey + '.html');
-    notification.close();
-  }
+    if (action === 'close') {
+      notification.close();
+    } else {
+      clients.openWindow('samples/page' + primaryKey + '.html');
+      notification.close();
+    }
 
-  // TODO 5.3 - close all notifications when one is clicked
+    // TODO 5.3 - close all notifications when one is clicked
 
-});
+  });
 
-self.addEventListener('push', function(e) {
-  if (e.data) {
-    var body = e.data.text();
-  } else {
-    var body = 'Default body';
-  }
+  self.addEventListener('push', function(e) {
+    var body;
 
-  var options = {
-    body: body,
-    icon: 'images/notification-flat.png',
-    vibrate: [100, 50, 100],
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1
-    },
-    actions: [
-      {action: 'explore', title: 'Go to the site',
-        icon: 'images/checkmark.png'},
-      {action: 'close', title: 'Close the notification',
-        icon: 'images/xmark.png'},
-    ]
-  };
+    if (e.data) {
+      body = e.data.text();
+    } else {
+      body = 'Default body';
+    }
 
-  e.waitUntil(
-    self.registration.showNotification('Push Notification', options)
-  );
-});
+    var options = {
+      body: body,
+      icon: 'images/notification-flat.png',
+      vibrate: [100, 50, 100],
+      data: {
+        dateOfArrival: Date.now(),
+        primaryKey: 1
+      },
+      actions: [
+        {action: 'explore', title: 'Go to the site',
+          icon: 'images/checkmark.png'},
+        {action: 'close', title: 'Close the notification',
+          icon: 'images/xmark.png'},
+      ]
+    };
+
+    e.waitUntil(
+      self.registration.showNotification('Push Notification', options)
+    );
+  });
+
+})();

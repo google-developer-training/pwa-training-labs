@@ -1,10 +1,15 @@
-# Adding offline capabilities to an existing application
+# sw-precache and sw-toolbox
 
-This lab will walk you through how to use sw-precache and sw-toolbox to automate creating service workers.
+In this lab you learn how to use sw-precache and sw-toolbox to automate creating service workers.
 
 ## Getting started
 
-Change to the `starting-project` directory.
+Clone the repository and navigate to **sw-precache-lab/app**.
+
+Start a local web server at the app base directory. Then, open your browser and
+navigate to the appropriate local host port (for example, http://localhost:8080/).
+
+[Download and install Node.js](https://nodejs.org/en/download/).
 
 ## Note
 

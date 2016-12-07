@@ -19,9 +19,9 @@ var pushSubscription = YOUR_SUBSCRIPTION_OBJECT;
 
 // TODO 4.3a - include VAPID keys
 
-const payload = 'Here is a payload!';
+var payload = 'Here is a payload!';
 
-const options = {
+var options = {
   gcmAPIKey: 'YOUR_SERVER_KEY',
   TTL: 60,
 
