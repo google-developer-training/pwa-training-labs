@@ -13,10 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-'use strict';
+(function() {
+  'use strict';
 
-// TODO 2.6 - Handle the notificationclose event
+  // TODO 2.6 - Handle the notificationclose event
 
-// TODO 2.7 - Handle the notificationclick event
+  // TODO 2.7 - Handle the notificationclick event
 
-// TODO 3.1 - add push event listener
+  // TODO 3.1 - add push event listener
+
+})();
