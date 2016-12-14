@@ -312,7 +312,7 @@ var idbApp = (function() {
         console.log('Not enough ' + product.id + ' left in stock!');
         document.getElementById('receipt').innerHTML =
         '<h3>Not enough ' + product.id + ' left in stock!</h3>';
-        return reject(new Error('Out of stock!'));
+        throw 'Out of stock!';
       }
       item.quantity = qtyRemaining;
       return resolve(item);
