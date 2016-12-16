@@ -51,7 +51,6 @@ limitations under the License.
   purchaseButton.onclick = markPurchase;
 
   function markPurchase() {
-    // TODO Step 6: Send a custom event
     ga('send', {
       hitType: 'event',
       eventCategory: 'products',
@@ -74,17 +73,14 @@ limitations under the License.
           reg.pushManager.subscribe({userVisibleOnly: true})
           .then(function(subscription) {
             console.log('Subscribed to push,', subscription);
-            // TODO Step 7.2a - Subscribe event
             ga('send', 'event', 'push', 'subscribe', 'success');
           })
           .catch(function(error) {
             if (Notification.permission === 'denied') {
               console.warn('Subscribe failed, notifications are blocked');
-              // Optional TODO - Send hits for subscribe error
               ga('send', 'event', 'push', 'subscribe-err', 'blocked');
             } else {
               console.error('Unable to subscribe to push', error);
-              // Optional TODO - Send hits for subscribe error
               ga('send', 'event', 'push', 'subscribe-err');
             }
           });
@@ -111,7 +107,6 @@ limitations under the License.
           sub.unsubscribe()
           .then(function() {
             console.log('Unsubscribed!');
-            // TODO Step 7.2b - Unsubscribe event
             ga('send', 'event', 'push', 'unsubscribe', 'success');
           });
         } else {
@@ -121,7 +116,6 @@ limitations under the License.
     })
     .catch(function(error) {
       console.warn('Error unsubscribing', error);
-      // Optional TODO - Send hits for unsubscribe error
       ga('send', 'event', 'push', 'unsubscribe-err');
     });
   }

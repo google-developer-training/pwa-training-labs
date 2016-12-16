@@ -24,7 +24,6 @@ var app = (function() {
     console.log('Looks like there was a problem: \n', error);
   }
 
-  // TODO Step 2.1a
   if (!('fetch' in window)) {
     console.log('Fetch API not found, try including the polyfill');
     return;
@@ -39,7 +38,6 @@ var app = (function() {
   }
 
   function validateResponse(response) {
-    // TODO Step 2.3
     if (!response.ok) {
       throw Error(response.statusText);
     }
@@ -47,12 +45,10 @@ var app = (function() {
   }
 
   function readResponseAsJSON(response) {
-    // TODO Step 2.4
     return response.json();
   }
 
   function showImage(responseAsBlob) {
-    //  TODO Step 3a
     var container = document.getElementById('container');
     var imgElem = document.createElement('img');
     container.appendChild(imgElem);
@@ -61,12 +57,10 @@ var app = (function() {
   }
 
   function readResponseAsBlob(response) {
-    // TODO Step 3b
     return response.blob();
   }
 
   function fetchImage() {
-    // TODO Step 3c
     fetch('examples/kitten.jpg')
     .then(validateResponse)
     .then(readResponseAsBlob)
@@ -75,18 +69,15 @@ var app = (function() {
   }
 
   function showText(responseAsText) {
-    //  TODO Step 4a
     var message = document.getElementById('message');
     message.textContent = responseAsText;
   }
 
   function readResponseAsText(response) {
-    // TODO Step 4b
     return response.text();
   }
 
   function fetchText() {
-    // TODO Step 4c
     fetch('examples/words.txt')
     .then(validateResponse)
     .then(readResponseAsText)
@@ -106,15 +97,12 @@ var app = (function() {
   }
 
   function logSize(response) {
-    // TODO Step 5.2
     console.log(response.headers.get('content-length'));
     return response;
   }
 
   /* NOTE: Never send unencrypted user credentials in production! */
   function postRequest() {
-    // TODO Step 6.2
-    // TODO Step 6.3
     var formData = new FormData(document.getElementById('myForm'));
     fetch('http://localhost:5000/', {
       method: 'POST',

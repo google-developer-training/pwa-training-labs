@@ -18,7 +18,6 @@ limitations under the License.
 var app = (function() {
 
   function getImageName(country) {
-    // TODO Step 2.1 - create a promise
     var promiseOfImageName = new Promise(function(resolve, reject) {
       setTimeout(function() {
         if (country === 'Spain' || country === 'Chile' || country === 'Peru') {
@@ -33,7 +32,6 @@ var app = (function() {
   }
 
   function isSpain(country) {
-    // TODO - Optional
     return new Promise(function(resolve, reject) {
       if (country === 'Spain') {
         resolve('It is Spain!');
@@ -44,7 +42,6 @@ var app = (function() {
   }
 
   function flagChain(country) {
-    // TODO Step 2.2 - use the promise
     return getImageName(country)
     .catch(fallbackName)
     .then(fetchFlag)
@@ -54,14 +51,12 @@ var app = (function() {
   }
 
   function spainTest(country) {
-    // TODO - Optional
     return isSpain(country)
     .then(returnTrue)
     .catch(returnFalse);
   }
 
   function allFlags(promiseList) {
-    // TODO
     return Promise.all(promiseList)
     .then(function(values) {
       return values;
@@ -71,7 +66,6 @@ var app = (function() {
     });
   }
 
-  // TODO Step 4.1 - Promise.all
   var promises = [
     getImageName('Spain'),
     getImageName('Chile'),
@@ -81,7 +75,6 @@ var app = (function() {
     console.log(result);
   });
 
-  // TODO Step 4.2 - Promise.race
   var promise1 = new Promise(function(resolve, reject) {
     setTimeout(resolve, 500, 'one');
   });
