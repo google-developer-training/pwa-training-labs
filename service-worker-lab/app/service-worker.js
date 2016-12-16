@@ -16,10 +16,10 @@ limitations under the License.
 (function() {
   'use strict';
 
-  // TODO - Step 3.1: Add install and activate event listeners
+  // TODO - 3.1: Add install and activate event listeners
 
-  // TODO - Step 3.3: Add a comment to change the service worker
+  // TODO - 3.3: Add a comment to change the service worker
 
-  // TODO - Step 4: Add fetch listener
+  // TODO - 4: Add fetch listener
 
 })();

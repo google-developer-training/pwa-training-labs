@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// TODO Step 8.2a - Import the helper script
+// TODO 8.2a - Import the helper script
 
-// TODO Step 9 - Add offline analytics script
+// TODO 9 - Add offline analytics script
 
 (function() {
   'use strict';
@@ -25,7 +25,7 @@ limitations under the License.
     var notification = e.notification;
     var primaryKey = notification.data.primaryKey;
     console.log('Closed notification: ' + primaryKey);
-    // TODO Step 8.2b - Notification close event
+    // TODO 8.2b - Notification close event
   });
 
   self.addEventListener('notificationclick', function(e) {
@@ -35,7 +35,7 @@ limitations under the License.
     e.waitUntil(
       Promise.all([
         clients.openWindow('pages/page' + primaryKey + '.html'),
-        // TODO Step 8.2c - Notification click event
+        // TODO 8.2c - Notification click event
       ])
     );
   });
@@ -52,7 +52,7 @@ limitations under the License.
     };
     e.waitUntil(Promise.all([
         self.registration.showNotification('Hello world!', options),
-        // TODO Step 8.2d - Push recieved event
+        // TODO 8.2d - Push recieved event
       ])
     );
   });

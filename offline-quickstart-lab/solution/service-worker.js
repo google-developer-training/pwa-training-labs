@@ -1,7 +1,6 @@
 (function() {
   'use strict';
 
-  // TODO Step 2.1 - Cache static assets on install
   var CACHE_NAME = 'static-cache';
   var urlsToCache = [
     '.',
@@ -18,7 +17,6 @@
     );
   });
 
-  // TODO Step 2.2 - Fetch from the cache
   self.addEventListener('fetch', function(event) {
     event.respondWith(
       caches.match(event.request)

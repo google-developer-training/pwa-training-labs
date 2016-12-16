@@ -24,55 +24,55 @@ var app = (function() {
     console.log('Looks like there was a problem: \n', error);
   }
 
-  // TODO Step 2.1a
+  // TODO 2.1a
 
   function fetchJSON() {
-    // TODO Step 2.1b
+    // TODO 2.1b
   }
 
   function validateResponse(response) {
-    // TODO Step 2.3
+    // TODO 2.3
   }
 
   function readResponseAsJSON(response) {
-    // TODO Step 2.4
+    // TODO 2.4
   }
 
   function showImage(responseAsBlob) {
-    //  TODO Step 3a
+    //  TODO 3a
   }
 
   function readResponseAsBlob(response) {
-    // TODO Step 3b
+    // TODO 3b
   }
 
   function fetchImage() {
-    // TODO Step 3c
+    // TODO 3c
   }
 
   function showText(responseAsText) {
-    //  TODO Step 4a
+    //  TODO 4a
   }
 
   function readResponseAsText(response) {
-    // TODO Step 4b
+    // TODO 4b
   }
 
   function fetchText() {
-    // TODO Step 4c
+    // TODO 4c
   }
 
   function headRequest() {
-    // TODO Step 5.1
+    // TODO 5.1
   }
 
   function logSize(response) {
-    // TODO Step 5.2
+    // TODO 5.2
   }
 
   /* NOTE: Never send unencrypted user credentials in production! */
   function postRequest() {
-    // TODO Step 6.2
+    // TODO 6.2
   }
 
   // Don't worry if you don't understand this, it's not part of the Fetch API.

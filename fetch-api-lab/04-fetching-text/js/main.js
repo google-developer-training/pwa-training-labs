@@ -24,7 +24,7 @@ var app = (function() {
     console.log('Looks like there was a problem: \n', error);
   }
 
-  // TODO Step 2.1a
+  // TODO 2.1a
   if (!('fetch' in window)) {
     console.log('Fetch API not found, try including the polyfill');
     return;
@@ -39,7 +39,7 @@ var app = (function() {
   }
 
   function validateResponse(response) {
-    // TODO Step 2.3
+    // TODO 2.3
     if (!response.ok) {
       throw Error(response.statusText);
     }
@@ -47,12 +47,12 @@ var app = (function() {
   }
 
   function readResponseAsJSON(response) {
-    // TODO Step 2.4
+    // TODO 2.4
     return response.json();
   }
 
   function showImage(responseAsBlob) {
-    //  TODO Step 3a
+    //  TODO 3a
     var container = document.getElementById('container');
     var imgElem = document.createElement('img');
     container.appendChild(imgElem);
@@ -61,12 +61,12 @@ var app = (function() {
   }
 
   function readResponseAsBlob(response) {
-    // TODO Step 3b
+    // TODO 3b
     return response.blob();
   }
 
   function fetchImage() {
-    // TODO Step 3c
+    // TODO 3c
     fetch('examples/kitten.jpg')
     .then(validateResponse)
     .then(readResponseAsBlob)
@@ -75,18 +75,18 @@ var app = (function() {
   }
 
   function showText(responseAsText) {
-    //  TODO Step 4a
+    //  TODO 4a
     var message = document.getElementById('message');
     message.textContent = responseAsText;
   }
 
   function readResponseAsText(response) {
-    // TODO Step 4b
+    // TODO 4b
     return response.text();
   }
 
   function fetchText() {
-    // TODO Step 4c
+    // TODO 4c
     fetch('examples/words.txt')
     .then(validateResponse)
     .then(readResponseAsText)
@@ -95,16 +95,16 @@ var app = (function() {
   }
 
   function headRequest() {
-    // TODO Step 5.1
+    // TODO 5.1
   }
 
   function logSize(response) {
-    // TODO Step 5.2
+    // TODO 5.2
   }
 
   /* NOTE: Never send unencrypted user credentials in production! */
   function postRequest() {
-    // TODO Step 6.2
+    // TODO 6.2
   }
 
   // Don't worry if you don't understand this, it's not part of the Fetch API.

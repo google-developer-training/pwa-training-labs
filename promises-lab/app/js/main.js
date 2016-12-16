@@ -18,7 +18,7 @@ limitations under the License.
 var app = (function() {
 
   function getImageName(country) {
-    // TODO Step 2.1 - create a promise
+    // TODO 2.1 - create a promise
   }
 
   function isSpain(country) {
@@ -26,7 +26,7 @@ var app = (function() {
   }
 
   function flagChain(country) {
-    // TODO Step 2.2 - use the promise
+    // TODO 2.2 - use the promise
   }
 
   function spainTest(country) {
@@ -37,9 +37,9 @@ var app = (function() {
     // TODO
   }
 
-  // TODO Step 4.1 - Promise.all
+  // TODO 4.1 - Promise.all
 
-  // TODO Step 4.2 - Promise.race
+  // TODO 4.2 - Promise.race
 
   /* Helper functions */
 

@@ -51,7 +51,7 @@ limitations under the License.
   purchaseButton.onclick = markPurchase;
 
   function markPurchase() {
-    // TODO Step 6: Send a custom event
+    // TODO 6: Send a custom event
   }
 
   // Subscribe functionality
@@ -68,7 +68,7 @@ limitations under the License.
           reg.pushManager.subscribe({userVisibleOnly: true})
           .then(function(subscription) {
             console.log('Subscribed to push,', subscription);
-            // TODO Step 7.2a - Subscribe event
+            // TODO 7.2a - Subscribe event
           })
           .catch(function(error) {
             if (Notification.permission === 'denied') {
@@ -102,7 +102,7 @@ limitations under the License.
           sub.unsubscribe()
           .then(function() {
             console.log('Unsubscribed!');
-            // TODO Step 7.2b - Unsubscribe event
+            // TODO 7.2b - Unsubscribe event
           });
         } else {
           console.log('Not currently subscribed');
