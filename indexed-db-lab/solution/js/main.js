@@ -144,17 +144,19 @@ var idbApp = (function() {
   }
 
   function getByPrice() {
-    var lower = Number(document.getElementById('priceLower').value);
-    var upper = Number(document.getElementById('priceUpper').value);
-    if (lower === '' && upper === '') {return;}
+    var lower = document.getElementById('priceLower').value;
+    var upper = document.getElementById('priceUpper').value;
+    var lowerNum = Number(document.getElementById('priceLower').value);
+    var upperNum = Number(document.getElementById('priceUpper').value);
 
+    if (lower === '' && upper === '') {return;}
     var range;
     if (lower !== '' && upper !== '') {
-      range = IDBKeyRange.bound(lower, upper);
+      range = IDBKeyRange.bound(lowerNum, upperNum);
     } else if (lower === '') {
-      range = IDBKeyRange.upperBound(upper);
+      range = IDBKeyRange.upperBound(upperNum);
     } else {
-      range = IDBKeyRange.lowerBound(lower);
+      range = IDBKeyRange.lowerBound(lowerNum);
     }
     var s = '';
     dbPromise.then(function(db) {
@@ -165,13 +167,11 @@ var idbApp = (function() {
     }).then(function showRange(cursor) {
       if (!cursor) {return;}
       console.log('Cursored at:', cursor.value.name);
-
       s += '<h2>Price - ' + cursor.value.price + '</h2><p>';
       for (var field in cursor.value) {
         s += field + '=' + cursor.value[field] + '<br/>';
       }
       s += '</p>';
-
       return cursor.continue().then(showRange);
     }).then(function() {
       if (s === '') {s = '<p>No results.</p>';}
@@ -214,7 +214,7 @@ var idbApp = (function() {
         {
           name: 'Cabinet',
           id: 'ca-brn-ma',
-          price: '799.99',
+          price: 799.99,
           color: 'brown',
           material: 'mahogany',
           description: 'An intricately-designed, antique cabinet',
@@ -223,7 +223,7 @@ var idbApp = (function() {
         {
           name: 'Armchair',
           id: 'ac-gr-pin',
-          price: '299.99',
+          price: 299.99,
           color: 'grey',
           material: 'pine',
           description: 'A plush recliner armchair',
@@ -232,7 +232,7 @@ var idbApp = (function() {
         {
           name: 'Couch',
           id: 'cch-blk-ma',
-          price: '499.99',
+          price: 499.99,
           color: 'black',
           material: 'mahogany',
           description: 'A very comfy couch',
@@ -287,6 +287,8 @@ var idbApp = (function() {
       return processOrders(orders);
     }).then(function(updatedProducts) {
       updateProductsStore(updatedProducts);
+    }).catch(function(e) {
+      console.log(e);
     });
   }
 
@@ -315,7 +317,7 @@ var idbApp = (function() {
         throw 'Out of stock!';
       }
       item.quantity = qtyRemaining;
-      return resolve(item);
+      resolve(item);
     });
   }
 

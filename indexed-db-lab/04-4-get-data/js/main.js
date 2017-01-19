@@ -144,17 +144,19 @@ var idbApp = (function() {
   }
 
   function getByPrice() {
-    var lower = Number(document.getElementById('priceLower').value);
-    var upper = Number(document.getElementById('priceUpper').value);
-    if (lower === '' && upper === '') {return;}
+    var lower = document.getElementById('priceLower').value;
+    var upper = document.getElementById('priceUpper').value;
+    var lowerNum = Number(document.getElementById('priceLower').value);
+    var upperNum = Number(document.getElementById('priceUpper').value);
 
+    if (lower === '' && upper === '') {return;}
     var range;
     if (lower !== '' && upper !== '') {
-      range = IDBKeyRange.bound(lower, upper);
+      range = IDBKeyRange.bound(lowerNum, upperNum);
     } else if (lower === '') {
-      range = IDBKeyRange.upperBound(upper);
+      range = IDBKeyRange.upperBound(upperNum);
     } else {
-      range = IDBKeyRange.lowerBound(lower);
+      range = IDBKeyRange.lowerBound(lowerNum);
     }
     var s = '';
     dbPromise.then(function(db) {
@@ -165,13 +167,11 @@ var idbApp = (function() {
     }).then(function showRange(cursor) {
       if (!cursor) {return;}
       console.log('Cursored at:', cursor.value.name);
-
       s += '<h2>Price - ' + cursor.value.price + '</h2><p>';
       for (var field in cursor.value) {
         s += field + '=' + cursor.value[field] + '<br/>';
       }
       s += '</p>';
-
       return cursor.continue().then(showRange);
     }).then(function() {
       if (s === '') {s = '<p>No results.</p>';}
@@ -235,6 +235,8 @@ var idbApp = (function() {
       return processOrders(orders);
     }).then(function(updatedProducts) {
       updateProductsStore(updatedProducts);
+    }).catch(function(e) {
+      console.log(e);
     });
   }
 
