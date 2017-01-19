@@ -38,13 +38,11 @@ limitations under the License. -->
       inputs.forEach(function(input, i) {
         app.getImageName(input)
         .then(r => {
-          console.log(r);
           expected = outputs[i];
           msg = '"' + input + '"' + ' input resolves to ' + '"' + outputs[i] + '"';
           assert.equal(r, outputs[i], msg);
           done();
         }).catch(e => {
-          // msg = inputs[i] + ' input resolves';
           assert.ok(false, msg);
           done();
         });
