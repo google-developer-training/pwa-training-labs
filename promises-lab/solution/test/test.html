@@ -28,11 +28,12 @@ limitations under the License. -->
   <script>
     /*jshint esversion: 6*/
     QUnit.test('getImageName', function(assert) {
-      var inputs = ['Spain', 'Peru', 'Chile'];
-      var outputs = ['Spain.png', 'Peru.png', 'Chile.png'];
+      var inputs = ['Spain', 'Peru', 'Chile', 'spain', 'peru', 'chile'];
+      var outputs = ['spain.png', 'peru.png', 'chile.png',
+                     'spain.png', 'peru.png', 'chile.png'];
       var msg;
       var expected;
-      var done = assert.async(4);
+      var done = assert.async(7);
 
       inputs.forEach(function(input, i) {
         app.getImageName(input)
@@ -42,7 +43,6 @@ limitations under the License. -->
           assert.equal(r, outputs[i], msg);
           done();
         }).catch(e => {
-          // msg = inputs[i] + ' input resolves';
           assert.ok(false, msg);
           done();
         });
@@ -132,7 +132,7 @@ limitations under the License. -->
 
       app.allFlags(promises)
       .then(values => {
-        assert.deepEqual(values, ['Spain.png', 'Chile.png', 'Peru.png'], msg);
+        assert.deepEqual(values, ['spain.png', 'chile.png', 'peru.png'], msg);
         done();
       }).catch(e => {
         assert.ok(false, 'catches rejections');

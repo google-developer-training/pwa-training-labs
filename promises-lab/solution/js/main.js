@@ -18,9 +18,10 @@ limitations under the License.
 var app = (function() {
 
   function getImageName(country) {
+    country = country.toLowerCase();
     var promiseOfImageName = new Promise(function(resolve, reject) {
       setTimeout(function() {
-        if (country === 'Spain' || country === 'Chile' || country === 'Peru') {
+        if (country === 'spain' || country === 'chile' || country === 'peru') {
           resolve(country + '.png');
         } else {
           reject(Error('Didn\'t recieve a valid country name!'));
@@ -124,7 +125,7 @@ var app = (function() {
   }
 
   function fallbackName() {
-    return 'Chile.png';
+    return 'chile.png';
   }
 
   // Don't worry if you don't understand this, it's not part of Promises.
