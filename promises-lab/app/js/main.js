@@ -78,7 +78,7 @@ var app = (function() {
   }
 
   function fallbackName() {
-    return 'Chile.png';
+    return 'chile.png';
   }
 
   // Don't worry if you don't understand this, it's not part of Promises.
