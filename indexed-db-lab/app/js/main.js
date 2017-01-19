@@ -18,7 +18,7 @@ var idbApp = (function() {
 
   // TODO 2 - check for support
 
-  // TODO 3.1 - open a database
+  var dbPromise;
 
   // TODO 3.2 - create an object store
 
