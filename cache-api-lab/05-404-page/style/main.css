@@ -31,18 +31,6 @@ limitations under the License.
   text-align: right;
 }
 
-[class*="zocial-"]:before {
-  color: black;
-  display: inline-block;
-  font-family: 'zocial', sans-serif;
-  text-shadow: 3px 3px 3px #aaa;
-  width: 2em;
-}
-
-a:hover [class*="zocial-"]:before {
-  color: #3d85c6;
-}
-
 a {
   color: #4183C4;
   font-weight: 300;
