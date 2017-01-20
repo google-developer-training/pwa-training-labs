@@ -18,7 +18,7 @@ limitations under the License.
   'use strict';
 
   var filesToCache = [
-    '/',
+    '.',
     'style/main.css',
     'index.html',
     'pages/offline.html',
