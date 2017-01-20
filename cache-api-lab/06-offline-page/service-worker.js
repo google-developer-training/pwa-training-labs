@@ -20,6 +20,11 @@ limitations under the License.
   var filesToCache = [
     '.',
     'style/main.css',
+    'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700',
+    'images/still_life-1600_large_2x.jpg',
+    'images/still_life-800_large_1x.jpg',
+    'images/still_life_small.jpg',
+    'images/still_life_medium.jpg',
     'index.html',
     'pages/offline.html',
     'pages/404.html'
