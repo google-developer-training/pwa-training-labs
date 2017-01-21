@@ -52,6 +52,9 @@ limitations under the License.
         }
         console.log('Network request for ', event.request.url);
         return fetch(event.request).then(function(response) {
+          if (response.status === 404) {
+            return caches.match('pages/404.html');
+          }
           return caches.open(staticCacheName).then(function(cache) {
             if (event.request.url.indexOf('test') < 0) {
               cache.put(event.request.url, response.clone());
