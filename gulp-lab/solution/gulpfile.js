@@ -30,7 +30,7 @@ gulp.task('serve', ['processCSS', 'minify'], function() {
     server: '.',
     port: 3000
   });
-  gulp.watch('styles/*.css', ['processCSS']);
-  gulp.watch('js/*.js', ['minify']);
+  gulp.watch('styles/*.css', ['processCSS']).on('change', browserSync.reload);
+  gulp.watch('js/*.js', ['minify']).on('change', browserSync.reload);
   gulp.watch('*.html').on('change', browserSync.reload);
 });
