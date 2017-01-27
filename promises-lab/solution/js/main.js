@@ -59,12 +59,7 @@ var app = (function() {
 
   function allFlags(promiseList) {
     return Promise.all(promiseList)
-    .then(function(values) {
-      return values;
-    })
-    .catch(function(err) {
-      return false;
-    });
+    .catch(returnFalse);
   }
 
   var promises = [
