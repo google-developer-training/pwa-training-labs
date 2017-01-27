@@ -32,8 +32,8 @@ gulp.task('service-worker', function(callback) {
       paths.src + 'css/main.css',
     ],
     importScripts: [
-      paths.src + 'node_modules/sw-toolbox/sw-toolbox.js',
-      paths.src + 'js/toolbox-script.js'
+      'node_modules/sw-toolbox/sw-toolbox.js',
+      'js/toolbox-script.js'
     ],
     stripPrefix: paths.src
   }, callback);
