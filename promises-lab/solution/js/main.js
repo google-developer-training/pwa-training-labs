@@ -24,7 +24,7 @@ var app = (function() {
         if (country === 'spain' || country === 'chile' || country === 'peru') {
           resolve(country + '.png');
         } else {
-          reject(Error('Didn\'t recieve a valid country name!'));
+          reject(Error('Didn\'t receive a valid country name!'));
         }
       }, 1000);
     });
