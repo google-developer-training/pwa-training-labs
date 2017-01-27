@@ -16,10 +16,10 @@ limitations under the License.
 (function() {
   'use strict';
 
-  var future = 2001;
+  var future = 'now';
 
   function hal() {
-    console.log('I\'m sorry Dave, I\'m afraid I can\'t do that.');
+    console.log('Hello, world!');
   }
 
   if (future) {

@@ -14,13 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-.box-container {
+.block-container {
   display: flex;
 }
 
-.box {
+.block {
   width: 200px;
   height: 300px;
   margin: 15px;
-  background-color: black;
+  background-color: blue;
 }
