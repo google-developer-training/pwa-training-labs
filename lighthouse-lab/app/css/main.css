@@ -15,13 +15,12 @@ limitations under the License.
 */
 
 a {
-  color: #4183C4;
+  color: #3f51b5;
   font-weight: 300;
   text-decoration: none;
 }
 
 a:hover {
-  color: #3d85c6;
   text-decoration: underline;
 }
 
