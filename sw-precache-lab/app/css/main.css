@@ -13,26 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-[class*="zocial-"]:before {
-  color: black;
-  display: inline-block;
-  font-family: 'zocial', sans-serif;
-  text-shadow: 3px 3px 3px #aaa;
-  width: 2em;
-}
-
-a:hover [class*="zocial-"]:before {
-  color: #3d85c6;
-}
-
 a {
-  color: #4183C4;
+  color: #3f51b5;
   font-weight: 300;
   text-decoration: none;
 }
 
 a:hover {
-  color: #3d85c6;
   text-decoration: underline;
 }
 
