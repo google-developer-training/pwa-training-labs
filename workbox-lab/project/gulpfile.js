@@ -40,7 +40,7 @@ gulp.task('default', ['clean'], cb => {
 gulp.task('serve', ['default'], () => {
   browserSync.init({
     server: 'build',
-    port: 8000
+    port: 8002
   });
   gulp.watch('app/*', ['default']).on('change', browserSync.reload);
 });
