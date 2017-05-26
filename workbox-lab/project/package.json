@@ -7,9 +7,7 @@
     "browser-sync": "^2.18.12",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
-    "run-sequence": "^1.2.2",
-    "workbox-build": "^1.0.0",
-    "workbox-sw": "^1.0.0"
+    "run-sequence": "^1.2.2"
   },
   "devDependencies": {},
   "scripts": {
