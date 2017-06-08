@@ -26,7 +26,7 @@ gulp.task('clean', () => del(['.tmp', 'build/*', '!build/.git'], {dot: true}));
 gulp.task('copy', () =>
   gulp.src([
     'app/**/*',
-    'node_modules/workbox-sw/build/importScripts/workbox-sw.prod.v1.0.0.js'
+    'node_modules/workbox-sw/build/importScripts/workbox-sw.prod*.js'
   ]).pipe(gulp.dest('build'))
 );
 
