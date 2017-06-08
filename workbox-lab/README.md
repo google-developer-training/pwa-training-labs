@@ -1,13 +1,10 @@
-# sw-precache and sw-toolbox
+# Workbox
 
-In this lab you learn how to use sw-precache and sw-toolbox to automate creating service workers.
+In this lab you learn how to use the Workbox suite.
 
 ## Getting started
 
-Clone the repository and navigate to **sw-precache-lab/app**.
-
-Start a local web server at the app base directory. Then, open your browser and
-navigate to the appropriate local host port (for example, http://localhost:8080/).
+Clone the repository and navigate to **workbox-lab/app**.
 
 [Download and install Node.js](https://nodejs.org/en/download/).
 
