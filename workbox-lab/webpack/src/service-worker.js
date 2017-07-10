@@ -1,4 +1,4 @@
-importScripts('workbox-sw.prod.v1.0.1.js');
+importScripts('workbox-sw.prod.v1.0.0.js');
 
 const workboxSW = new WorkboxSW();
 workboxSW.precache([]);
