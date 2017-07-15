@@ -68,7 +68,7 @@ limitations under the License. -->
         done();
       })
       .catch((error) => {
-        assert.ok(~error.message.indexOf('File not found'),
+        assert.ok(error.message && error.message.indexOf('File not found') != -1,
           'bad responses throw error that contains response.statusText');
         done();
       });
