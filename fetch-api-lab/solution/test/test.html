@@ -64,7 +64,7 @@ limitations under the License. -->
       .then(app.validateResponse)
       // A bad response doesn't throw an error
       .then((response) => {
-        assert.okay(false, 'bad responses throw errors');
+        assert.ok(false, 'bad responses throw errors');
         done();
       })
       .catch((error) => {
