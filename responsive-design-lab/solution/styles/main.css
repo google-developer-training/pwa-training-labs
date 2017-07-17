@@ -1,21 +1,21 @@
-.container {
+.no-flexbox .container {
   background: #eee;
   overflow: auto;
 }
 
-.container .col {
+.no-flexbox .container .col {
     width: 27%;
     padding: 30px 3.15% 0;
     float: left;
 }
 
 @media screen and (max-width: 48rem) {
-  .container .col {
+  .no-flexbox .container .col {
     width: 95%;
   }
 }
 
-.container {
+.flexbox .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -23,25 +23,25 @@
   overflow: auto;
 }
 
-.container .col {
+.flexbox .container .col {
   flex: 1;
   padding: 1rem;
 }
 
-.container .col:nth-child(1) {
+.flexbox .container .col:nth-child(1) {
     flex: 1;
 }
 
-.container .col:nth-child(2) {
+.flexbox .container .col:nth-child(2) {
     flex: 1;
 }
 
-.container .col:nth-child(3) {
+.flexbox .container .col:nth-child(3) {
    flex: 1.5;
 }
 
 @media screen and (max-width: 48rem) {
-    .container {
+    .flexbox .container {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
