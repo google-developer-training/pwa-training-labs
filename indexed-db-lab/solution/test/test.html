@@ -28,48 +28,11 @@ limitations under the License.
   <div id="receipt" style="display: none;"></div>
   <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
   <script>
-    function promisifyRequest(request) {
-      return new Promise(function(resolve, reject) {
-        request.onsuccess = function() {
-          resolve(request.result);
-        };
-
-        request.onerror = function() {
-          reject(request.error);
-        };
-      });
-    }
-
-    checkDb();
-
-    function checkDb() {
-      var dbExists = false;
-      // Webkit only works in Chrome
-      return promisifyRequest(indexedDB.webkitGetDatabaseNames())
-      .then(function(dbNames) {
-        for (name in dbNames) {
-          if (dbNames[name] == 'couches-n-things') {
-            dbExists = true;
-            break;
-          }
-        }
-        return dbExists;
-      }).catch(function() {
-        console.log('Browser doesn\'t support webkitGetDatabaseNames().' +
-        'Use Chrome');
-      });
-    }
-
     function checkOs(objectStore) {
       var osExists = false;
-      return checkDb().then(function(dbExists) {
-        if (dbExists) {
-          return idb.open('couches-n-things').then(function(db) {
-            if (db.objectStoreNames.contains(objectStore)) {
-              osExists = true;
-            }
-            return osExists;
-          });
+      return idb.open('couches-n-things').then(function(db) {
+        if (db.objectStoreNames.contains(objectStore)) {
+          osExists = true;
         }
         return osExists;
       });
@@ -77,36 +40,23 @@ limitations under the License.
 
     function checkIndex(objectStore, indexName) {
       var indexExists = false;
-      return checkDb().then(function(dbExists) {
-        if (dbExists) {
-          return idb.open('couches-n-things').then(function(db) {
-            if (db.objectStoreNames.contains(objectStore)) {
-              var tx = db.transaction(objectStore);
-              var productsOS = tx.objectStore(objectStore);
-              return productsOS.indexNames;
-            }
-            return [];
-          }).then(function(indexes) {
-            for (index in indexes) {
-              if (indexes[index] == indexName) {
-                indexExists = true;
-                break;
-              }
-            }
-            return indexExists;
-          });
+      return idb.open('couches-n-things').then(function(db) {
+        if (db.objectStoreNames.contains(objectStore)) {
+          var tx = db.transaction(objectStore);
+          var productsOS = tx.objectStore(objectStore);
+          return productsOS.indexNames;
+        }
+        return [];
+      }).then(function(indexes) {
+        for (index in indexes) {
+          if (indexes[index] == indexName) {
+            indexExists = true;
+            break;
+          }
         }
         return indexExists;
       });
     }
-
-    QUnit.test('Was couches-n-things database created?', function(assert) {
-      var done = assert.async();
-      checkDb().then(function(dbExists) {
-        assert.ok(dbExists, 'couches-n-things database exists');
-        done();
-      });
-    });
 
     QUnit.test('Was products object store created?', function(assert) {
       var done = assert.async();
@@ -119,20 +69,16 @@ limitations under the License.
     QUnit.test('Are the sample objects in the store?', function(assert) {
       var done = assert.async();
       var bProds = false;
-      checkDb().then(function(dbExists) {
-        if (dbExists) {
-          return idb.open('couches-n-things').then(function(db) {
-            if (db.objectStoreNames.contains('products')) {
-              var tx = db.transaction('products');
-              var productsOS = tx.objectStore('products');
-              return productsOS.getAll();
-            }
-            return [];
-          }).then(function(arrProducts) {
-            if (arrProducts.length > 0) {
-              bProds = true;
-            }
-          });
+      idb.open('couches-n-things').then(function(db) {
+        if (db.objectStoreNames.contains('products')) {
+          var tx = db.transaction('products');
+          var productsOS = tx.objectStore('products');
+          return productsOS.getAll();
+        }
+        return [];
+      }).then(function(arrProducts) {
+        if (arrProducts.length > 0) {
+          bProds = true;
         }
       }).then(function() {
         assert.ok(bProds, 'Products exist in the store');
@@ -156,38 +102,31 @@ limitations under the License.
 
     QUnit.test('Does getByName return a database object?', function(assert) {
       var done = assert.async();
-      checkDb().then(function(dbExists) {
-        if (dbExists) {
-          checkOs('products').then(function(osExists) {
-            if (osExists) {
-              checkIndex('products', 'name').then(function(indexExists) {
-                if (indexExists) {
-                  if (idbApp.getByName('Chair')) {
-                    idbApp.getByName('Chair').then(function(object) {
-                      if (object) {
-                        assert.ok(true, 'getByName works');
-                        done();
-                      } else {
-                        assert.ok(false, 'getByName not working');
-                        done();
-                      }
-                    });
+      checkOs('products').then(function(osExists) {
+        if (osExists) {
+          checkIndex('products', 'name').then(function(indexExists) {
+            if (indexExists) {
+              if (idbApp.getByName('Chair')) {
+                idbApp.getByName('Chair').then(function(object) {
+                  if (object) {
+                    assert.ok(true, 'getByName works');
+                    done();
                   } else {
-                    assert.ok(false, 'getByName function empty');
+                    assert.ok(false, 'getByName not working');
                     done();
                   }
-                } else {
-                  assert.ok(false, 'name index does not exist');
-                  done();
-                }
-              });
+                });
+              } else {
+                assert.ok(false, 'getByName function empty');
+                done();
+              }
             } else {
-              assert.ok(false, 'products objects store does not exist');
+              assert.ok(false, 'name index does not exist');
               done();
             }
           });
         } else {
-          assert.ok(false, 'couches-n-things database does not exist');
+          assert.ok(false, 'products objects store does not exist');
           done();
         }
       });
@@ -204,57 +143,43 @@ limitations under the License.
     QUnit.test('Are the orders in the store?', function(assert) {
       var done = assert.async();
       var bProds = false;
-      checkDb().then(function(dbExists) {
-        if (dbExists) {
-          return idb.open('couches-n-things').then(function(db) {
-            if (db.objectStoreNames.contains('orders')) {
-              var tx = db.transaction('orders');
-              var productsOS = tx.objectStore('orders');
-              return productsOS.getAll();
-            }
-            return [];
-          }).then(function(arrProducts) {
-            if (arrProducts.length > 0) {
-              bProds = true;
-            }
-          }).then(function() {
-            assert.ok(bProds, 'Orders exist in the store');
-            done();
-          });
-        } else {
-          assert.ok(false, 'couches-n-things database does not exist');
-          done();
+      idb.open('couches-n-things').then(function(db) {
+        if (db.objectStoreNames.contains('orders')) {
+          var tx = db.transaction('orders');
+          var productsOS = tx.objectStore('orders');
+          return productsOS.getAll();
         }
+        return [];
+      }).then(function(arrProducts) {
+        if (arrProducts.length > 0) {
+          bProds = true;
+        }
+      }).then(function() {
+        assert.ok(bProds, 'Orders exist in the store');
+        done();
       });
     });
 
     QUnit.test('Does getOrders return database objects?', function(assert) {
       var done = assert.async();
-      checkDb().then(function(dbExists) {
-        if (dbExists) {
-          checkOs('orders').then(function(osExists) {
-            if (osExists) {
-              if (idbApp.getOrders()) {
-                idbApp.getOrders().then(function(orders) {
-                  if (orders.length > 0) {
-                    assert.ok(true, 'getByName function working');
-                    done();
-                  } else {
-                    assert.ok(false, 'getByName returning empty array');
-                    done();
-                  }
-                });
+      checkOs('orders').then(function(osExists) {
+        if (osExists) {
+          if (idbApp.getOrders()) {
+            idbApp.getOrders().then(function(orders) {
+              if (orders.length > 0) {
+                assert.ok(true, 'getByName function working');
+                done();
               } else {
-                assert.ok(false, 'getByName not returning anything');
+                assert.ok(false, 'getByName returning empty array');
                 done();
               }
-            } else {
-              assert.ok(false, 'orders object store does not exist');
-              done();
-            }
-          });
+            });
+          } else {
+            assert.ok(false, 'getByName not returning anything');
+            done();
+          }
         } else {
-          assert.ok(false, 'couches-n-things database does not exist');
+          assert.ok(false, 'orders object store does not exist');
           done();
         }
       });
@@ -275,25 +200,19 @@ limitations under the License.
     });
 
     function addTestObjects() {
-      return checkDb().then(function(dbExists) {
-        if (dbExists) {
-          return checkOs('products').then(function(osExists) {
-            if (osExists) {
-              return idbApp.dbPromise.then(function(db) {
-                var tx = db.transaction('products', 'readwrite');
-                var store = tx.objectStore('products');
-                var items = [
-                  {id: 'test1', quantity: 4},
-                  {id: 'test2', quantity: 3}
-                ];
-                items.forEach(function(item) {
-                  store.add(item);
-                });
-                return tx.complete;
-              });
-            } else {
-              return false;
-            }
+      return checkOs('products').then(function(osExists) {
+        if (osExists) {
+          return idbApp.dbPromise.then(function(db) {
+            var tx = db.transaction('products', 'readwrite');
+            var store = tx.objectStore('products');
+            var items = [
+              {id: 'test1', quantity: 4},
+              {id: 'test2', quantity: 3}
+            ];
+            items.forEach(function(item) {
+              store.add(item);
+            });
+            return tx.complete;
           });
         } else {
           return false;
