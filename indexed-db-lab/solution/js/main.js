@@ -105,13 +105,26 @@ var idbApp = (function() {
       ];
       items.forEach(function(item) {
         console.log('Adding item: ', item);
-        store.add(item);
+        !getByKey(item.key).then(function(object) {
+            store.add(item);
+        }).catch(function(){
+            console.log('Product: ' + item.name + 'with key' + item.key + 'was added before');
+        });
       });
       return tx.complete;
     }).then(function() {
       console.log('All items added successfully!');
     }).catch(function(e) {
       console.log('Error adding items: ', e);
+    });
+  }
+
+  function getByKey(key) {
+    return dbPromise.then(function(db) {
+      var tx = db.transaction('products', 'readonly');
+      var store = tx.objectStore('products');
+      var index = store.index('key');
+      return index.get(key);
     });
   }
 
