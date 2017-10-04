@@ -24,7 +24,9 @@ var idbApp = (function() {
   var dbPromise = idb.open('couches-n-things', 4, function(upgradeDb) {
     switch (upgradeDb.oldVersion) {
       case 0:
-        // a placeholder case so that the switch block will execute when the database is first created (oldVersion is 0)
+        // a placeholder case so that the switch block will
+        // execute when the database is first created
+        // (oldVersion is 0)
       case 1:
         console.log('Creating the products object store');
         upgradeDb.createObjectStore('products', {keyPath: 'id'});
@@ -33,17 +35,18 @@ var idbApp = (function() {
         var store = upgradeDb.transaction.objectStore('products');
         store.createIndex('name', 'name', {unique: true});
       case 3:
-        console.log('Creating a price and description index');
+        console.log('Creating description and price indexes');
         var store = upgradeDb.transaction.objectStore('products');
         store.createIndex('price', 'price');
         store.createIndex('description', 'description');
 
-      // TODO 5.1 - create an ‘orders’ object store
+      // TODO 5.1 - create an 'orders' object store
 
     }
   });
 
   function addProducts() {
+
     dbPromise.then(function(db) {
       var tx = db.transaction('products', 'readwrite');
       var store = tx.objectStore('products');
@@ -103,16 +106,18 @@ var idbApp = (function() {
           quantity: 11
         }
       ];
-      items.forEach(function(item) {
-        console.log('Adding item: ', item);
-        store.add(item);
+      return Promise.all(items.map(function(item) {
+          console.log('Adding item: ', item);
+          return store.add(item);
+        })
+      ).catch(function(e) {
+        tx.abort();
+        console.log(e);
+      }).then(function() {
+        console.log('All items added successfully!');
       });
-      return tx.complete;
-    }).then(function() {
-      console.log('All items added successfully!');
-    }).catch(function(e) {
-      console.log('Error adding items: ', e);
     });
+
   }
 
   function getByName(key) {
@@ -192,13 +197,11 @@ var idbApp = (function() {
     }).then(function showRange(cursor) {
       if (!cursor) {return;}
       console.log('Cursored at:', cursor.value.name);
-
-      s += '<h2>Description - ' + cursor.value.description + '</h2><p>';
+      s += '<h2>Price - ' + cursor.value.price + '</h2><p>';
       for (var field in cursor.value) {
         s += field + '=' + cursor.value[field] + '<br/>';
       }
       s += '</p>';
-
       return cursor.continue().then(showRange);
     }).then(function() {
       if (s === '') {s = '<p>No results.</p>';}
@@ -235,8 +238,6 @@ var idbApp = (function() {
       return processOrders(orders);
     }).then(function(updatedProducts) {
       updateProductsStore(updatedProducts);
-    }).catch(function(e) {
-      console.log(e);
     });
   }
 

@@ -20,8 +20,6 @@ var idbApp = (function() {
 
   var dbPromise;
 
-  // TODO 3.2 - create an object store
-
   function addProducts() {
 
     // TODO 3.3 - add objects to the products store
