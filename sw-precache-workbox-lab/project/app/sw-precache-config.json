@@ -1,0 +1,10 @@
+ {
+  "staticFileGlobs": [
+	  "index.html",
+    "css/main.css"
+  ],
+  "importScripts": [
+    "node_modules/sw-toolbox/sw-toolbox.js",
+    "js/toolbox-script.js"
+  ]
+}
