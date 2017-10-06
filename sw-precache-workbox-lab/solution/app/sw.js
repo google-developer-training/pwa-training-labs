@@ -13,7 +13,6 @@ workboxSW.router.registerRoute('https://fonts.googleapis.com/(.*)',
   })
 );
 
-// We want no more than 50 images in the cache. We check using a cache first strategy
 workboxSW.router.registerRoute(/\.(?:png|gif|jpg)$/,
   workboxSW.strategies.cacheFirst({
     cacheName: 'images-cache',

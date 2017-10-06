@@ -13,23 +13,20 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-(function(global) {
-  'use strict';
 
-  // The route for any requests from the googleapis origin
-  global.toolbox.router.get('/(.*)', global.toolbox.cacheFirst, {
-    cache: {
-      name: 'googleapis',
-      maxEntries: 20,
-    },
-    origin: /\.googleapis\.com$/
-  });
+// The route for any requests from the googleapis origin
+toolbox.router.get('/(.*)', toolbox.cacheFirst, {
+  cache: {
+    name: 'googleapis',
+    maxEntries: 20,
+  },
+  origin: /\.googleapis\.com$/
+});
 
-  // We want no more than 50 images in the cache. We check using a cache first strategy
-  global.toolbox.router.get(/\.(?:png|gif|jpg)$/, global.toolbox.cacheFirst, {
-    cache: {
-      name: 'images-cache',
-      maxEntries: 50
-    }
-  });
-})(self);
+// We want no more than 50 images in the cache. We check using a cache first strategy
+toolbox.router.get(/\.(?:png|gif|jpg)$/, toolbox.cacheFirst, {
+  cache: {
+    name: 'images-cache',
+    maxEntries: 50
+  }
+});
