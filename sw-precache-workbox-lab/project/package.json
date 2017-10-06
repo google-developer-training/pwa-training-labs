@@ -4,14 +4,14 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-    "sw-precache": "^4.3.0",
     "sw-toolbox": "^3.6.0"
   },
   "devDependencies": {
     "browser-sync": "^2.18.13",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
-    "run-sequence": "^2.2.0"
+    "run-sequence": "^2.2.0",
+    "sw-precache": "^4.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
