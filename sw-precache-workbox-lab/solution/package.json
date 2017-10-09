@@ -4,7 +4,7 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-    "workbox-sw": "^2.0.0"
+    "workbox-sw": "^2.1.0"
   },
   "devDependencies": {
     "browser-sync": "^2.18.13",
