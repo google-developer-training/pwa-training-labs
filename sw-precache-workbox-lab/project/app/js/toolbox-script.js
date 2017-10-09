@@ -26,7 +26,7 @@ toolbox.router.get('/(.*)', toolbox.cacheFirst, {
 // We want no more than 50 images in the cache. We check using a cache first strategy
 toolbox.router.get(/\.(?:png|gif|jpg)$/, toolbox.cacheFirst, {
   cache: {
-    name: 'images-cache',
+    name: 'images',
     maxEntries: 50
   }
 });
