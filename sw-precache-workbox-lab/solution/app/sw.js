@@ -15,7 +15,7 @@ workboxSW.router.registerRoute('https://fonts.googleapis.com/(.*)',
 
 workboxSW.router.registerRoute(/\.(?:png|gif|jpg)$/,
   workboxSW.strategies.cacheFirst({
-    cacheName: 'images-cache',
+    cacheName: 'images',
     cacheExpiration: {
       maxEntries: 50
     }
