@@ -1,14 +1,11 @@
-# sw-precache/toolbox to Workbox
+# Migrating to Workbox from sw-precache and sw-toolbox
 
-In this lab you learn how to cpnvert a site using sw-precache and sw-toolbox to
-to one that uses Workbox.
+This lab shows you how to take an existing PWA that uses sw-precache and
+sw-toolbox and migrate it to Workbox to create optimal service worker code.
 
 ## Getting started
 
-Clone the repository and navigate to **sw-precache-workbox-lab/app**.
-
-Start a local web server at the app base directory. Then, open your browser and
-navigate to the appropriate local host port (for example, http://localhost:8080/).
+Clone the repository and navigate to **sw-precache-workbox-lab/project**.
 
 [Download and install Node.js](https://nodejs.org/en/download/).
 
@@ -18,7 +15,7 @@ Some contents from Responsive Blog Sample - Copyright Sam Dutton 2016
 
 ## License
 
-Copyright 2017 Google Inc.
+Copyright 2016 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
