@@ -1,13 +1,11 @@
-# sw-precache and sw-toolbox
+# Migrating to Workbox from sw-precache and sw-toolbox
 
-In this lab you learn how to use sw-precache and sw-toolbox to automate creating service workers.
+This lab shows you how to take an existing PWA that uses sw-precache and
+sw-toolbox and migrate it to Workbox to create optimal service worker code.
 
 ## Getting started
 
-Clone the repository and navigate to **sw-precache-lab/app**.
-
-Start a local web server at the app base directory. Then, open your browser and
-navigate to the appropriate local host port (for example, http://localhost:8080/).
+Clone the repository and navigate to **sw-precache-workbox-lab/project**.
 
 [Download and install Node.js](https://nodejs.org/en/download/).
 
