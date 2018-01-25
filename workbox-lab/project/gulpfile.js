@@ -20,13 +20,15 @@ const browserSync = require('browser-sync');
 const del = require('del');
 const runSequence = require('run-sequence');
 
+// TODO - re-add line to copy workbox-sw modules from node_modules in copy task
+
 // Clean output directory
 gulp.task('clean', () => del(['.tmp', 'build/*', '!build/.git'], {dot: true}));
 
 gulp.task('copy', () =>
   gulp.src([
     'app/**/*',
-    'node_modules/workbox-sw/build/importScripts/workbox-sw.prod*.js'
+    // 'node_modules/workbox-sw/build/importScripts/workbox-sw.prod*.js'
   ]).pipe(gulp.dest('build'))
 );
 
