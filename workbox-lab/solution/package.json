@@ -4,14 +4,15 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
+    "workbox-sw": "^2.0.0"
+  },
+  "devDependencies": {
     "browser-sync": "^2.18.12",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "run-sequence": "^1.2.2",
-    "workbox-build": "^2.0.0",
-    "workbox-sw": "^2.0.0"
+    "workbox-build": "^3.0.0-alpha.6"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -21,10 +21,6 @@ limitations under the License.
   width: 2em;
 }
 
-a:hover [class*="zocial-"]:before {
-  color: #3d85c6;
-}
-
 a {
   color: #4183C4;
   font-weight: 300;
@@ -36,24 +32,12 @@ a:hover {
   text-decoration: underline;
 }
 
-a#viewSource {
-  border-top: 1px solid #ddd;
-  display: block;
-  margin: 1.3em 0 0 0;
-  padding: 1em 0 0 0;
-}
-
 div#social a {
   margin: 0 1em 0 0;
 }
 
 div#social a:last-of-type {
   margin: 0;
-}
-
-h1 a {
-  font-weight: 300;
-  white-space: nowrap;
 }
 
 article {
@@ -100,10 +84,6 @@ h1 {
   margin: 0 0 1em 0;
 }
 
-header:hover h1 {
-  color: #3d85c6;
-}
-
 h2 {
   border-bottom: 1px solid #ddd;
   color: #bb021e;
@@ -131,11 +111,6 @@ p {
   line-height: 1.6em;
   margin: 0 auto 1em auto;
   text-align: justify;
-}
-
-p.borderBelow {
-  border-bottom: 1px solid #eee;
-  padding: 0 0 1em 0;
 }
 
 section p:last-of-type {
