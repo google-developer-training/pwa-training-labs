@@ -31,19 +31,21 @@ limitations under the License.
     return;
   }
 
-  // Request notification permission
-  Notification.requestPermission(function(status) {
-    console.log('Notification permission status:', status);
-  });
+  window.addEventListener('load', function() {
+    // Register service worker
+    navigator.serviceWorker.register('sw.js')
+      .then(function(reg) {
+        console.log('Service Worker Registered!', reg);
+      })
+      .catch(function(err) {
+        console.log('Service Worker registration failed: ', err);
+      });
 
-  // Register service worker
-  navigator.serviceWorker.register('sw.js')
-  .then(function(reg) {
-    console.log('Service Worker Registered!', reg);
-  })
-  .catch(function(err) {
-    console.log('Service Worker registration failed: ', err);
-  });
+    // Request notification permission
+    Notification.requestPermission(function(status) {
+      console.log('Notification permission status:', status);
+    });
+  });
 
   // Send custom analytics event
 
