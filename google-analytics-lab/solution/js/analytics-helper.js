@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Set this to your tracking ID
-var trackingId = 'UA-XXXXXXXX-Y';
+// Set this to your tracking ID: UA-XXXXXXXX-Y
+var trackingId = 'UA-114028926-1';
 
 function sendAnalyticsEvent(eventAction, eventCategory) {
   'use strict';

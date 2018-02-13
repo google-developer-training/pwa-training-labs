@@ -31,35 +31,34 @@ limitations under the License.
     return;
   }
 
-  window.addEventListener('load', function() {
-      // Register service worker
-      navigator.serviceWorker.register('sw.js')
-        .then(function(reg) {
-          console.log('Service Worker Registered!', reg);
-        })
-        .catch(function(err) {
-          console.log('Service Worker registration failed: ', err);
-        });
-
-      // Request notification permission
-      Notification.requestPermission(function(status) {
-        console.log('Notification permission status:', status);
+  window.addEventListener('load', function() {
+    // Register service worker
+    navigator.serviceWorker.register('sw.js')
+      .then(function(reg) {
+        console.log('Service Worker Registered!', reg);
+      })
+      .catch(function(err) {
+        console.log('Service Worker registration failed: ', err);
       });
-    });
+
+    // Request notification permission
+    Notification.requestPermission(function(status) {
+      console.log('Notification permission status:', status);
+    });
+  });
 
   // Send custom analytics event
 
+  // TODO RENAME
+
+  const markPurchase = () => {
+    gtag('event', 'favorite', {
+      'event_category': 'photos',
+      'event_label': 'cats'
+    });
+  };
   var purchaseButton = document.getElementById('purchase');
   purchaseButton.onclick = markPurchase;
-
-  function markPurchase() {
-    ga('send', {
-      hitType: 'event',
-      eventCategory: 'products',
-      eventAction: 'purchase',
-      eventLabel: 'Summer products launch'
-    });
-  }
 
   // Subscribe functionality
 
@@ -75,15 +74,24 @@ limitations under the License.
           reg.pushManager.subscribe({userVisibleOnly: true})
           .then(function(subscription) {
             console.log('Subscribed to push,', subscription);
-            ga('send', 'event', 'push', 'subscribe', 'success');
+            gtag('event', 'subscribe', {
+              'event_category': 'push',
+              'event_label': 'cat updates'
+            });
           })
           .catch(function(error) {
             if (Notification.permission === 'denied') {
               console.warn('Subscribe failed, notifications are blocked');
-              ga('send', 'event', 'push', 'subscribe-err', 'blocked');
+              gtag('event', 'subscribe_blocked', {
+                'event_category': 'push',
+                'event_label': 'cat updates'
+              });
             } else {
               console.error('Unable to subscribe to push', error);
-              ga('send', 'event', 'push', 'subscribe-err');
+              gtag('event', 'subscribe_error', {
+                'event_category': 'push',
+                'event_label': 'cat updates'
+              });
             }
           });
         } else {
@@ -109,7 +117,10 @@ limitations under the License.
           sub.unsubscribe()
           .then(function() {
             console.log('Unsubscribed!');
-            ga('send', 'event', 'push', 'unsubscribe', 'success');
+            gtag('event', 'unsubscribe', {
+              'event_category': 'push',
+              'event_label': 'cat updates'
+            });
           });
         } else {
           console.log('Not currently subscribed');
@@ -118,21 +129,11 @@ limitations under the License.
     })
     .catch(function(error) {
       console.warn('Error unsubscribing', error);
-      ga('send', 'event', 'push', 'unsubscribe-err');
+      gtag('event', 'unsubscribe_error', {
+        'event_category': 'push',
+        'event_label': 'cat updates'
+      });
     });
   }
-
-  // Optional - Use hitCallback to send a hit
-  var link = document.getElementById('external');
-  link.addEventListener('click', function(event) {
-    event.preventDefault();
-    function navigate() {
-      window.location.href = event.target.href;
-    }
-    setTimeout(navigate, 1000);
-    ga('send', 'event', 'outbound', 'sponsor1', {
-      hitCallback: navigate
-    });
-  });
 
 })();

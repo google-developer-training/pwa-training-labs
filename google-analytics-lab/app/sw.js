@@ -14,46 +14,42 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// TODO 8.2a - Import the helper script
+// TODO Import the helper script
 
-// TODO 9 - Add offline analytics script
+// TODO Add offline analytics script
 
-(function() {
-  'use strict';
+self.addEventListener('notificationclose', function(e) {
+  var notification = e.notification;
+  var primaryKey = notification.data.primaryKey;
+  console.log('Closed notification: ' + primaryKey);
+  // TODO Send notification close event
+});
 
-  self.addEventListener('notificationclose', function(e) {
-    var notification = e.notification;
-    var primaryKey = notification.data.primaryKey;
-    console.log('Closed notification: ' + primaryKey);
-    // TODO 8.2b - Notification close event
-  });
+self.addEventListener('notificationclick', function(e) {
+  var notification = e.notification;
+  var primaryKey = notification.data.primaryKey;
+  notification.close();
+  e.waitUntil(
+    Promise.all([
+      clients.openWindow('pages/page' + primaryKey + '.html'),
+      // TODO Send notification click event
+    ])
+  );
+});
 
-  self.addEventListener('notificationclick', function(e) {
-    var notification = e.notification;
-    var primaryKey = notification.data.primaryKey;
-    notification.close();
-    e.waitUntil(
-      Promise.all([
-        clients.openWindow('pages/page' + primaryKey + '.html'),
-        // TODO 8.2c - Notification click event
-      ])
-    );
-  });
-
-  self.addEventListener('push', function(e) {
-    var options = {
-      body: 'This notification was generated from a push!',
-      icon: 'images/notification-flat.png',
-      vibrate: [100, 50, 100],
-      data: {
-        dateOfArrival: Date.now(),
-        primaryKey: '-push-notification'
-      }
-    };
-    e.waitUntil(Promise.all([
-        self.registration.showNotification('Hello world!', options),
-        // TODO 8.2d - Push recieved event
-      ])
-    );
-  });
-})();
+self.addEventListener('push', function(e) {
+  var options = {
+    body: 'This notification was generated from a push!',
+    icon: 'images/notification-flat.png',
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: '-push-notification'
+    }
+  };
+  e.waitUntil(Promise.all([
+      self.registration.showNotification('Hello world!', options),
+      // TODO Send push recieved event
+    ])
+  );
+});

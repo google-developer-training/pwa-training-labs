@@ -31,30 +31,29 @@ limitations under the License.
     return;
   }
 
-  window.addEventListener('load', function() {
-    // Register service worker
-    navigator.serviceWorker.register('sw.js')
-      .then(function(reg) {
-        console.log('Service Worker Registered!', reg);
-      })
-      .catch(function(err) {
-        console.log('Service Worker registration failed: ', err);
-      });
+  window.addEventListener('load', function() {
+      // Register service worker
+      navigator.serviceWorker.register('sw.js')
+        .then(function(reg) {
+          console.log('Service Worker Registered!', reg);
+        })
+        .catch(function(err) {
+          console.log('Service Worker registration failed: ', err);
+        });
 
-    // Request notification permission
-    Notification.requestPermission(function(status) {
-      console.log('Notification permission status:', status);
-    });
-  });
+      // Request notification permission
+      Notification.requestPermission(function(status) {
+        console.log('Notification permission status:', status);
+      });
+    });
 
   // Send custom analytics event
 
+  const markPurchase = () => {
+    // TODO Send a custom event
+  };
   var purchaseButton = document.getElementById('purchase');
   purchaseButton.onclick = markPurchase;
-
-  function markPurchase() {
-    // TODO 6: Send a custom event
-  }
 
   // Subscribe functionality
 
@@ -70,7 +69,7 @@ limitations under the License.
           reg.pushManager.subscribe({userVisibleOnly: true})
           .then(function(subscription) {
             console.log('Subscribed to push,', subscription);
-            // TODO 7.2a - Subscribe event
+            // TODO Send subscribe event
           })
           .catch(function(error) {
             if (Notification.permission === 'denied') {
@@ -104,7 +103,7 @@ limitations under the License.
           sub.unsubscribe()
           .then(function() {
             console.log('Unsubscribed!');
-            // TODO 7.2b - Unsubscribe event
+            // TODO Send unsubscribe event
           });
         } else {
           console.log('Not currently subscribed');

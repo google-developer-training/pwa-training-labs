@@ -14,6 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// TODO 8.1a - Add you tracking ID
+// TODO Add you tracking ID
 
-// TODO 8.1b - Add the Measurement Protocol helper function
+// TODO Add the Measurement Protocol helper function
