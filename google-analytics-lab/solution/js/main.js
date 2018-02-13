@@ -31,13 +31,13 @@ limitations under the License.
     return;
   }
 
-  window.addEventListener('load', function() {
+  window.addEventListener('load', () => {
     // Register service worker
     navigator.serviceWorker.register('sw.js')
-      .then(function(reg) {
+      .then(reg => {
         console.log('Service Worker Registered!', reg);
       })
-      .catch(function(err) {
+      .catch(err => {
         console.log('Service Worker registration failed: ', err);
       });
 
@@ -51,35 +51,32 @@ limitations under the License.
 
   // TODO RENAME
 
-  const markPurchase = () => {
+  const favorite = () => {
     gtag('event', 'favorite', {
       'event_category': 'photos',
       'event_label': 'cats'
     });
   };
-  var purchaseButton = document.getElementById('purchase');
-  purchaseButton.onclick = markPurchase;
+  const favoriteButton = document.getElementById('favorite');
+  favoriteButton.addEventListener('click', favorite);
 
   // Subscribe functionality
 
-  var subscribeButton = document.getElementById('subscribe');
-  subscribeButton.onclick = subscribe;
-
-  function subscribe() {
+  const subscribe = () => {
     navigator.serviceWorker.ready
-    .then(function(reg) {
+    .then(reg => {
       reg.pushManager.getSubscription()
-      .then(function(sub) {
+      .then(sub => {
         if (!sub) {
           reg.pushManager.subscribe({userVisibleOnly: true})
-          .then(function(subscription) {
+          .then(subscription => {
             console.log('Subscribed to push,', subscription);
             gtag('event', 'subscribe', {
               'event_category': 'push',
               'event_label': 'cat updates'
             });
           })
-          .catch(function(error) {
+          .catch(error => {
             if (Notification.permission === 'denied') {
               console.warn('Subscribe failed, notifications are blocked');
               gtag('event', 'subscribe_blocked', {
@@ -97,25 +94,24 @@ limitations under the License.
         } else {
           console.log('Already subscribed');
         }
-      }).catch(function(error) {
+      }).catch(error => {
         console.log('Cannot access Subscription object', error);
       });
     });
-  }
+  };
+  const subscribeButton = document.getElementById('subscribe');
+  subscribeButton.addEventListener('click', subscribe);
 
   // Unsubscribe functionality
 
-  var unsubscribeButton = document.getElementById('unsubscribe');
-  unsubscribeButton.onclick = unsubscribe;
-
-  function unsubscribe() {
+  const unsubscribe = () => {
     navigator.serviceWorker.ready
-    .then(function(reg) {
+    .then(reg => {
       reg.pushManager.getSubscription()
-      .then(function(sub) {
+      .then(sub => {
         if (sub) {
           sub.unsubscribe()
-          .then(function() {
+          .then(() => {
             console.log('Unsubscribed!');
             gtag('event', 'unsubscribe', {
               'event_category': 'push',
@@ -127,13 +123,15 @@ limitations under the License.
         }
       });
     })
-    .catch(function(error) {
+    .catch(error => {
       console.warn('Error unsubscribing', error);
       gtag('event', 'unsubscribe_error', {
         'event_category': 'push',
         'event_label': 'cat updates'
       });
     });
-  }
+  };
+  const unsubscribeButton = document.getElementById('unsubscribe');
+  unsubscribeButton.addEventListener('click', unsubscribe);
 
 })();
