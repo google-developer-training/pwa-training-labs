@@ -1,30 +1,15 @@
-## Integrating Google Analytics
+## Lab: Integrating Analytics
 
-In this lab you learn how to create a Google Analytics account and integrate Google Analytics into an app. You also learn how to use analytics in service workers and how to use offline analytics.
+In this lab you learn how to create a Google Analytics account and integrate
+Google Analytics into a progressive web app. You also learn how to use analytics
+in service workers and how to use offline analytics.
 
 ## Getting started
 
-Clone the repository and navigate to **google-analytics-lab/app**.
+To get started, check out the instructions in
+[GitBook](https://google-developer-training.gitbooks.io/progressive-web-apps-ilt-codelabs/content/docs/lab_integrating_analytics.html)
+or on [developers.google.com](https://developers.google.com/web/ilt/pwa/lab-integrating-analytics).
 
-Start a local web server at the app base directory. Then, open your browser and
-navigate to the appropriate local host port (for example, http://localhost:8080/).
-
-To use the app, you will need a [Google Analytics](https://analytics.google.com/) account, and a [Firebase](https://console.firebase.google.com/) account.
-
-## License
-
-Copyright 2016 Google Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+## Note
 
 This is not an official Google product.
