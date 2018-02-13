@@ -1,6 +1,6 @@
 {
-  "name": "push-notification-codelab",
-  "version": "1.0.0",
+  "name": "push-notification-lab",
+  "version": "2.0.0",
   "description": "",
   "main": "sw.js",
   "scripts": {
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "web-push": "^3.2.0"
+    "express": "^4.16.2",
+    "web-push": "^3.2.5"
   }
 }

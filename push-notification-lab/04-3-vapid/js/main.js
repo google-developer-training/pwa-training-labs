@@ -1,5 +1,5 @@
 /*
-Copyright 2016 Google Inc.
+Copyright 2018 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,28 +13,28 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-var app = (function() {
+const app = (() => {
   'use strict';
 
-  var isSubscribed = false;
-  var swRegistration = null;
+  let isSubscribed = false;
+  let swRegistration = null;
 
-  var notifyButton = document.querySelector('.js-notify-btn');
-  var pushButton = document.querySelector('.js-push-btn');
+  const notifyButton = document.querySelector('.js-notify-btn');
+  const pushButton = document.querySelector('.js-push-btn');
 
   if (!('Notification' in window)) {
-    console.log('This browser does not support notifications!');
+    console.log('Notifications not supported in this browser');
     return;
   }
 
-  Notification.requestPermission(function(status) {
+  Notification.requestPermission(status => {
     console.log('Notification permission status:', status);
   });
 
   function displayNotification() {
     if (Notification.permission == 'granted') {
-      navigator.serviceWorker.getRegistration().then(function(reg) {
-        var options = {
+      navigator.serviceWorker.getRegistration().then(reg => {
+        const options = {
           body: 'First notification!',
           icon: 'images/notification-flat.png',
           vibrate: [100, 50, 100],
@@ -58,7 +58,7 @@ var app = (function() {
   }
 
   function initializeUI() {
-    pushButton.addEventListener('click', function() {
+    pushButton.addEventListener('click', () => {
       pushButton.disabled = true;
       if (isSubscribed) {
         unsubscribeUser();
@@ -67,8 +67,9 @@ var app = (function() {
       }
     });
 
+    // Set the initial subscription value
     swRegistration.pushManager.getSubscription()
-    .then(function(subscription) {
+    .then(subscription => {
       isSubscribed = (subscription !== null);
 
       updateSubscriptionOnServer(subscription);
@@ -83,15 +84,15 @@ var app = (function() {
     });
   }
 
-  var applicationServerPublicKey = 'YOUR_VAPID_PUBLIC_KEY';
+  const applicationServerPublicKey = 'YOUR_VAPID_PUBLIC_KEY';
 
   function subscribeUser() {
-    var applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+    const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
     swRegistration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: applicationServerKey
     })
-    .then(function(subscription) {
+    .then(subscription => {
       console.log('User is subscribed:', subscription);
 
       updateSubscriptionOnServer(subscription);
@@ -100,7 +101,7 @@ var app = (function() {
 
       updateBtn();
     })
-    .catch(function(err) {
+    .catch(err => {
       if (Notification.permission === 'denied') {
         console.warn('Permission for notifications was denied');
       } else {
@@ -112,15 +113,15 @@ var app = (function() {
 
   function unsubscribeUser() {
     swRegistration.pushManager.getSubscription()
-    .then(function(subscription) {
+    .then(subscription => {
       if (subscription) {
         return subscription.unsubscribe();
       }
     })
-    .catch(function(error) {
-      console.log('Error unsubscribing', error);
+    .catch(err => {
+      console.log('Error unsubscribing', err);
     })
-    .then(function() {
+    .then(() => {
       updateSubscriptionOnServer(null);
 
       console.log('User is unsubscribed');
@@ -133,9 +134,9 @@ var app = (function() {
   function updateSubscriptionOnServer(subscription) {
     // Here's where you would send the subscription to the application server
 
-    var subscriptionJson = document.querySelector('.js-subscription-json');
-    var endpointURL = document.querySelector('.js-endpoint-url');
-    var subAndEndpoint = document.querySelector('.js-sub-endpoint');
+    const subscriptionJson = document.querySelector('.js-subscription-json');
+    const endpointURL = document.querySelector('.js-endpoint-url');
+    const subAndEndpoint = document.querySelector('.js-sub-endpoint');
 
     if (subscription) {
       subscriptionJson.textContent = JSON.stringify(subscription);
@@ -164,37 +165,39 @@ var app = (function() {
   }
 
   function urlB64ToUint8Array(base64String) {
-    var padding = '='.repeat((4 - base64String.length % 4) % 4);
-    var base64 = (base64String + padding)
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
       .replace(/\-/g, '+')
       .replace(/_/g, '/');
 
-    var rawData = window.atob(base64);
-    var outputArray = new Uint8Array(rawData.length);
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
 
-    for (var i = 0; i < rawData.length; ++i) {
+    for (let i = 0; i < rawData.length; ++i) {
       outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
   }
 
-  notifyButton.addEventListener('click', function() {
+  notifyButton.addEventListener('click', () => {
     displayNotification();
   });
 
-  if ('serviceWorker' in navigator && 'PushManager' in window) {
-    console.log('Service Worker and Push is supported');
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      console.log('Service Worker and Push is supported');
 
-    navigator.serviceWorker.register('sw.js')
-    .then(function(swReg) {
-      console.log('Service Worker is registered', swReg);
+      navigator.serviceWorker.register('sw.js')
+      .then(swReg => {
+        console.log('Service Worker is registered', swReg);
 
-      swRegistration = swReg;
+        swRegistration = swReg;
 
-      initializeUI();
-    })
-    .catch(function(error) {
-      console.error('Service Worker Error', error);
+        initializeUI();
+      })
+      .catch(err => {
+        console.error('Service Worker Error', err);
+      });
     });
   } else {
     console.warn('Push messaging is not supported');
