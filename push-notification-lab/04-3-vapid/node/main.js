@@ -1,5 +1,5 @@
 /*
-Copyright 2016 Google Inc.
+Copyright 2018 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,16 +13,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-var webPush = require('web-push');
+const webPush = require('web-push');
 
-var pushSubscription = YOUR_SUBSCRIPTION_OBJECT;
+const pushSubscription = YOUR_SUBSCRIPTION_OBJECT;
 
-var vapidPublicKey = 'YOUR_VAPID_PUBLIC_KEY';
-var vapidPrivateKey = 'YOUR_VAPID_PRIVATE_KEY';
+const vapidPublicKey = 'YOUR_VAPID_PUBLIC_KEY';
+const vapidPrivateKey = 'YOUR_VAPID_PRIVATE_KEY';
 
-var payload = 'Here is a payload!';
+const payload = 'Here is a payload!';
 
-var options = {
+const options = {
   // gcmAPIKey: 'YOUR_SERVER_KEY',
   TTL: 60,
   vapidDetails: {

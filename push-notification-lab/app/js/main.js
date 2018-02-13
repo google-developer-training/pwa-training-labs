@@ -1,5 +1,5 @@
 /*
-Copyright 2016 Google Inc.
+Copyright 2018 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,14 +13,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-var app = (function() {
+const app = (() => {
   'use strict';
 
-  var isSubscribed = false;
-  var swRegistration = null;
+  let isSubscribed = false;
+  let swRegistration = null;
 
-  var notifyButton = document.querySelector('.js-notify-btn');
-  var pushButton = document.querySelector('.js-push-btn');
+  const notifyButton = document.querySelector('.js-notify-btn');
+  const pushButton = document.querySelector('.js-push-btn');
 
   // TODO 2.1 - check for notification support
 
@@ -56,9 +56,9 @@ var app = (function() {
   function updateSubscriptionOnServer(subscription) {
     // Here's where you would send the subscription to the application server
 
-    var subscriptionJson = document.querySelector('.js-subscription-json');
-    var endpointURL = document.querySelector('.js-endpoint-url');
-    var subAndEndpoint = document.querySelector('.js-sub-endpoint');
+    const subscriptionJson = document.querySelector('.js-subscription-json');
+    const endpointURL = document.querySelector('.js-endpoint-url');
+    const subAndEndpoint = document.querySelector('.js-sub-endpoint');
 
     if (subscription) {
       subscriptionJson.textContent = JSON.stringify(subscription);
@@ -87,38 +87,39 @@ var app = (function() {
   }
 
   function urlB64ToUint8Array(base64String) {
-    var padding = '='.repeat((4 - base64String.length % 4) % 4);
-    var base64 = (base64String + padding)
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
       .replace(/\-/g, '+')
       .replace(/_/g, '/');
 
-    var rawData = window.atob(base64);
-    var outputArray = new Uint8Array(rawData.length);
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
 
-    for (var i = 0; i < rawData.length; ++i) {
+    for (let i = 0; i < rawData.length; ++i) {
       outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
   }
 
-  notifyButton.addEventListener('click', function() {
+  notifyButton.addEventListener('click', () => {
     displayNotification();
   });
 
-  if ('serviceWorker' in navigator && 'PushManager' in window) {
-    console.log('Service Worker and Push is supported');
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      console.log('Service Worker and Push is supported');
 
-    navigator.serviceWorker.register('sw.js')
-    .then(function(swReg) {
-      console.log('Service Worker is registered', swReg);
+      navigator.serviceWorker.register('sw.js')
+      .then(swReg => {
+        console.log('Service Worker is registered', swReg);
 
-      swRegistration = swReg;
+        swRegistration = swReg;
 
-      // TODO 3.3a - call the initializeUI() function
-
-    })
-    .catch(function(error) {
-      console.error('Service Worker Error', error);
+        // TODO 3.3a - call the initializeUI() function
+      })
+      .catch(err => {
+        console.error('Service Worker Error', err);
+      });
     });
   } else {
     console.warn('Push messaging is not supported');
