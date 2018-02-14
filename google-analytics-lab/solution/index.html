@@ -15,49 +15,55 @@ limitations under the License.
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Set the viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Set character encoding -->
-  <meta charset="utf-8">
-  <!-- Include manifest -->
-  <link rel="manifest" href="manifest.json">
-  <!-- Set title -->
-  <title>Analytics Lab</title>
+  <head>
+    <!-- Set the viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set character encoding -->
+    <meta charset="utf-8">
+    <!-- Include manifest -->
+    <link rel="manifest" href="manifest.json">
+    <!-- link CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Set title -->
+    <title>Analytics Lab</title>
+  </head>
 
-</head>
+  <body>
 
-<body>
+    <header>
+      <h1>Google Analytics lab</h1>
+    </header>
 
-  <h1>Google Analytics lab</h1>
-  <p>This page must be accessed using HTTPS or via localhost.</p>
+    <section class="note">
+      <p>This page must be accessed using
+        <strong>HTTPS</strong> or via <strong>localhost</strong>.
+      </p>
+    </section>
 
-  <a href="pages/other.html" id="other">Other page</a>
+    <section>
+      <div class="img-container">
+        <img src="images/cat.jpg" alt="An adorable cat.">
+      </div>
+      <div class="buttons-container">
+        <button id="favorite">Favorite</button>
+        <button id="subscribe">Subscribe</button>
+        <button id="unsubscribe">Unsubscribe</button>
+      </div>
+    </section>
 
-  <br><br>
+    <footer>
+      <a href="pages/other.html" id="other">Other page</a>
+    </footer>
 
-  <button id="favorite">Favorite</button>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114028926-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  <br><br>
+      gtag('config', 'UA-114028926-1');
+    </script>
+    <script src="js/main.js"></script>
 
-  <button id="subscribe">subscribe</button><button id="unsubscribe">unsubscribe</button>
-
-  <br><br>
-
-  <a href="https://www.google.com/" id="external">Special offers</a>
-
-  <br><br>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114028926-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-114028926-1');
-  </script>
-
-  <script src="js/main.js"></script>
-
-</body>
+  </body>
 </html>
