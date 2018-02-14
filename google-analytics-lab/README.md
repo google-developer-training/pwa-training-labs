@@ -13,3 +13,5 @@ or on [developers.google.com](https://developers.google.com/web/ilt/pwa/lab-inte
 ## Note
 
 This is not an official Google product.
+
+All images are are licensed CC0 - no attribution required.
