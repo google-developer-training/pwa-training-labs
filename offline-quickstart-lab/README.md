@@ -15,3 +15,7 @@ or on [developers.google.com](https://developers.google.com/web/ilt/pwa/lab-offl
 This is not an official Google product.
 
 All images are are licensed CC0 - no attribution required.
+
+* [space1.jpg](https://unsplash.com/photos/NuE8Nu3otjo)
+* [space2.jpg](https://unsplash.com/photos/cIX5TlQ_FgM)
+* [space3.jpg](https://unsplash.com/photos/n463SoeSiVY)
