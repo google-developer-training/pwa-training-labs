@@ -1,0 +1,31 @@
+{
+  "name": "Space Missions",
+  "short_name": "Space Missions",
+  "lang": "en-US",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color": "#FF9800",
+  "background_color": "#FF9800",
+  "icons": [
+    {
+      "src": "images/touch/icon-128x128.png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "images/touch/icon-192x192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/touch/icon-256x256.png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "images/touch/icon-384x384.png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "images/touch/icon-512x512.png",
+      "sizes": "512x512"
+    }
+  ]
+}
