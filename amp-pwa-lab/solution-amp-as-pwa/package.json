@@ -1,0 +1,20 @@
+{
+  "name": "amp-pwa-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 8081 -a localhost -c 0",
+    "build": "workbox injectManifest workbox-config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "0.10.0",
+    "workbox-cli": "3.0.0-alpha.6"
+  },
+  "dependencies": {
+    "workbox-sw": "3.0.0-alpha.6"
+  }
+}
