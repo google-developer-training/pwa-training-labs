@@ -31,10 +31,6 @@ class AmpPage {
       this.xhr_ = new XMLHttpRequest();
       this.xhr_.open('GET', url, true);
       this.xhr_.responseType = 'document';
-      // This is set to text/* instead of text/html because the development server
-      // only forwards requests to the proxy for requests whose 'Accept' header
-      // is NOT text/html.
-      // https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#proxying-api-requests-in-development
       this.xhr_.setRequestHeader('Accept', 'text/*');
       this.xhr_.onreadystatechange = () => {
         if (this.xhr_.readyState < /* STATUS_RECEIVED */ 2) {
