@@ -1,6 +1,6 @@
 # AMP and PWA
 
-In this codelab, you’ll convert an app containing AMP pages into a PWA using two different patterns:
+In this lab, you’ll convert an app containing AMP pages into a PWA using two different patterns:
 
 1. transform an AMP site into a PWA (AMP as PWA)
 2. use the App Shell architecture to create a PWA that uses AMP as content (AMP in PWA)

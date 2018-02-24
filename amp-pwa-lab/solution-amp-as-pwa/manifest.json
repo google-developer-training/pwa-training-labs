@@ -1,6 +1,6 @@
 {
-  "name": "AMP PWA Codelab",
-  "short_name": "AMP PWA Codelab",
+  "name": "AMP PWA lab",
+  "short_name": "AMP PWA lab",
   "theme_color": "#00796b",
   "background_color": "#00796b",
   "display": "standalone",
