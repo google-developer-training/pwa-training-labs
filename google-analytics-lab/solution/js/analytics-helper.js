@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 // Set this to your tracking ID: UA-XXXXXXXX-Y
-const trackingId = 'UA-114028926-1';
+const trackingId = null;
 
 const sendAnalyticsEvent = (eventAction, eventCategory) => {
 
