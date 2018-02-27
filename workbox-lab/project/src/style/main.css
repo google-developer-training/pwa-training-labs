@@ -18,10 +18,11 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Roboto','Helvetica','Arial',sans-serif;
+  justify-content: space-between;
   margin: 0;
-  text-align: center;
   max-width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  text-align: center;
 }
 
 header {
@@ -113,6 +114,14 @@ li {
   list-style-type: none;
 }
 
+.padded {
+  padding: 0 10%;
+}
+
+.back-link {
+  padding-bottom: 10%;
+}
+
 .vertical-list {
   display: flex;
   flex-direction: column;
@@ -131,10 +140,6 @@ li {
 
 .column {
   width: 100%;
-}
-
-.standalone {
-  margin-top: 10vh;
 }
 
 .img-container {
@@ -160,10 +165,6 @@ li {
 
   .right {
     padding-left: 10px;
-  }
-
-  .standalone {
-    margin-top: 25vh;
   }
 
 }
