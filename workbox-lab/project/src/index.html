@@ -16,37 +16,10 @@ limitations under the License.
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <!-- Set the viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-  <!-- Set character encoding -->
   <meta charset="utf-8">
-
-  <!-- Set title -->
   <title>News</title>
-
-  <!-- Request styles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <link rel="stylesheet" href="/style/main.css" />
-
-  <!-- Chrome for Android theme color -->
-  <meta name="theme-color" content="#2E3AA1">
-
-  <!-- Add to homescreen for Chrome on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="PSK">
-  <link rel="icon" sizes="192x192" href="images/touch/icon-192x192.png">
-
-  <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
-  <link rel="apple-touch-icon" href="images/touch/icon-192x192.png">
-
-  <!-- Tile for Win8 -->
-  <meta name="msapplication-TileColor" content="#3372DF">
-  <meta name="msapplication-TileImage" content="images/touch/icon-192x192.png">
-
 </head>
 
 <body>
@@ -108,20 +81,6 @@ limitations under the License.
   </footer>
 
   <script src="/js/animation.js"></script>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(registration => {
-            console.log(`Service Worker registed! Scope: ${registration.scope}`);
-          })
-          .catch(err => {
-            console.log(`Service Worker registration failed: ${err}`);
-          });
-      });
-    }
-  </script>
 
 </body>
 </html>
