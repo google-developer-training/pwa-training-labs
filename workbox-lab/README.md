@@ -1,16 +1,18 @@
-# Workbox
+# Workbox Lab
 
-In this lab you learn how to use the Workbox suite.
+In this codelab, you’ll use [Workbox](https://workboxjs.org/) to convert a web site into a Progressive Web App with offline functionality and fast performance. Workbox allows you to create production quality service workers that follow best practices and handle corner cases, making your development process simpler and your web app more reliable.
 
 ## Getting started
 
-Clone the repository and navigate to **workbox-lab/app**.
-
-[Download and install Node.js](https://nodejs.org/en/download/).
+Follow the [Google Codelabs instructions](https://codelabs.developers.google.com/codelabs/workbox-lab/index.html?index=..%2F..%2Findex#0).
 
 ## Note
 
-Some contents from Responsive Blog Sample - Copyright Sam Dutton 2016
+All images are CCO
+
+## More resources
+
+* [PWA training materials](https://developers.google.com/web/ilt/pwa/)
 
 ## License
 

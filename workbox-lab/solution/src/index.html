@@ -1,0 +1,127 @@
+<!--
+Copyright 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Set the viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <!-- Set character encoding -->
+  <meta charset="utf-8">
+
+  <!-- Set title -->
+  <title>News</title>
+
+  <!-- Request styles -->
+  <link rel="stylesheet" href="/style/main.css" />
+
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#2E3AA1">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="PSK">
+  <link rel="icon" sizes="192x192" href="images/touch/icon-192x192.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+  <link rel="apple-touch-icon" href="images/touch/icon-192x192.png">
+
+  <!-- Tile for Win8 -->
+  <meta name="msapplication-TileColor" content="#3372DF">
+  <meta name="msapplication-TileImage" content="images/touch/icon-192x192.png">
+
+</head>
+
+<body>
+  <header>
+    <ul class="navbar">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="#">World</a></li>
+      <li><a href="#">Tech</a></li>
+      <li><a href="#">Contact</a></li>
+      <li class="profile-icon"><img src="/images/icon/icon.svg" alt="profile icon" /></li>
+    </ul>
+  </header>
+
+  <article>
+    <h1>News</h1>
+    <section>
+      <div class="img-container left column">
+        <img src="images/home/business.jpg" alt="A person reading the business section of a newspaper">
+      </div>
+      <div class="right column">
+        <h2 class="headline">Headline</h2>
+        <p class="content">
+          I love cheese, especially manchego swiss. ☺ Fromage queso jarlsberg cheesy
+          feet emmental cottage cheese camembert de normandie bocconcini. Cottage cheese
+          everyone loves cauliflower cheese rubber cheese squirty cheese halloumi cow
+          fondue. Bocconcini cheese and biscuits everyone loves fondue red leicester
+          st. agur blue cheese rubber cheese ricotta. Cheesy grin mozzarella.
+        </p>
+      </div>
+    </section>
+    <section>
+      <div class="left column">
+        <h4 class="list-title">Trending Articles</h4>
+        <ul class="vertical-list">
+          <li class="list-item"><a href="pages/article1.html" class="post-link">Article 1</a></li>
+          <li class="list-item"><a href="pages/article2.html" class="post-link">Article 2</a></li>
+          <li class="list-item"><a href="pages/article3.html" class="post-link">Article 3</a></li>
+          <li class="list-item"><a href="pages/article4.html" class="post-link">Article 4</a></li>
+          <li class="list-item"><a href="pages/article-missing.html" class="post-link">Non-existent article</a></li>
+        </ul>
+      </div>
+      <div class="right column">
+        <h4 class="list-title">Archived Posts</h4>
+        <ul class="vertical-list">
+          <li class="list-item"><a href="pages/post1.html" class="post-link">Archived Post 1</a></li>
+          <li class="list-item"><a href="pages/post2.html" class="post-link">Archived Post 2</a></li>
+          <li class="list-item"><a href="pages/post3.html" class="post-link">Archived Post 3</a></li>
+          <li class="list-item"><a href="pages/post-missing.html" class="post-link">Non-existent Post 4</a></li>
+        </ul>
+      </div>
+    </section>
+  </article>
+
+  <footer>
+    <a href="#" class="footer-link">Twitter</a>
+    <a href="#" class="footer-link">Facebook</a>
+    <a href="#" class="footer-link">Google+</a>
+    <a href="#" class="footer-link">Digg</a>
+  </footer>
+
+  <script src="/js/animation.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log(`Service Worker registed! Scope: ${registration.scope}`);
+          })
+          .catch(err => {
+            console.log(`Service Worker registration failed: ${err}`);
+          });
+      });
+    }
+  </script>
+
+</body>
+</html>
