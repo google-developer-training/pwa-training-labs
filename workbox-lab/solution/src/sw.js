@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Google Inc.
+Copyright 2016 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,8 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0-alpha.5/workbox-sw.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0-beta.0/workbox-sw.js');
 
 if (workbox) {
   console.log(`Yay! Workbox is loaded 🎉`);
@@ -68,6 +67,7 @@ const postHandler = workbox.strategies.cacheFirst({
 });
 
 workbox.routing.registerRoute(/(.*)pages\/post(.*)\.html/, args => {
+  console.log('test');
   return postHandler.handle(args).then(response => {
     if (response.status === 404) {
       return caches.match('pages/404.html');
