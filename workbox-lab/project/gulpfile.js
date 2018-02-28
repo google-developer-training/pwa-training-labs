@@ -30,7 +30,8 @@ gulp.task('copy', () =>
 gulp.task('serve', ['default'], () => {
   browserSync.init({
     server: 'build',
-    port: 8081
+    port: 8081,
+    open: false
   });
   gulp.watch('src/**/*', ['default']).on('change', browserSync.reload);
 });
