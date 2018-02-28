@@ -1,33 +1,16 @@
-# Workbox Lab
+## Lab: Workbox
 
-In this codelab, you’ll use [Workbox](https://workboxjs.org/) to convert a web site into a Progressive Web App with offline functionality and fast performance. Workbox allows you to create production quality service workers that follow best practices and handle corner cases, making your development process simpler and your web app more reliable.
+In this lab, you’ll use [Workbox](https://workboxjs.org/) to convert a web site
+into a Progressive Web App with offline functionality and fast performance.
 
 ## Getting started
 
-Follow the [Google Codelabs instructions](https://codelabs.developers.google.com/codelabs/workbox-lab/index.html?index=..%2F..%2Findex#0).
+To get started, check out the instructions in
+[GitBook](https://google-developer-training.gitbooks.io/progressive-web-apps-ilt-codelabs/content/docs/lab_workbox.html)
+or on [developers.google.com](https://developers.google.com/web/ilt/pwa/lab-workbox).
 
 ## Note
 
-All images are CCO
-
-## More resources
-
-* [PWA training materials](https://developers.google.com/web/ilt/pwa/)
-
-## License
-
-Copyright 2016 Google Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
 This is not an official Google product.
+
+All images are are licensed CC0 - no attribution required.
