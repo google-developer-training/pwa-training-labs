@@ -1,21 +1,20 @@
 {
   "name": "workbox-lab",
   "version": "1.0.0",
-  "description": "a lab for learning workbox",
+  "description": "a lab for learning Workbox",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "copy": "copyfiles -u 1 src/**/**/* src/**/* src/* build",
-    "build": "npm run copy && workbox injectManifest workbox-config.js",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "4.15.4"
+    "browser-sync": "2.23.6",
+    "del": "3.0.0",
+    "gulp": "3.9.1",
+    "run-sequence": "2.2.1"
   },
   "devDependencies": {
-    "copyfiles": "1.2.0",
-    "workbox-cli": "3.0.0-alpha.4"
+    "workbox-build": "^3.0.0-beta.1"
   }
 }
