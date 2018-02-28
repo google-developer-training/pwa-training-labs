@@ -34,7 +34,7 @@ ul.navbar {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #2196F3;
+  background-color: #4CAF50;
 }
 
 ul.navbar > li > a {
@@ -74,12 +74,12 @@ footer {
   align-items: center;
   display: flex;
   justify-content: space-evenly;
-  background-color: #2296f3;
+  background-color: #4CAF50;
 }
 
 a {
   font-weight: 400;
-  color: #2196F3;
+  color: #4CAF50;
   text-decoration: underline;
 }
 
