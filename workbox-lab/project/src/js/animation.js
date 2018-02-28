@@ -13,12 +13,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-var el = document.body;
+const el = document.body;
 
-function fadeIn(el) {
+const fadeIn = el => {
   el.style.opacity = 0;
 
-  var tick = function() {
+  const tick = () => {
     el.style.opacity = +el.style.opacity + 0.01;
 
     if (+el.style.opacity < 1) {
@@ -28,6 +28,6 @@ function fadeIn(el) {
   };
 
   tick();
-}
+};
 
 fadeIn(el);
