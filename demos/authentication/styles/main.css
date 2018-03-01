@@ -1,0 +1,98 @@
+body {
+  color: #000;
+  font-family: sans-serif;
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+
+header {
+  align-items: center;
+  background-color: #faff29;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 16px;
+}
+
+main {
+  display: grid;
+  grid-gap: 15px;
+  justify-items: center;
+  margin: 10px 10px 0 10px;
+  padding-bottom: 60px;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  background-color: #a3d1e6;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 36px;
+  padding: 0 16px;
+  max-width: 100px;
+}
+
+.logo {
+  display: flex;
+  text-decoration: none;
+  color: #000;
+}
+
+.signup {
+  justify-self: end;
+}
+
+.app-name {
+  padding-left: 10px;
+}
+
+.signed-out-toast {
+  background-color: #ff9800;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  margin: 20px;
+}
+
+.card {
+  background-color: #e6e6e2;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  max-width: 640px;
+  padding: 10px;
+  position: relative;
+}
+
+.item-price {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0px 20px;
+}
+
+.price {
+  justify-self: end;
+}
+
+.btn-buy {
+  justify-self: end;
+}
+
+@media (min-width: 600px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  main {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
