@@ -1,0 +1,68 @@
+<!--
+Copyright 2018 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta charset="utf-8">
+  <title>SW Demo</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Service Worker Demo</h1>
+  </header>
+  <main>
+    <section class="card">
+      <div class="img-container">
+        <!-- CC0 images/sad.jpg - https://unsplash.com/photos/D44HIk-qsvI -->
+        <!-- CC0 images/tired.jpg - https://unsplash.com/photos/S2AcayPkszE -->
+        <img src="/images/sad.jpg" alt="An adorable dog">
+      </div>
+      <p>
+        Bavarian bergkase port-salut ricotta. Cheese on toast say cheese cheese
+        strings pecorino fromage frais roquefort danish fontina emmental.
+        Bishop everyone loves jarlsberg stilton swiss cauliflower cheese fondue
+        wiss. Cottage cheese lancashire taleggio goat parmesan.
+      </p>
+    </section>
+  </main>
+  <footer>
+    <h3>
+      <a href="https://github.com/google-developer-training/pwa-training-labs">
+        GitHub
+      </a>
+    </h3>
+  </footer>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => {
+            console.log('Service worker registered! 😎');
+            console.log('Scope:', reg.scope);
+          })
+          .catch(err => {
+            console.log('😥 Service worker registration failed:\n', err);
+          });
+      });
+    }
+  </script>
+
+</body>
+</html>
