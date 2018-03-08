@@ -29,9 +29,9 @@ limitations under the License. -->
         <h1 class="app-name">Ducky Debugger</h1>
       </a>
       <div class="signup">
-        <a href="/signup">Sign up</a>
+        <a href="/pages/signup">Sign up</a>
         <span>|</span>
-        <a href="/signin">Sign In</a>
+        <a href="/pages/signin">Sign In</a>
       </div>
     </header>
     <div class="signed-out-toast" hidden>
@@ -137,9 +137,9 @@ limitations under the License. -->
         console.log('User signed out.');
       });
       document.querySelector('.signup').innerHTML =
-      `<a href="/signup">Sign up</a>
+      `<a href="/pages/signup">Sign up</a>
       <span>|</span>
-      <a href="/signin">Sign In</a>`;
+      <a href="/pages/signin">Sign In</a>`;
       const toast = document.querySelector('.signed-out-toast');
       toast.style.display = 'block';
       window.setTimeout(() => {

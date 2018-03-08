@@ -28,12 +28,12 @@ app.get(['/', '/index.html'], (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/signup', (req, res) => {
-  res.sendFile(__dirname + '/signup.html');
+app.get('/pages/signup', (req, res) => {
+  res.sendFile(__dirname + '/pages/signup.html');
 });
 
-app.get('/signin', (req, res) => {
-  res.sendFile(__dirname + '/signin.html');
+app.get('/pages/signin', (req, res) => {
+  res.sendFile(__dirname + '/pages/signin.html');
 });
 
 app.post('/submit-signin', (req, res) => {
