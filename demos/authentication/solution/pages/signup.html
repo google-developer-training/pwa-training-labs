@@ -1,0 +1,62 @@
+<!--
+Copyright 2018 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="/styles/signup.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="/" class="logo">
+          <img src="/images/icons/duck-icon.svg" alt="Rubber duck icon">
+          <h1 class="app-name">Ducky Debugger</h1>
+        </a>
+      </header>
+      <div class="layout">
+        <div class="card">
+          <div class="card-title">
+            <h2>Create your account</h2>
+          </div>
+          <form action="/pages/signin" method="get">
+            <div class="name-field">
+              <label for="firstname">First name</label>
+              <input id="firstname" name="firstname" required>
+            </div>
+            <div class="name-field">
+              <label for="lastname">Last Name</label>
+              <input id="lastname" name="lastname" required>
+            </div>
+            <div class="textfield">
+              <label for="email">Email</label>
+              <input id="email" type="email" name="email" required>
+            </div>
+            <div class="textfield">
+              <label for="password">Password</label>
+              <!-- Minimum eight characters, at least one uppercase letter, one lowercase letter, one number, and one special character -->
+              <input id="password" type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" required>
+              <p class="password-requirements">Minimum eight characters, at least one uppercase letter, one lowercase letter, one number, and one special character</p>
+            </div>
+            <div class="button-field">
+              <button type="submit">Sign up</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -17,9 +17,9 @@ limitations under the License. -->
     <meta charset="utf-8">
     <title>Sign in</title>
     <link rel="stylesheet" href="/styles/signup.css">
-    <meta name="google-signin-scope" content="profile email">
+    <!-- <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="523573423499-c4phj7fb4m8e1ge9af5d2kgqll06leq7.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script> -->
   </head>
   <body>
     <div class="container">
@@ -54,7 +54,7 @@ limitations under the License. -->
         </div>
       </div>
     </div>
-    <script>
+    <!-- <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         const profile = googleUser.getBasicProfile();
@@ -70,13 +70,6 @@ limitations under the License. -->
         console.log('ID Token: ' + id_token);
         window.location.href = '/';
       };
-
-      function signOut() {
-        const auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(() => {
-          console.log('User signed out.');
-        });
-      }
-    </script>
+    </script> -->
   </body>
 </html>
