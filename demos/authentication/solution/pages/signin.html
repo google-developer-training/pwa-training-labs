@@ -1,0 +1,75 @@
+<!--
+Copyright 2018 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="/styles/signup.css">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="523573423499-c4phj7fb4m8e1ge9af5d2kgqll06leq7.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="/" class="logo">
+          <img src="/images/icons/duck-icon.svg" alt="Rubber duck icon">
+          <h1 class="app-name">Ducky Debugger</h1>
+        </a>
+      </header>
+      <div class="layout">
+        <div class="card">
+          <div class="card-title">
+            <h2>Sign in</h2>
+          </div>
+          <form action="/submit-signin" method="post">
+            <div class="textfield">
+              <label for="email">Email</label>
+              <input id="email" type="email" name="email" required>
+            </div>
+            <div class="textfield">
+              <label for="password">Password</label>
+              <input id="password" type="password" name="password" required>
+            </div>
+            <div class="button-field">
+              <button type="submit">Sign in</button>
+            </div>
+          </form>
+          <hr>
+          <div class="google-signin">
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        const profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // null if no <meta name="google-signin-scope" content="profile email">
+
+        // The ID token you need to pass to your backend:
+        const id_token = googleUser.getAuthResponse().id_token;
+        console.log('ID Token: ' + id_token);
+        window.location.href = '/';
+      };
+    </script>
+  </body>
+</html>

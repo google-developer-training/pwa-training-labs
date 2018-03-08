@@ -1,0 +1,154 @@
+<!--
+Copyright 2018 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ducky Debugger</title>
+    <link rel="icon" href="/images/icons/duck-icon.png" />
+    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="google-signin-client_id" content="523573423499-c4phj7fb4m8e1ge9af5d2kgqll06leq7.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo">
+        <img src="/images/icons/duck-icon.svg" alt="Rubber duck icon">
+        <h1 class="app-name">Ducky Debugger</h1>
+      </a>
+      <div class="signup">
+        <a href="/pages/signup">Sign up</a>
+        <span>|</span>
+        <a href="/pages/signin">Sign In</a>
+      </div>
+    </header>
+    <div class="signed-out-toast" hidden>
+      You have been successfully signed out
+    </div>
+    <main>
+      <div class="card">
+        <img src="/images/angel-duck.jpg" alt="Angel duck">
+        <div class="item-price">
+          <p>Angel Ducky</p>
+          <p class="price">$5</p>
+          <button class="btn-save" hidden>Save</button>
+          <button class="btn-buy" hidden>Buy Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/images/devil-duck.jpg" alt="Devil duck">
+        <div class="item-price">
+          <p>Devil Ducky</p>
+          <p class="price">$5</p>
+          <button class="btn-save" hidden>Save</button>
+          <button class="btn-buy" hidden>Buy Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/images/fire-duck.jpg" alt="Fire Fighter duck">
+        <div class="item-price">
+          <p>Fire Fighter Ducky</p>
+          <p class="price">$7</p>
+          <button class="btn-save" hidden>Save</button>
+          <button class="btn-buy" hidden>Buy Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/images/graduate-duck.jpg" alt="Graduate duck">
+        <div class="item-price">
+          <p>Graduate Ducky</p>
+          <p class="price">$7</p>
+          <button class="btn-save" hidden>Save</button>
+          <button class="btn-buy" hidden>Buy Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/images/nurse-duck.jpg" alt="Nurse duck">
+        <div class="item-price">
+          <p>Nurse Ducky</p>
+          <p class="price">$8</p>
+          <button class="btn-save" hidden>Save</button>
+          <button class="btn-buy" hidden>Buy Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/images/Scuba-duck.jpg" alt="Scuba duck">
+        <div class="item-price">
+          <p>Scuba Ducky</p>
+          <p class="price">$8</p>
+          <button class="btn-save" hidden>Save</button>
+          <button class="btn-buy" hidden>Buy Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/images/st-paddys-duck.jpg" alt="Saint Paddys duck">
+        <div class="item-price">
+          <p>St. Paddys Ducky</p>
+          <p class="price">$10</p>
+          <button class="btn-save" hidden>Save</button>
+          <button class="btn-buy" hidden>Buy Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/images/valentine-duck.png" alt="Valentine duck">
+        <div class="item-price">
+          <p>Valentine's Ducky</p>
+          <p class="price">$10</p>
+          <button class="btn-save" hidden>Save</button>
+          <button class="btn-buy" hidden>Buy Now</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/images/christmas-duck.jpg" alt="Christmas duck">
+        <div class="item-price">
+          <p>Christmas Ducky</p>
+          <p class="price">$10</p>
+          <button class="btn-save" hidden>Save</button>
+          <button class="btn-buy" hidden>Buy Now</button>
+        </div>
+      </div>
+    </main>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" hidden></div>
+  </body>
+  <script>
+    function onSignIn(googleUser) {
+      document.querySelector('.signup').innerHTML = '<a href="#" onclick="signOut();">Sign out</a>'
+      const elems = document.querySelectorAll('.btn-save, .btn-buy');
+      elems.forEach(el => {
+        el.style.display = 'block';
+      });
+    };
+
+    function signOut() {
+      const auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(() => {
+        console.log('User signed out.');
+      });
+      document.querySelector('.signup').innerHTML =
+      `<a href="/pages/signup">Sign up</a>
+      <span>|</span>
+      <a href="/pages/signin">Sign In</a>`;
+      const toast = document.querySelector('.signed-out-toast');
+      toast.style.display = 'block';
+      window.setTimeout(() => {
+        toast.style.display = 'none';
+      }, 4000);
+      const elems = document.querySelectorAll('.btn-save, .btn-buy');
+      elems.forEach(el => {
+        el.style.display = 'none';
+      });
+    }
+  </script>
+</html>
