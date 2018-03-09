@@ -21,10 +21,11 @@ body {
 
 header {
   align-items: center;
-  background-color: #faff29;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  background-color: #2196f3;
+  box-shadow:
+    0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 0 16px;
@@ -43,42 +44,51 @@ img {
 }
 
 button {
-  background-color: #a3d1e6;
+  background-color: #2196f3;
+  color: #fff;
   font-family: sans-serif;
   font-size: 16px;
   line-height: 36px;
-  padding: 0 16px;
   max-width: 100px;
+  padding: 0 16px;
+}
+
+a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .logo {
   display: flex;
-  text-decoration: none;
-  color: #000;
 }
 
 .signup {
+  color: #fff;
   justify-self: end;
 }
 
 .app-name {
+  color: #fff;
+  font-weight: normal;
   padding-left: 10px;
 }
 
 .signed-out-toast {
   background-color: #ff9800;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-  padding: 20px;
+  box-shadow:
+    0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
   margin: 20px;
+  padding: 20px;
 }
 
 .card {
-  background-color: #e6e6e2;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
   max-width: 640px;
   padding: 10px;
   position: relative;
@@ -87,7 +97,7 @@ button {
 .item-price {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 0px 20px;
+  padding: 0 20px;
 }
 
 .price {
