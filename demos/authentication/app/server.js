@@ -37,8 +37,7 @@ app.get('/pages/signin', (req, res) => {
 });
 
 app.post('/submit-signin', (req, res) => {
-  // TODO - send message like "Uh-oh something went wrong"
-  res.sendStatus(500);
+  res.status(500).send('Uh-oh, something went wrong! 😞');
 });
 
 const server = app.listen(8081, () => {
