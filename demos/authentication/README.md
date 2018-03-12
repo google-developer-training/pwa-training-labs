@@ -1,8 +1,13 @@
-# PWA Training Labs
+# Authentication demo
 
-This repo contains open-source training labs for building Progressive Web Apps. 
+This sample application can be used to demonstrate how to implement client-side
+Google sign-in.
 
-## Contributing
+This content is part of Google's [Progressive Web App Training](https://developers.google.com/web/ilt/pwa/),
+which is also available on [GitBook](https://www.gitbook.com/book/google-developer-training/progressive-web-apps-ilt-codelabs/details).
 
-If you find a bug or think something could be better, please file an issue or
-submit a pull request.
+## Note
+
+This is not an official Google product.
+
+All images are are licensed CC0 - no attribution required.
