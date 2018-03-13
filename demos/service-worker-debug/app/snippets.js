@@ -23,7 +23,7 @@ if ('serviceWorker' in navigator) {
 // register SW with custom scope
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js', {
+    navigator.serviceWorker.register('/scripts/sw.js', {
       scope: '/styles'
     })
       .then(reg => {
