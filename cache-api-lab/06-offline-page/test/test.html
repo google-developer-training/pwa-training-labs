@@ -1,5 +1,5 @@
 <!--
-Copyright 2016 Google Inc.
+Copyright 2018 Google Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -25,31 +25,33 @@ limitations under the License.
   <div id="qunit-fixture"></div>
   <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
   <script>
-    QUnit.test('pages-cache-v1 exists', function(assert) {
-      var done = assert.async();
-      var cacheName;
-      caches.keys().then(function(cacheNames) {
-        if (cacheNames.indexOf('pages-cache-v1') > -1) {
-          cacheName = cacheNames[cacheNames.indexOf('pages-cache-v1')];
-        }
-        assert.equal(cacheName, 'pages-cache-v1', 'pages-cache-v1 exists');
+    QUnit.test('pages-cache exists', assert => {
+      const done = assert.async();
+      let cacheName;
+      caches.keys().then(cacheNames => {
+        cacheNames.forEach(name => {
+          if (name.indexOf('pages-cache') > -1) {
+            cacheName = name;
+          }
+        });
+        assert.ok(cacheName, 'pages-cache exists');
         done();
       });
     });
 
-    QUnit.test('App shell cached successfully', function(assert) {
-      var done = assert.async();
-      var dirtyFlag = true;
-      var appShell = [
-        '../',
-        '../style/main.css',
-        '../index.html',
-        '../pages/offline.html'
+    QUnit.test('App shell cached successfully', assert => {
+      const done = assert.async();
+      let dirtyFlag = true;
+      const appShell = [
+        '/',
+        '/style/main.css',
+        '/index.html',
+        '/pages/offline.html'
       ];
       Promise.all(
-        appShell.map(function(url) {
+        appShell.map(url => {
           console.log('forEach test');
-          return caches.match(url).then(function(response) {
+          return caches.match(url).then(response => {
             console.log(response);
             if (response == undefined) {
               dirtyFlag = false;
@@ -57,17 +59,35 @@ limitations under the License.
             return response;
           });
         })
-      ).then(function() {
+      ).then(() => {
         assert.ok(dirtyFlag, 'App shell cached');
         done();
       });
     });
 
-    QUnit.test('Network responses are being added to cache', function(assert) {
-      var done = assert.async();
+    QUnit.test('Network responses are being added to cache', assert => {
+      const done = assert.async();
       caches.match('https://code.jquery.com/qunit/qunit-2.0.1.css')
-      .then(function(response) {
+      .then(response => {
         assert.ok(response, 'Network responses are being added to cache');
+        done();
+      });
+    });
+
+    QUnit.test('pages-cache-v1 has been deleted and pages-cache-v2 exists',
+      assert => {
+      const done = assert.async();
+      let v1Deleted = false;
+      let v2Exists = false;
+      caches.keys().then(cacheNames => {
+        if (cacheNames.indexOf('pages-cache-v1') == -1) {
+          v1Deleted = true;
+        }
+        if (cacheNames.indexOf('pages-cache-v2') > -1) {
+          v2Exists = true;
+        }
+        assert.ok(v1Deleted, 'pages-cache-v1 has been deleted');
+        assert.ok(v2Exists, 'pages-cache-v2 exists');
         done();
       });
     });
