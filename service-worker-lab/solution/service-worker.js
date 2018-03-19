@@ -13,22 +13,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-(function() {
-  'use strict';
+self.addEventListener('install', event => {
+  console.log('Service worker installing...');
+  self.skipWaiting();
+});
 
-  self.addEventListener('install', function(event) {
-    console.log('Service worker installing...');
-    self.skipWaiting();
-  });
+self.addEventListener('activate', event => {
+  console.log('Service worker activating...');
+});
 
-  self.addEventListener('activate', function(event) {
-    console.log('Service worker activating...');
-  });
+// I'm a new service worker
 
-  // I'm a new service worker
-
-  self.addEventListener('fetch', function(event) {
-    console.log('Fetching:', event.request.url);
-  });
-
-})();
+self.addEventListener('fetch', event => {
+  console.log('Fetching:', event.request.url);
+});
