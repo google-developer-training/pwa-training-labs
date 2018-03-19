@@ -25,11 +25,10 @@ limitations under the License. -->
   <div id="qunit-fixture"></div>
   <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
   <script>
-    /*jshint esversion: 6*/
-    QUnit.test('Step 5 (OPTIONAL): Setting scope', function(assert) {
-      var done = assert.async();
+    QUnit.test('Step 5 (OPTIONAL): Setting scope', assert => {
+      const done = assert.async();
       navigator.serviceWorker.getRegistration('../below/')
-      .then((reg) => {
+      .then(reg => {
         if (!reg) {
           assert.ok(false, 'There is a service worker is registered');
           done();
