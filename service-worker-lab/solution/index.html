@@ -34,7 +34,7 @@ limitations under the License.
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('service-worker.js', {
-          scope: 'below/'
+          scope: '/below/'
         })
         .then(registration => {
           console.log('SW registered with scope:', registration.scope);
