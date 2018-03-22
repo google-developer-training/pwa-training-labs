@@ -35,7 +35,7 @@ gulp.task('copy', copy);
 function processJs() {
   return gulp.src('app/scripts/*.js')
   .pipe(babel({
-      presets: ['@babel/env']
+      presets: ['env']
   }))
   .pipe(uglify())
   .pipe(rename({
