@@ -14,5 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 body {
-  color: #0B8043;
+  color: #4CAF50;
+  font-family: 'Roboto','Helvetica','Arial',sans-serif;
+  padding: 20px;
 }
