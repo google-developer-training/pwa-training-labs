@@ -12,3 +12,5 @@ or on [developers.google.com](https://developers.google.com/web/ilt/pwa/lab-cach
 ## Note
 
 This is not an official Google product.
+
+All images are licensed CC0 - no attribution required.
