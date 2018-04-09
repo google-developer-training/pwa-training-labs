@@ -13,81 +13,59 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-var app = (function() {
-  'use strict';
 
-  function logResult(result) {
-    console.log(result);
-  }
+// helper functions ----------
 
-  function logError(error) {
-    console.log('Looks like there was a problem: \n', error);
-  }
+function logResult(result) {
+  console.log(result);
+}
 
-  // TODO 2.1a
+function logError(error) {
+  console.log('Looks like there was a problem:', error);
+}
 
-  function fetchJSON() {
-    // TODO 2.1b
-  }
 
-  function validateResponse(response) {
-    // TODO 2.3
-  }
+// Fetch JSON ----------
 
-  function readResponseAsJSON(response) {
-    // TODO 2.4
-  }
+function fetchJSON() {
+  // TODO
+}
+const jsonButton = document.getElementById('json-btn');
+jsonButton.addEventListener('click', fetchJSON);
 
-  function showImage(responseAsBlob) {
-    //  TODO 3a
-  }
 
-  function readResponseAsBlob(response) {
-    // TODO 3b
-  }
+// Fetch Image ----------
 
-  function fetchImage() {
-    // TODO 3c
-  }
+function fetchImage() {
+  // TODO
+}
+const imgButton = document.getElementById('img-btn');
+imgButton.addEventListener('click', fetchImage);
 
-  function showText(responseAsText) {
-    //  TODO 4a
-  }
 
-  function readResponseAsText(response) {
-    // TODO 4b
-  }
+// Fetch text ----------
 
-  function fetchText() {
-    // TODO 4c
-  }
+function fetchText() {
+  // TODO
+}
+const textButton = document.getElementById('text-btn');
+textButton.addEventListener('click', fetchText);
 
-  function headRequest() {
-    // TODO 5.1
-  }
 
-  function logSize(response) {
-    // TODO 5.2
-  }
+// HEAD request ----------
 
-  /* NOTE: Never send unencrypted user credentials in production! */
-  function postRequest() {
-    // TODO 6.2
-  }
+function headRequest() {
+  // TODO
+}
+const headButton = document.getElementById('head-btn');
+headButton.addEventListener('click', headRequest);
 
-  // Don't worry if you don't understand this, it's not part of the Fetch API.
-  // We are using the JavaScript Module Pattern to enable unit testing of
-  // our functions.
-  return {
-    readResponseAsJSON: (readResponseAsJSON),
-    readResponseAsBlob: (readResponseAsBlob),
-    readResponseAsText: (readResponseAsText),
-    validateResponse: (validateResponse),
-    fetchJSON: (fetchJSON),
-    fetchImage: (fetchImage),
-    fetchText: (fetchText),
-    headRequest: (headRequest),
-    postRequest: (postRequest)
-  };
 
-})();
+// POST request ----------
+
+/* NOTE: Never send unencrypted user credentials in production! */
+function postRequest() {
+  // TODO
+}
+const postButton = document.getElementById('post-btn');
+postButton.addEventListener('click', postRequest);
