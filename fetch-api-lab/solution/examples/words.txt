@@ -1,1 +1,6 @@
-You fetched the text! Nice job. The Fetch API is getting pretty cool huh?
+Fetch is a game usually played with a dog. An object, such as a stick or ball,
+is thrown a moderate distance away from the animal, and it is the animal's
+objective to grab and retrieve it. Many times, the owner of the animal will
+say "Fetch" to the animal before or after throwing the object. In rare
+instances, cats, especially younger cats, have been known to engage in fetch
+behavior.
