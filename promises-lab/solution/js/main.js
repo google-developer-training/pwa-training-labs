@@ -67,6 +67,7 @@ const app = (() => {
     getImageName('Chile'),
     getImageName('Peru')
   ];
+
   allFlags(promises).then(result => {
     console.log(result);
   });
