@@ -27,15 +27,15 @@ limitations under the License. -->
   <script src="../js/main.js"></script>
   <script>
     /*jshint esversion: 6*/
-    QUnit.test('getImageName', function(assert) {
-      var inputs = ['Spain', 'Peru', 'Chile', 'spain', 'peru', 'chile'];
-      var outputs = ['spain.png', 'peru.png', 'chile.png',
+    QUnit.test('getImageName', (assert) => {
+      const inputs = ['Spain', 'Peru', 'Chile', 'spain', 'peru', 'chile'];
+      const outputs = ['spain.png', 'peru.png', 'chile.png',
                      'spain.png', 'peru.png', 'chile.png'];
-      var msg;
-      var expected;
-      var done = assert.async(7);
+      let msg;
+      let expected;
+      const done = assert.async(7);
 
-      inputs.forEach(function(input, i) {
+      inputs.forEach((input, i) => {
         app.getImageName(input)
         .then(r => {
           expected = outputs[i];
@@ -58,8 +58,8 @@ limitations under the License. -->
       });
     });
 
-    QUnit.test('isSpain', function(assert) {
-      var done = assert.async(2);
+    QUnit.test('isSpain', (assert) => {
+      const done = assert.async(2);
 
       app.isSpain('Spain')
       .then(r => {
@@ -80,8 +80,8 @@ limitations under the License. -->
       });
     });
 
-    QUnit.test('spainTest', function(assert) {
-      var done = assert.async(2);
+    QUnit.test('spainTest', (assert) => {
+      const done = assert.async(2);
 
       app.spainTest('Spain')
       .then(r => {
@@ -102,12 +102,12 @@ limitations under the License. -->
       });
     });
 
-    QUnit.test('flagChain (finished in section 3)', function(assert) {
-      var done = assert.async();
+    QUnit.test('flagChain (finished in section 3)', (assert) => {
+      const done = assert.async();
 
       app.flagChain('invalid input')
       .then(r => {
-        var domImages = document.getElementsByTagName('img');
+        const domImages = document.getElementsByTagName('img');
         assert.ok(domImages.length > 0, 'appends image to DOM');
         done();
       }).catch(e => {
@@ -116,19 +116,19 @@ limitations under the License. -->
       });
     });
 
-    QUnit.test('allFlags', function(assert) {
-      var done = assert.async(2);
-      var promises = [
+    QUnit.test('allFlags', (assert) => {
+      const done = assert.async(2);
+      const promises = [
         app.getImageName('Spain'),
         app.getImageName('Chile'),
         app.getImageName('Peru')
       ];
-      var badPromises = [
+      const badPromises = [
         app.getImageName('Spain'),
         app.getImageName('Chile17'),
         app.getImageName('Peru')
       ];
-      var msg = 'resolves with values of promises (as a list)';
+      const msg = 'resolves with values of promises (as a list)';
 
       app.allFlags(promises)
       .then(values => {

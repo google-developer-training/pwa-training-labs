@@ -15,7 +15,7 @@ limitations under the License.
 */
 /*jshint esversion: 6*/
 
-var app = (function() {
+const app = (() => {
 
   function getImageName(country) {
 
@@ -84,8 +84,8 @@ var app = (function() {
   }
 
   function appendFlag(flagBlob) {
-    var flagImage = document.createElement('img');
-    var flagDataURL = URL.createObjectURL(flagBlob);
+    const flagImage = document.createElement('img');
+    const flagDataURL = URL.createObjectURL(flagBlob);
     flagImage.src = flagDataURL;
     document.body.appendChild(flagImage);
   }
