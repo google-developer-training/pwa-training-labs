@@ -15,12 +15,12 @@ limitations under the License.
 */
 /*jshint esversion: 6*/
 
-var app = (function() {
+const app = (() => {
 
   function getImageName(country) {
     country = country.toLowerCase();
-    var promiseOfImageName = new Promise(function(resolve, reject) {
-      setTimeout(function() {
+    const promiseOfImageName = new Promise((resolve, reject) => {
+      setTimeout(() => {
         if (country === 'spain' || country === 'chile' || country === 'peru') {
           resolve(country + '.png');
         } else {
@@ -33,7 +33,7 @@ var app = (function() {
   }
 
   function isSpain(country) {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       if (country === 'Spain') {
         resolve('It is Spain!');
       } else {
@@ -62,20 +62,20 @@ var app = (function() {
     .catch(returnFalse);
   }
 
-  var promises = [
+  const promises = [
     getImageName('Spain'),
     getImageName('Chile'),
     getImageName('Peru')
   ];
-  allFlags(promises).then(function(result) {
+  allFlags(promises).then(result => {
     console.log(result);
   });
 
-  var promise1 = new Promise(function(resolve, reject) {
+  const promise1 = new Promise((resolve, reject) => {
     setTimeout(resolve, 500, 'one');
   });
 
-  var promise2 = new Promise(function(resolve, reject) {
+  const promise2 = new Promise((resolve, reject) => {
     setTimeout(reject, 100, 'two');
   });
 
@@ -113,8 +113,8 @@ var app = (function() {
   }
 
   function appendFlag(flagBlob) {
-    var flagImage = document.createElement('img');
-    var flagDataURL = URL.createObjectURL(flagBlob);
+    const flagImage = document.createElement('img');
+    const flagDataURL = URL.createObjectURL(flagBlob);
     flagImage.src = flagDataURL;
     document.body.appendChild(flagImage);
   }
