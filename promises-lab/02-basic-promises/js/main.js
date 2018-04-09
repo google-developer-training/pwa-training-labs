@@ -18,7 +18,6 @@ limitations under the License.
 var app = (function() {
 
   function getImageName(country) {
-    // TODO 2.1 - create a promise
     country = country.toLowerCase();
     var promiseOfImageName = new Promise(function(resolve, reject) {
       setTimeout(function() {
@@ -34,7 +33,6 @@ var app = (function() {
   }
 
   function isSpain(country) {
-    // TODO - Optional
     return new Promise(function(resolve, reject) {
       if (country === 'Spain') {
         resolve('It is Spain!');
@@ -45,26 +43,29 @@ var app = (function() {
   }
 
   function flagChain(country) {
-    // TODO 2.2 - use the promise
     return getImageName(country)
     .then(logSuccess)
     .catch(logError);
   }
 
   function spainTest(country) {
-    // TODO - Optional
     return isSpain(country)
     .then(returnTrue)
     .catch(returnFalse);
   }
 
   function allFlags(promiseList) {
-    // TODO
+
+    // use promise.all
+
   }
 
-  // TODO 4.1 - Promise.all
 
-  // TODO 4.2 - Promise.race
+  // call the allFlags function
+
+
+  // use Promise.race
+
 
   /* Helper functions */
 

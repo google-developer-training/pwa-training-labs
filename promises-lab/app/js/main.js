@@ -18,28 +18,41 @@ limitations under the License.
 var app = (function() {
 
   function getImageName(country) {
-    // TODO 2.1 - create a promise
+
+    // create and return a promise
+
   }
 
   function isSpain(country) {
-    // TODO - Optional
+
+    // Optional - create and return a promise that resolves if input is "Spain"
+
   }
 
   function flagChain(country) {
-    // TODO 2.2 - use the promise
+
+    // use the promise
+
   }
 
   function spainTest(country) {
-    // TODO - Optional
+
+    // Optional - return true if isSpain resolves, otherwise return false
+
   }
 
   function allFlags(promiseList) {
-    // TODO
+
+    // use promise.all
+
   }
 
-  // TODO 4.1 - Promise.all
 
-  // TODO 4.2 - Promise.race
+  // call the allFlags function
+
+
+  // use Promise.race
+
 
   /* Helper functions */
 
