@@ -1,1 +1,0 @@
-You fetched the text! Nice job. The Fetch API is getting pretty cool huh?
