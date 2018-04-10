@@ -44,14 +44,14 @@ limitations under the License.
     <script src="js/main.js"></script>
 
     <script>
-      var country = document.getElementById('country');
+      const country = document.getElementById('country');
 
-      var getImageNameButton = document.getElementById('get-image-name');
+      const getImageNameButton = document.getElementById('get-image-name');
       getImageNameButton.addEventListener('click', function() {
         app.getImageName(country.value);
       });
 
-      var flagChainButton = document.getElementById('fetch-flag-image');
+      const flagChainButton = document.getElementById('fetch-flag-image');
       flagChainButton.addEventListener('click', function() {
         app.flagChain(country.value);
       });
