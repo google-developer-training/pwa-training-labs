@@ -13,19 +13,33 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-<doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <meta charset="utf-8">
     <title>Promises Lab</title>
+    <link rel="stylesheet" href="styles/main.css">
   </head>
 
   <body>
-    <label for="country">Country Name:</label>
-    <input id="country" type="text" placeholder="enter country name"><br><br>
-    <button id="get-image-name">Get Image Name</button><br><br>
-    <button id="flag-chain">Flag Chain</button><br><br>
+    <header>
+      <h1>Promises Lab</h1>
+    </header>
+
+    <main>
+      <label for="country">Country Name:</label>
+      <input id="country" type="text" placeholder="enter country name"><br><br>
+      <button id="get-image-name">Get Image Name</button><br><br>
+      <button id="fetch-flag-image">Fetch Flag Image</button><br><br>
+      <div class="img-container" id="img-container">
+        <!-- image added dynamically -->
+      </div>
+    </main>
+
+    <footer>
+      <a href="https://github.com/google-developer-training/pwa-training-labs">GitHub</a>
+    </footer>
 
     <script src="js/main.js"></script>
 
@@ -37,12 +51,11 @@ limitations under the License.
         app.getImageName(country.value);
       });
 
-      var flagChainButton = document.getElementById('flag-chain');
+      var flagChainButton = document.getElementById('fetch-flag-image');
       flagChainButton.addEventListener('click', function() {
         app.flagChain(country.value);
       });
 
     </script>
-
   </body>
 </html>
