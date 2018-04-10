@@ -51,12 +51,6 @@ const app = (() => {
     .catch(logError);
   }
 
-  function spainTest(country) {
-    return isSpain(country)
-    .then(returnTrue)
-    .catch(returnFalse);
-  }
-
   function allFlags(promiseList) {
     return Promise.all(promiseList)
     .catch(returnFalse);
@@ -94,10 +88,6 @@ const app = (() => {
     console.log('Oh no!:\n' + err);
   }
 
-  function returnTrue() {
-    return true;
-  }
-
   function returnFalse() {
     return false;
   }
@@ -133,7 +123,6 @@ const app = (() => {
     getImageName: (getImageName),
     flagChain: (flagChain),
     isSpain: (isSpain),
-    spainTest: (spainTest),
     fetchFlag: (fetchFlag),
     processFlag: (processFlag),
     appendFlag: (appendFlag),

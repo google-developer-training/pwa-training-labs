@@ -81,28 +81,6 @@ limitations under the License. -->
       });
     });
 
-    QUnit.test('spainTest', (assert) => {
-      const done = assert.async(2);
-
-      app.spainTest('Spain')
-      .then(r => {
-        assert.equal(r, true, 'returns true for "Spain" input');
-        done();
-      }).catch(e => {
-        assert.ok(false, 'catches rejections');
-        done();
-      });
-
-      app.spainTest('Chile')
-      .then(r => {
-        assert.equal(r, false, 'returns false for input other than "Spain"');
-        done();
-      }).catch(e => {
-        assert.ok(false, 'catches rejections');
-        done();
-      });
-    });
-
     QUnit.test('flagChain (finished in section 3)', (assert) => {
       const done = assert.async();
 

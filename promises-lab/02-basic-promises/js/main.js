@@ -48,12 +48,6 @@ const app = (() => {
     .catch(logError);
   }
 
-  function spainTest(country) {
-    return isSpain(country)
-    .then(returnTrue)
-    .catch(returnFalse);
-  }
-
   function allFlags(promiseList) {
 
     // use promise.all
@@ -75,10 +69,6 @@ const app = (() => {
 
   function logError(err) {
     console.log('Oh no!:\n' + err);
-  }
-
-  function returnTrue() {
-    return true;
   }
 
   function returnFalse() {
@@ -116,7 +106,6 @@ const app = (() => {
     getImageName: (getImageName),
     flagChain: (flagChain),
     isSpain: (isSpain),
-    spainTest: (spainTest),
     fetchFlag: (fetchFlag),
     processFlag: (processFlag),
     appendFlag: (appendFlag),
