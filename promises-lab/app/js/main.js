@@ -87,7 +87,9 @@ const app = (() => {
     const flagImage = document.createElement('img');
     const flagDataURL = URL.createObjectURL(flagBlob);
     flagImage.src = flagDataURL;
-    document.body.appendChild(flagImage);
+    const imgContainer = document.getElementById('img-container');
+    imgContainer.appendChild(flagImage);
+    imgContainer.style.visibility = 'visible';
   }
 
   function fallbackName() {
