@@ -52,7 +52,7 @@ function showImage(responseAsBlob) {
 }
 
 function showText(responseAsText) {
-  var message = document.getElementById('message');
+  const message = document.getElementById('message');
   message.textContent = responseAsText;
 }
 
