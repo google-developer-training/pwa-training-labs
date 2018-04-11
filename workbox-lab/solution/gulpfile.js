@@ -19,9 +19,7 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const del = require('del');
 const runSequence = require('run-sequence');
-const workboxBuild = require('workbox-build');
-
-// TODO - re-add line to copy workbox-sw modules from node_modules in copy task
+const wbBuild = require('workbox-build');
 
 // Clean output directory
 gulp.task('clean', () => del(['.tmp', 'build/*', '!build/.git'], {dot: true}));
@@ -29,19 +27,18 @@ gulp.task('clean', () => del(['.tmp', 'build/*', '!build/.git'], {dot: true}));
 gulp.task('copy', () =>
   gulp.src([
     'app/**/*',
-    // 'node_modules/workbox-sw/build/importScripts/workbox-sw.prod*.js'
+    'node_modules/workbox-sw/build/importScripts/workbox-sw.prod*.js'
   ]).pipe(gulp.dest('build'))
 );
 
 gulp.task('bundle-sw', () => {
-  return workboxBuild.injectManifest({
-    swSrc: 'app/sw.js',
-    swDest: 'build/sw.js',
-    injectionPointRegexp: /(\.precacheAndRoute\()\s*\[\s*\]\s*(\))/,
+  return wbBuild.injectManifest({
+    swSrc: 'app/service-worker.js',
+    swDest: 'build/service-worker.js',
     globDirectory: 'app',
-    globPatterns: [
+    staticFileGlobs: [
       'index.html',
-      'styles/main.css'
+      'css/main.css'
     ]
   })
   .catch((err) => {

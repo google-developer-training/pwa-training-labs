@@ -13,9 +13,8 @@ module.exports = {
       globPatterns: ['**\/*.{html,js,css}'],
       globIgnores: ['admin.html', 'node_modules/**', 'service-worker.js',
         'webpack.config.js', 'src/**', 'build/**'],
-      swSrc: './src/sw.js',
-      swDest: './sw.js',
-      injectionPointRegexp: /(\.precacheAndRoute\()\s*\[\s*\]\s*(\))/
+      swSrc: './src/service-worker.js',
+      swDest: './service-worker.js',
     })
   ],
   resolve: {
