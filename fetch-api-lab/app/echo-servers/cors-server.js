@@ -13,31 +13,63 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-const http = require('http');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser')
+const multer = require('multer');
+
+const upload = multer();
 const port = 5000;
 
-http.createServer((req, res) => {
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
+app.use((req, res, next) => {
+  res.setHeader('Content-Type', 'text/plain')
   // enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'X-CUSTOM, Content-Type');
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.set('Access-Control-Allow-Headers', 'X-CUSTOM, Content-Type');
+  next();
+})
 
-  req.on('data', message => {
-    // echo back request with headers
-    const responseWithHeaders = JSON.stringify(req.headers, null, 1) +
-                              '\n\n' +
-                              message.toString();
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write(responseWithHeaders);
-    res.end();
-    console.log(responseWithHeaders);
-  });
+app.post('/', bodyParser.text(), (req, res, next) => {
+  const contentType = req.get('content-type');
+  if (!contentType.includes('text/plain')) {
+    return next();
+  }
+  res.write(JSON.stringify(req.headers, null, 2))
+  res.write('\n\n')
+  res.write(req.body)
+  res.end()
+});
 
-  req.on('end', () => {
-    res.end();
-  });
+app.post('/', bodyParser.json(), (req, res, next) => {
+  const contentType = req.get('content-type');
+  if (!contentType.includes('application/json')) {
+    return next();
+  }
+  res.write(JSON.stringify(req.headers, null, 2))
+  res.write('\n\n')
+  res.write(JSON.stringify(req.body, null, 2))
+  res.end()
+});
 
-}).listen(port);
+app.post('/', upload.fields([]), (req, res, next) => {
+  const contentType = req.get('content-type');
+  if (!contentType.includes('multipart/form-data')) {
+    return next();
+  }
+  res.write(JSON.stringify(req.headers, null, 2))
+  res.write('\n\n')
+  res.write(JSON.stringify(req.body, null, 2))
+  res.end()
+});
 
-console.log('Server listening on localhost port', port);
+const server = app.listen(port, () => {
+  const host = server.address().address;
+  const port = server.address().port;
+  console.log('App listening at http://%s:%s', host, port);
+});
+

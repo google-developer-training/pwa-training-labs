@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "http": "0.0.0"
+    "multer": "^1.3.0"
   }
 }
