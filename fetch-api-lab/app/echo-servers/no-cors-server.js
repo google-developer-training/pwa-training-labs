@@ -18,52 +18,36 @@ const app = express();
 const bodyParser = require('body-parser')
 const multer = require('multer');
 
-const upload = multer();
 const port = 5001;
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 
 app.use((req, res, next) => {
   res.setHeader('Content-Type', 'text/plain')
   next();
 })
 
-// if client POST body is a string, parse as text
-app.post('/', bodyParser.text(), (req, res, next) => {
-  const contentType = req.get('content-type');
-  if (!contentType.includes('text/plain')) {
-    return next();
-  }
-  res.write(JSON.stringify(req.headers, null, 2))
-  res.write('\n\n')
-  res.write(req.body)
-  res.end()
-});
+const upload = multer();
+app.use(upload.fields([]));
+app.use(bodyParser.json());
+app.use(bodyParser.text());
 
-// if client POST body is JSON, parse as JSON
-app.post('/', bodyParser.json(), (req, res, next) => {
-  const contentType = req.get('content-type');
-  if (!contentType.includes('application/json')) {
-    return next();
-  }
-  res.write(JSON.stringify(req.headers, null, 2))
-  res.write('\n\n')
-  res.write(JSON.stringify(req.body, null, 2))
-  res.end()
-});
+app.post('/', (req, res) => {
 
-// if client POST body is FormData, parse as form-data
-app.post('/', upload.fields([]), (req, res, next) => {
-  const contentType = req.get('content-type');
-  if (!contentType.includes('multipart/form-data')) {
-    return next();
-  }
   res.write(JSON.stringify(req.headers, null, 2))
   res.write('\n\n')
-  res.write(JSON.stringify(req.body, null, 2))
+
+  const contentType = req.get('content-type');
+
+  if (contentType.includes('text/plain')) {
+    res.write(req.body)
+  }
+
+  if (contentType.includes('application/json') ||
+      contentType.includes('multipart/form-data')) {
+    res.write(JSON.stringify(req.body, null, 2))
+  }
+
   res.end()
+
 });
 
 const server = app.listen(port, () => {
@@ -71,3 +55,4 @@ const server = app.listen(port, () => {
   const port = server.address().port;
   console.log('App listening at http://%s:%s', host, port);
 });
+
