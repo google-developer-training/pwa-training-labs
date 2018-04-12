@@ -30,6 +30,7 @@ app.use((req, res, next) => {
   next();
 })
 
+// if client POST body is a string, parse as text
 app.post('/', bodyParser.text(), (req, res, next) => {
   const contentType = req.get('content-type');
   if (!contentType.includes('text/plain')) {
@@ -41,6 +42,7 @@ app.post('/', bodyParser.text(), (req, res, next) => {
   res.end()
 });
 
+// if client POST body is JSON, parse as JSON
 app.post('/', bodyParser.json(), (req, res, next) => {
   const contentType = req.get('content-type');
   if (!contentType.includes('application/json')) {
@@ -52,6 +54,7 @@ app.post('/', bodyParser.json(), (req, res, next) => {
   res.end()
 });
 
+// if client POST body is FormData, parse as form-data
 app.post('/', upload.fields([]), (req, res, next) => {
   const contentType = req.get('content-type');
   if (!contentType.includes('multipart/form-data')) {
