@@ -13,8 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-// TODO - update when Workbox v3 is published
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0-alpha.6/workbox-sw.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.1.0/workbox-sw.js');
 
 workbox.precaching.precacheAndRoute([
   {
@@ -23,7 +22,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "offline.html",
-    "revision": "3ea57a53f8b6bf78a088fe9c575260d6"
+    "revision": "ed45b30cd282ac8ab61f668ae9eace25"
   },
   {
     "url": "icons/icon-128x128.png",
@@ -59,11 +58,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "shell.html",
-    "revision": "cc671b5851ffd5e6c281f6d64ca072cc"
+    "revision": "2dce6e1c7facc830d0bf681db989535e"
   },
   {
     "url": "js/app.js",
-    "revision": "4a31acb02beaac7d2b4524b981301cf5"
+    "revision": "1de940d03e78c828d942076edcb6b2ba"
   }
 ]);
 
@@ -76,7 +75,7 @@ self.addEventListener('install', event => {
     '/'
   ];
   const cacheName = workbox.core.cacheNames.runtime;
-  event.waitUntil(caches.open(cacheName).then((cache) => cache.addAll(urls)));
+  event.waitUntil(caches.open(cacheName).then(cache => cache.addAll(urls)));
 });
 
 workbox.routing.registerRoute(/(index|\/articles\/)(.*)html|(.*)\/$/, args => {
