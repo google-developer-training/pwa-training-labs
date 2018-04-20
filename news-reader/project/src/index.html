@@ -1,0 +1,51 @@
+<!--
+Copyright 2018 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta charset="utf-8">
+  <title>PWA News Reader</title>
+  <style>/* REPLACED-INLINE-STYLESHEET */</style>
+</head>
+
+<body>
+  <header class="primary raised">
+    <div class="logo-container">
+      <!-- image licensed CC0 - no attribution required, https://unsplash.com/photos/NuE8Nu3otjo -->
+      <img class="logo" src="images/logo.png" alt="The earth as seen from space with spacecraft in the foreground">
+    </div>
+    <h1 class="header-title">PWA News Reader</h1>
+  </header>
+  <main>
+    <div class="loading-wrapper">
+      <div class="loading" id="loading"></div>
+    </div>
+    <div id="container">
+      <!-- content loaded dynamically -->
+    </div>
+  </main>
+  <footer class="primary">
+    <h3>
+      <a href="https://github.com/HackerNews/API">HN API</a>
+    </h3>
+  </footer>
+
+  <script src="https://cdn.polyfill.io/v2/polyfill.js?features=default,fetch"></script>
+  <script>/* REPLACED-INLINE-JAVASCRIPT */</script>
+
+</body>
+</html>

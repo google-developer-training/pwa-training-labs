@@ -1,0 +1,28 @@
+{
+  "name": "news-reader-challenge",
+  "version": "1.0.0",
+  "description": "A PWA challenge",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "gulp dev",
+    "dist": "gulp dist"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "del": "^3.0.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-noop": "^1.0.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-replace": "^0.6.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "uglify-es": "^3.3.9",
+    "workbox-build": "^3.1.0"
+  }
+}

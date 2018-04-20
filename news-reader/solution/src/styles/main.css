@@ -1,0 +1,197 @@
+/*
+Copyright 2018 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  justify-content: space-between;
+  margin: 0;
+  min-height: 100vh;
+}
+
+header {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.header-title {
+  padding-right: 30px;
+}
+
+main {
+  align-items: center;
+  background-color: whitesmoke;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  width: 100%;
+}
+
+.primary {
+  background-color: #607d8b;
+  color: white;
+}
+
+.primary-alt {
+  color: #607d8b;
+}
+
+.primary a {
+  color: white;
+  text-decoration: none;
+}
+
+.primary a:active,
+.primary a:hover,
+.primary a:focus {
+  color: black;
+  text-decoration: underline;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.logo-container {
+  align-items: center;
+  display: flex;
+  padding: 0 10px 0 0;
+}
+
+.logo {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.loading-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.loading {
+  animation: rotate 1s infinite linear;
+  border: 3px solid #607d8b;
+  border-radius: 50%;
+  border-right-color: transparent;
+  display: flex;
+  height: 40px;
+  width: 40px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  margin: 20px;
+  max-width: 600px;
+  padding: 10px 20px;
+}
+
+.card-title {
+  font-weight: 500;
+}
+
+.expandable {
+  display: none;
+}
+
+.question-wrapper {
+  padding: 15px 15px 0 15px;
+}
+
+.question-text {
+  background-color: aliceblue;
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 15px;
+  padding: 10px 15px 10px 15px;
+}
+
+.comments-wrapper {
+  padding: 20px 10px 0 10px;
+}
+
+.comment-text {
+  background-color: aliceblue;
+  margin: 10px;
+  padding: 10px 10px 5px 10px;
+}
+
+.removed {
+  color: #607d8b;
+  font-style: italic;
+  padding: 5px 5px 5px 20px;
+}
+
+.time {
+  font-weight: 200;
+}
+
+.by {
+  font-weight: 500;
+}
+
+.center {
+  text-align: center;
+}
+
+button {
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 36px;
+  letter-spacing: 0;
+  min-width: 64px;
+  overflow: hidden;
+  padding: 0 16px;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+}
+
+footer {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 7vh;
+  justify-content: center;
+  min-height: 50px;
+  padding: 10px;
+  width: 100%;
+}
