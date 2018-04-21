@@ -32,10 +32,6 @@ header {
   width: 100%;
 }
 
-.header-title {
-  padding-right: 30px;
-}
-
 main {
   align-items: center;
   background-color: whitesmoke;
