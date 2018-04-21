@@ -52,6 +52,9 @@ const toggleQuestionDetails = function(questionId, kidsIds) {
   const expandableElem = document.getElementById(`expandable-${questionId}`);
   expandableElem.style.display = (expandableElem.style.display === 'block') ?
     'none' : 'block';
+  if (!kidsIds || kidsIds == 'undefined') {
+    return;
+  }
   const loadingElem = document.getElementById(`loading-${questionId}`);
   loadingElem.style.display = 'block';
   const commentsElem = document.getElementById(`comments-${questionId}`);
