@@ -1,6 +1,6 @@
 {
   "name": "PWA News Reader",
-  "short_name": "PWA News Reader",
+  "short_name": "News Reader",
   "lang": "en-US",
   "start_url": "/index.html",
   "display": "standalone",
