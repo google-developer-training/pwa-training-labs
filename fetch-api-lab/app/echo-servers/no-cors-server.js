@@ -26,11 +26,11 @@ app.use((req, res, next) => {
 })
 
 const upload = multer();
-app.use(upload.fields([]));
-app.use(bodyParser.json());
-app.use(bodyParser.text());
+const formParser = upload.fields([]);
+const jsonParser = bodyParser.json();
+const textParser = bodyParser.text();
 
-app.post('/', (req, res) => {
+app.post('/', [formParser, jsonParser, textParser], (req, res) => {
 
   res.write(JSON.stringify(req.headers, null, 2))
   res.write('\n\n')
