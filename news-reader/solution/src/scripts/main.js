@@ -55,8 +55,8 @@ const renderComments = function(comments) {
       let commentHtml = comment.deleted || comment.dead ?
         `<p class="removed">Removed</p>` : `
         <div class='comment'>
-          <span class="by primary-alt">by ${comment.by}</span>
-          <span class="time primary-alt">${timeSince(comment.time)}</span>
+          <span class="by secondary">by ${comment.by}</span>
+          <span class="time secondary">${timeSince(comment.time)}</span>
           <div id=${comment.id} class='comment-text'>${comment.text}</div>
         </div> `
       return commentHtml;
@@ -101,11 +101,11 @@ const renderQuestions = function(questions) {
       `<section class="card" id="${question.id}">
         <h3 class="card-title">${question.title}</h3>
         <p>
-          <span class="time primary-alt">${timeSince(question.time)} </span>
+          <span class="time secondary">${timeSince(question.time)} </span>
           by
-          <span class="by primary-alt"> ${question.by}</span>
+          <span class="by secondary"> ${question.by}</span>
         </p>
-        <p><span class="primary-alt">${question.score}</span> points</p>
+        <p><span class="secondary">${question.score}</span> points</p>
         ${question.text || question.kids ?
           `<button onclick="toggleQuestionDetails('${question.id}', '${question.kids}')"
             class="primary">
