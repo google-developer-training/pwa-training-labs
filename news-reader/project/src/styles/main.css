@@ -42,12 +42,12 @@ main {
 }
 
 .primary {
-  background-color: #607d8b;
+  background-color: #475b67;
   color: white;
 }
 
-.primary-alt {
-  color: #607d8b;
+.secondary {
+  color: #3f51b5;
 }
 
 .primary a {
@@ -127,10 +127,11 @@ img {
 }
 
 .question-text {
-  background-color: aliceblue;
+  border: 1px solid #3f51b5;
   font-style: italic;
   font-weight: 300;
   margin-bottom: 15px;
+  overflow-x: auto;
   padding: 10px 15px 10px 15px;
 }
 
@@ -139,13 +140,14 @@ img {
 }
 
 .comment-text {
-  background-color: aliceblue;
+  border: 1px solid #3f51b5;
   margin: 10px;
+  overflow-x: auto;
   padding: 10px 10px 5px 10px;
 }
 
 .removed {
-  color: #607d8b;
+  color: #3f51b5;
   font-style: italic;
   padding: 5px 5px 5px 20px;
 }
