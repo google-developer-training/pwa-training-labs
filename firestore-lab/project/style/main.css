@@ -1,0 +1,173 @@
+/*
+Copyright 2017 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+body {
+  font-family: 'Orbitron', sans-serif;
+  margin: 0;
+  width: 100%;
+  background-color: #484848;
+}
+
+img {
+  max-width: 100%;
+}
+
+header {
+  width: 100%;
+  padding: 10px 0px 10px;
+  background-color: #131b3a;
+  color: #d4d0d0;
+}
+
+input {
+  border: none;
+  border-bottom: 2px solid #9a9a9a;
+  font-family: 'Orbitron',sans-serif;
+  background: transparent;
+  color: #d4d0d0;
+  width: 90%;
+}
+
+input:focus, select:focus, button:focus {
+  outline: none;
+}
+
+select {
+  -webkit-border-radius: 0px;
+  border: none;
+  border-bottom: 2px solid #9a9a9a;
+  font-family: 'Orbitron',sans-serif;
+  background: transparent;
+  color: #d4d0d0;
+  width: 90%;
+}
+
+.header {
+  padding-left: 10px;
+}
+
+.cards-container {
+  display: grid;
+  grid-gap: 20px;
+  margin: 20px;
+  justify-content: center;
+}
+
+.ship-card {
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12), 0 3px 5px -1px rgba(0,0,0,.2);
+  max-width: 640px;
+  background-color: #1d1c1cde;
+  color: #9a9a9a;
+}
+
+.add-card {
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12), 0 3px 5px -1px rgba(0,0,0,.2);
+  max-width: 640px;
+  background-color: #1d1c1cde;
+  color: #9a9a9a;
+}
+
+.card-supporting-text {
+  padding-left: 30px;
+}
+
+.card-name {
+  width: 90%;
+  color: #d4d0d0;
+  font-size: 1.5em;
+  margin: .75em 0
+}
+
+.card-image {
+  min-height: 100%;
+  position: relative;
+}
+
+.form-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.btn-form {
+  height: 30px;
+  font-family: 'Orbitron',sans-serif;
+  border-radius: 2px;
+  font-size: 16px;
+  padding: 0 16px;
+  margin: 5px 10px 10px;
+}
+
+.ship-card:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .3s ease;
+  width: 100%;
+}
+
+.image-delete {
+  left: 93%;
+  position: absolute;
+  top: 10%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.details {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-column-gap: 10px;
+  padding-bottom: 10px;
+}
+
+.ship-attribute {
+  justify-self: end;
+}
+
+.ship-attribute-value {
+  color: #bfbf08;
+}
+
+#rocket-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.text {
+  color: #FFF;
+}
+
+@media (min-width: 700px) {
+  .cards-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .cards-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
