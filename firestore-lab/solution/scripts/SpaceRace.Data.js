@@ -30,10 +30,12 @@ SpaceRace.prototype.getAllShips = function(render) {
 SpaceRace.prototype.getDocumentsInQuery = function(query, render) {
   query.onSnapshot(snapshot => {
     if (!snapshot.size) return render();
-
     snapshot.docChanges.forEach(change => {
       if (change.type === 'added') {
         render(change.doc);
+      }
+      else if (change.type === 'removed') {
+        document.getElementById(change.doc.id).remove();
       }
     });
   });
@@ -41,9 +43,8 @@ SpaceRace.prototype.getDocumentsInQuery = function(query, render) {
 
 SpaceRace.prototype.deleteShip = function(id) {
   const collection = firebase.firestore().collection('ships');
-  return collection.doc(id).delete().then(function() {
-    document.getElementById(id).remove();
-  }).catch(function(error) {
-    console.error('Error removing document: ', error);
-  });
+  return collection.doc(id).delete()
+    .catch(function(error) {
+      console.error('Error removing document: ', error);
+    });
 };

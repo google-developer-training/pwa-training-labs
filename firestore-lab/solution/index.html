@@ -120,11 +120,25 @@ limitations under the License.
   <script src="/__/firebase/4.9.0/firebase-firestore.js"></script>
   <script src="/__/firebase/init.js"></script>
 
-  <script src="//unpkg.com/navigo@6"></script>
+  <script src="https://unpkg.com/navigo@6"></script>
 
   <script src="/scripts/SpaceRace.js"></script>
   <script src="/scripts/SpaceRace.View.js"></script>
   <script src="/scripts/SpaceRace.Mock.js"></script>
   <script src="/scripts/SpaceRace.Data.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => {
+            console.log('Service worker registered! 😎', reg);
+          })
+          .catch(err => {
+            console.log('😥 Registration failed: ', err);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
