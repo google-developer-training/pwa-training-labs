@@ -27,12 +27,6 @@ SpaceRace.prototype.deleteShip = function(id) {
   */
 };
 
-SpaceRace.prototype.getShip = function(id) {
-  /*
-    TODO: Retrieve a single ship
-  */
-};
-
 SpaceRace.prototype.getAllShips = function(render) {
   /*
     TODO: Retrieve a list of ships
