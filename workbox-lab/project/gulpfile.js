@@ -16,30 +16,34 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const del = require('del');
-const runSequence = require('run-sequence');
 
 // Clean "build" directory
-gulp.task('clean', () => del(['build/*'], {dot: true}));
+const clean = () => {
+  return del(['build/*'], {dot: true});
+};
+gulp.task('clean', clean);
 
 // Copy "src" directory to "build" directory
-gulp.task('copy', () =>
-  gulp.src(['src/**/*']).pipe(gulp.dest('build'))
-);
+const copy = () => {
+ return gulp.src(['src/**/*']).pipe(gulp.dest('build'));
+};
+gulp.task('copy', copy);
+
+// This is the app's build process
+const build = gulp.series('clean', 'copy');
+gulp.task('build', build);
 
 // Build the app, run a local dev server, and rebuild on "src" file changes
-gulp.task('serve', ['default'], () => {
-  browserSync.init({
-    server: 'build',
-    port: 8081,
-    open: false
-  });
-  gulp.watch('src/**/*', ['default']).on('change', browserSync.reload);
+const browserSyncOptions = {
+  server: 'build',
+  port: 8081,
+  open: false
+};
+const serve = gulp.series(build, () => {
+  browserSync.init(browserSyncOptions);
+  return gulp.watch('src/**/*', build).on('change', browserSync.reload);
 });
+gulp.task('serve', serve);
 
-// This is the default task and app's build process
-gulp.task('default', ['clean'], cb => {
-  runSequence(
-    'copy',
-    cb
-  );
-});
+// Set the default task to "build"
+gulp.task('default', build);
