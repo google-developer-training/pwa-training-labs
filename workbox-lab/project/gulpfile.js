@@ -29,6 +29,8 @@ const copy = () => {
 };
 gulp.task('copy', copy);
 
+// TODO - create a task to build the service worker
+
 // This is the app's build process
 const build = gulp.series('clean', 'copy');
 gulp.task('build', build);
