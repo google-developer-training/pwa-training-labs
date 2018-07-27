@@ -29,8 +29,22 @@ function copy() {
   ])
   .pipe(gulp.dest('build'));
 }
-
 gulp.task('copy', copy);
+
+function serve() {
+  return browserSync.init({
+    server: 'build',
+    open: false,
+    port: 3000
+  });
+}
+gulp.task(
+  'buildAndServe',
+  gulp.series(
+    copy, processJs, processCss,
+    gulp.parallel(serve, watch)
+  )
+);
 
 function processJs() {
   return gulp.src('app/scripts/*.js')
@@ -43,8 +57,13 @@ function processJs() {
   }))
   .pipe(gulp.dest('build/scripts'));
 }
-
 gulp.task('processJs', processJs);
+
+function watch() {
+  gulp.watch('app/scripts/*.js', processJs);
+  gulp.watch('app/styles/*.css', processCss);
+}
+gulp.task('watch', watch);
 
 function processCss() {
   return gulp.src('app/styles/*.css')
@@ -54,25 +73,4 @@ function processCss() {
   }))
   .pipe(gulp.dest('build/styles'));
 }
-
 gulp.task('processCss', processCss);
-
-function watch() {
-  gulp.watch('app/scripts/*.js', ['processJs']);
-  gulp.watch('app/styles/*.css', ['processCss']);
-}
-
-gulp.task('watch', watch);
-
-function serve() {
-  return browserSync.init({
-    server: 'build',
-    open: false,
-    port: 3000
-  });
-}
-
-gulp.task('serve', ['copy', 'processJs', 'processCss'], () => {
-  serve();
-  watch();
-});
