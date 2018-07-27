@@ -1,22 +1,23 @@
 {
-  "name": "test",
+  "name": "project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.24.6",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.6.1",
-    "browser-sync": "^2.23.7",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.1",
-    "gulp-clean-css": "^3.9.3",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^3.0.0"
-  }
+  "license": "ISC"
 }
