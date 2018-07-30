@@ -29,7 +29,7 @@ var app = (function() {
     console.log('Fetch API not found, try including the polyfill');
     return;
   }
-
+// fetch json does not show json data in the console, fetchJSON function is not working.
   function fetchJSON() {
     fetch('examples/animals.json') // 1
     .then(validateResponse) // 2
