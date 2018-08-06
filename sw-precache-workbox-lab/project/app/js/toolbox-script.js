@@ -1,5 +1,5 @@
 /**
-* Copyright 2016 Google Inc. All rights reserved.
+* Copyright 2018 Google Inc. All rights reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -14,16 +14,12 @@
 * limitations under the License.
 */
 
-// The route for any requests from the googleapis origin
-toolbox.router.get('/(.*)', toolbox.cacheFirst, {
+toolbox.router.get(/\.(?:html|css)$/, toolbox.cacheFirst, {
   cache: {
-    name: 'googleapis',
-    maxEntries: 20,
-  },
-  origin: /\.googleapis\.com$/
+    name: 'pages'
+  }
 });
 
-// We want no more than 50 images in the cache. We check using a cache first strategy
 toolbox.router.get(/\.(?:png|gif|jpg)$/, toolbox.cacheFirst, {
   cache: {
     name: 'images',

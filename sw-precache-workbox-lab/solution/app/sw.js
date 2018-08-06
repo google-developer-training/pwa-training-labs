@@ -1,6 +1,5 @@
-/*jshint esversion:6*/
 /**
- * Copyright 2016 Google Inc. All rights reserved.
+ * Copyright 2018 Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,26 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-importScripts('workbox-sw.dev.v2.1.0.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js');
 
-const workboxSW = new WorkboxSW();
-workboxSW.precache([]);
+workbox.precaching.precacheAndRoute([]);
 
-workboxSW.router.registerRoute('https://fonts.googleapis.com/(.*)',
-  workboxSW.strategies.cacheFirst({
-    cacheName: 'googleapis',
-    cacheExpiration: {
-      maxEntries: 20
-    },
-    cacheableResponse: {statuses: [0, 200]}
+workbox.routing.registerRoute(/\.(?:html|css)$/,
+  workbox.strategies.cacheFirst({
+    cacheName: 'pages',
   })
 );
 
-workboxSW.router.registerRoute(/\.(?:png|gif|jpg)$/,
-  workboxSW.strategies.cacheFirst({
+workbox.routing.registerRoute(/\.(?:png|gif|jpg)$/,
+  workbox.strategies.cacheFirst({
     cacheName: 'images',
-    cacheExpiration: {
-      maxEntries: 50
-    }
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 50
+      })
+    ]
   })
 );
