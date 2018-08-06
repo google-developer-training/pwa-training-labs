@@ -130,8 +130,8 @@ function watch() {
   gulp.watch('dist/index.html', browserSync.reload);
 }
 
-var dist = gulp.series(gulp.parallel(copy, styles, scripts), inline);
-var dev = gulp.series(dist, watch);
+const dist = gulp.series(gulp.parallel(copy, styles, scripts), inline);
+const dev = gulp.series(dist, watch);
 
 gulp.task('dev', dev);
 gulp.task('dist', dist);
