@@ -11,7 +11,7 @@
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
-    "browser-sync": "^2.23.6",
+    "browser-sync": "^2.24.6",
     "del": "^3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-autoprefixer": "^5.0.0",
