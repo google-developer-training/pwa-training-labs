@@ -7,14 +7,14 @@
     "sw-toolbox": "^3.6.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.24.6",
     "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "run-sequence": "^2.2.0",
+    "gulp": "^4.0.0",
     "sw-precache": "^4.3.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "gulp serve"
   },
   "author": "",
   "license": "ISC"
