@@ -36,6 +36,7 @@ main {
   align-items: center;
   background-color: whitesmoke;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
   justify-content: center;
   width: 100%;
@@ -104,6 +105,16 @@ img {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.install-wrapper {
+  align-items: center;
+  background-color: #3372e0;
+  border: solid 1px;
+  display: none;
+  height: 60px;
+  justify-content: center;
+  width: 100%;
 }
 
 .card {
