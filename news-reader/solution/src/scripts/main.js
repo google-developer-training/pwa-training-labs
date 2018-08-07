@@ -139,6 +139,8 @@ window.addEventListener('load', () => {
       const questionsHtml = renderQuestions(questions);
       document.getElementById('loading').style.display = 'none';
       document.getElementById('container').insertAdjacentHTML('beforeend', questionsHtml);
+      // Update UI to notify the user they can add to home screen
+      tryInitInstallBtn();
     })
     .catch(err => {
       console.log(err);
