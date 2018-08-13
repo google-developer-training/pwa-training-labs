@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "web-push": "^3.2.5"
   }
 }
