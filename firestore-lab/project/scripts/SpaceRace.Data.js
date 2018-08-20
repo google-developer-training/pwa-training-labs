@@ -21,12 +21,6 @@ SpaceRace.prototype.addShip = function(data) {
   */
 };
 
-SpaceRace.prototype.deleteShip = function(id) {
-  /*
-    TODO: Delete a ship
-  */
-};
-
 SpaceRace.prototype.getAllShips = function(render) {
   /*
     TODO: Retrieve a list of ships
@@ -36,5 +30,11 @@ SpaceRace.prototype.getAllShips = function(render) {
 SpaceRace.prototype.getDocumentsInQuery = function(query, render) {
   /*
     TODO: Render all documents in the provided query
+  */
+};
+
+SpaceRace.prototype.deleteShip = function(id) {
+  /*
+    TODO: Delete a ship
   */
 };
