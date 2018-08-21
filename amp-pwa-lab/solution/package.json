@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "express": "^4.16.2",
-    "workbox-cli": "^3.1.0"
+    "express": "^4.16.3",
+    "workbox-cli": "^3.4.1"
   }
 }
