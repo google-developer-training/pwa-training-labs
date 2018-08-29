@@ -37,7 +37,7 @@ app.get('/pages/signin', (req, res) => {
 });
 
 app.post('/submit-signin', (req, res) => {
-  res.status(500).send('Uh-oh, something went wrong! 😞');
+  res.status(500).send('Try using the Google Sign in button');
 });
 
 const server = app.listen(8081, () => {
