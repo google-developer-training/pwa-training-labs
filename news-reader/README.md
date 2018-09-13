@@ -18,7 +18,7 @@ For a production build, call
 
 ## Activity instructions
 
-TODO
+See the PWA ILT content on [developers.google.com](https://developers.google.com/web/ilt/pwa/challenge-convert-a-news-app-to-a-pwa)
 
 ## Notes
 
