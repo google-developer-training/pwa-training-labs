@@ -167,15 +167,15 @@ limitations under the License.
           if (idbApp.getOrders()) {
             idbApp.getOrders().then(function(orders) {
               if (orders.length > 0) {
-                assert.ok(true, 'getByName function working');
+                assert.ok(true, 'getOrders function working');
                 done();
               } else {
-                assert.ok(false, 'getByName returning empty array');
+                assert.ok(false, 'getOrders returning empty array');
                 done();
               }
             });
           } else {
-            assert.ok(false, 'getByName not returning anything');
+            assert.ok(false, 'getOrders not returning anything');
             done();
           }
         } else {
