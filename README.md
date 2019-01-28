@@ -9,8 +9,9 @@ Instructions, as well as lecture videos and related content, are available on
 
 ## Contributing
 
-If you find a bug or think something could be better, please file an issue or
-submit a pull request.
+If you find a bug or think something could be better, please file an issue! 
+* If you think a code change should be made, feel free to file a PR.
+* If you think the instructions should be updated, please file a bug instead of a PR. The instructions for this project are generated from internal documents, so we can't use PRs to update them.
 
 ## Note
 
