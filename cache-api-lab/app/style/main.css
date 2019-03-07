@@ -47,6 +47,10 @@ img {
   max-width: 100%;
 }
 
+.img-404 {
+  margin-top: 50px;
+}
+
 p {
   color: #444;
   font-size: 1em;
