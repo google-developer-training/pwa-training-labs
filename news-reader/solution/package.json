@@ -13,7 +13,7 @@
   "devDependencies": {
     "browser-sync": "^2.26.5",
     "del": "^3.0.0",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "github:gulpjs/gulp#v4.0.0",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-clean-css": "^3.9.3",
     "gulp-concat": "^2.6.1",
