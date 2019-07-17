@@ -10,7 +10,7 @@
     "browser-sync": "^2.26.7",
     "del": "^3.0.0",
     "gulp": "^4.0.2",
-    "sw-precache": "^4.3.0"
+    "sw-precache": "^5.2.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
