@@ -4,9 +4,7 @@ In this lab you learn how to use Cloud Firestore to store your app's data. The l
 
 ## Getting started
 
-To get started, check out the instructions in
-[GitBook](https://google-developer-training.gitbooks.io/progressive-web-apps-ilt-codelabs/content)
-or on [developers.google.com](https://developers.google.com/web/ilt/pwa/).
+To get started, check out the instructions on [developers.google.com](https://developers.google.com/web/ilt/pwa/).
 
 ## Note
 
