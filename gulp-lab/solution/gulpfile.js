@@ -49,7 +49,7 @@ gulp.task(
 function processJs() {
   return gulp.src('app/scripts/*.js')
   .pipe(babel({
-      presets: ['env']
+      presets: ['@babel/env']
   }))
   .pipe(uglify())
   .pipe(rename({
