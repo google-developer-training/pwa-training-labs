@@ -14,7 +14,11 @@
 /* TODO 3 - style the page */
 
 /* TODO 4 - use media query */
-
+@media screen and (max-width: 48rem) {
+  .container .col {
+    width: 95%;
+  }
+}
 /* TODO 5.2 - use flexbox */
 
 /* TODO 5.4 - use media query with Flexbox*/
