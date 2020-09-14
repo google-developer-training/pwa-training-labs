@@ -6,9 +6,7 @@ from a Node.js server.
 
 ## Getting started
 
-To get started, check out the instructions in
-[GitBook](https://google-developer-training.gitbooks.io/progressive-web-apps-ilt-codelabs/content/docs/lab_integrating_web_push.html)
-or on [developers.google.com](https://developers.google.com/web/ilt/pwa/lab-integrating-web-push).
+To get started, check out the instructions on [developers.google.com](https://developers.google.com/web/ilt/pwa/lab-integrating-web-push).
 
 ## Note
 

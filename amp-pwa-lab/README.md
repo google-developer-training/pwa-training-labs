@@ -11,7 +11,7 @@ You'll also get a chance to use [Workbox](https://workboxjs.org/).
 
 ## Getting started
 
-Instructions, as well as lecture videos and related content, are available on [developers.google.com](https://developers.google.com/web/ilt/pwa/). The instructions can also be accessed on [GitBook](https://www.gitbook.com/book/google-developer-training/progressive-web-apps-ilt-codelabs/details), where they are available as a [downloadable PDF](https://www.gitbook.com/download/pdf/book/google-developer-training/progressive-web-apps-ilt-codelabs).
+Instructions, as well as lecture videos and related content, are available on [developers.google.com](https://developers.google.com/web/ilt/pwa/).
 
 ## More resources
 
