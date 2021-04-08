@@ -1,0 +1,24 @@
+{
+  "name": "indexeddb-labs",
+  "version": "1.0.0",
+  "description": "Practicing IndexedDB",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marci0liveira/pwa-training-labs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marci0liveira/pwa-training-labs/issues"
+  },
+  "homepage": "https://github.com/Marci0liveira/pwa-training-labs#readme"
+}
