@@ -37,13 +37,6 @@ if (workbox) {
     })
   );
 
-  workbox.routing.registerRoute(
-    new RegExp('https://cdn.polyfill.io/(.*)'),
-    workbox.strategies.staleWhileRevalidate({
-      cacheName: 'polyfills'
-    })
-  );
-
 } else {
   console.log(`Workbox didn't load 😬`);
 }
